@@ -76,7 +76,10 @@ Received: 11
 The next piece we need is something which will control when this function should yield back to the main thread. In order to let all of the JS task queues clear, we have to put our execution onto the bottom of the macro-task queue. We can do that with a setTimeout of a delay of 0: our callback will be called only once everything that was already on the macro-task queue is cleared. We'll use a callback to push the data out to what needs it:
 
 ```typescript
-function pullFromGenerator<T>(generator: Generator<T>, onValue: (value: T)): void {
+function pullFromGenerator<T>(
+  generator: Generator<T>,
+  onValue: (value: T)
+): void {
   const getNext = () => {
         var nextObj = generator.next();
         if(!nextObj.done){
