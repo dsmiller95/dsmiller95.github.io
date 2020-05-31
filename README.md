@@ -1,18 +1,9 @@
-<p align="center">
-    <h1 align="center">Gatsby starter developer blog</h1>
-    <p align="center">A file-driven generator made with Gatsby.js for creating fast loading, customizable, scalable and SEO-friendly blogs.</p>
-    <p align="center">If you are looking for a site <strong>ready to go in production</strong> and with <strong>most common features out of the box</strong>, you should give a change to this starter! Not every blog needs of a CMS or other complex solutions. This blog is made for who want share its thoughs in minutes without care of SEO, server or database concerns. <strong>You can deploy it on the host you want at the cheapest price</strong> because it is built only with HTML, CSS, JS and it doesn't need of backend to work. It is <strong>mostly designed for blogs and portfolios</strong>. But despite the fact that it allows to automates the most common features of these types of site (ex. tags, SEO, archive...), it is high customizable and extensible.</p>
-</p>
-
-[![Build Status](https://travis-ci.org/lgcolella/gatsby-starter-developer-blog.svg?branch=master)](https://travis-ci.org/lgcolella/gatsby-starter-developer-blog)
-
 ## Summary
 
 * [Stack](#-stack)
 * [Features](#-features)
 * [Guide](#-guide)
 * [Credits](#-credits)
-* [Contribute](#-how-contribute)
 
 ## 🔧 Stack
 
@@ -56,10 +47,15 @@
 
 ## 📓 Guide
 
-* [How to add a post](#How-to-add-a-post)
-* [How to edit metatags of a post](#How-to-edit-metatags-of-a-post)
-* [How to add a translated version of a post](#How-to-add-a-translated-version-of-a-post)
-* [How to change themes](#how-to-change-themes)
+- [Summary](#summary)
+- [🔧 Stack](#-stack)
+- [🔌 Features](#-features)
+- [📓 Guide](#-guide)
+  - [How to add a post](#how-to-add-a-post)
+  - [How to edit metatags of a post](#how-to-edit-metatags-of-a-post)
+  - [How to add a translated version of a post](#how-to-add-a-translated-version-of-a-post)
+  - [How to change themes](#how-to-change-themes)
+- [📃 Credits](#-credits)
 
 ### How to add a post
 
@@ -112,14 +108,4 @@ Themes available with this starter are in ```src/style/themes```, but you can al
 
 * 404 page's image by [Freepik](https://www.freepik.com/free-vector/404-error-web-template-with-bored-cat_2234126.htm)
 * Flag icons by [Freepik](https://www.flaticon.com/packs/countrys-flags)
-
-## 🤝 How to contribute
-
-Everyone can contribute to enhance this starter! Here a not-exhaustive list of how to do.
-
-- If you are a *developer* you can improve the code.
-- If you are a *designer* you can propose new themes or enhance the UX.
-- If you are a *blogger* you can propose new features that you would have.
-- If you are a *user* you can improve the guide or give me a feedback.
-
-Even the smallest help is precious and matters to improve this project!
+* Starter designed by [lgcolella](https://github.com/lgcolella/gatsby-starter-developer-blog)
