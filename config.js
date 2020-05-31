@@ -1,6 +1,6 @@
 
 module.exports = {
-  pathPrefix: '/devlog',
+  pathPrefix: '/dans-dev-diary',
   siteUrl: 'https://lgcolella.github.io', // TODO
   siteTitle: 'Dan\'s Developer Diary',
   siteDescription: 'Things I think are neat',
