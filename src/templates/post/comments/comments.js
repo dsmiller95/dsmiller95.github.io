@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Config from '../../../../config'
 import style from './comments.module.less'
 
+// TODO: convert to use a comment platform that doesn't require login, if possible
 class Comments extends React.Component {
   componentDidMount() {
     const { pageCanonicalUrl, pageId } = this.props
