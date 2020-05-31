@@ -7,7 +7,6 @@ import SEO from '../../components/seo'
 import Heading from './heading'
 import ArticleHeading from './article-heading'
 import Article from './article'
-import Comments from './comments'
 import Share from './share'
 import SuggestedPosts from './suggested-posts'
 import Config from '../../../config'
@@ -62,7 +61,7 @@ const Post = ({ data, pageContext }) => {
           />
         </div>
         <SuggestedPosts posts={suggestedPosts} />
-        <Comments pageCanonicalUrl={canonicalUrl} pageId={title} />
+        {/*<Comments pageCanonicalUrl={canonicalUrl} pageId={title} />*/}
       </div>
     </Layout>
   )
