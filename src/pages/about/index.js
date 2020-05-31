@@ -16,16 +16,6 @@ export const aboutPropTypes = {
         fluid: PropTypes.object.isRequired,
       }).isRequired,
     }).isRequired,
-    flagIt: PropTypes.shape({
-      childImageSharp: PropTypes.shape({
-        fixed: PropTypes.object.isRequired,
-      }),
-    }),
-    flagEn: PropTypes.shape({
-      childImageSharp: PropTypes.shape({
-        fixed: PropTypes.object.isRequired,
-      }),
-    }),
     skillIcons: PropTypes.object.isRequired,
     toolIcons: PropTypes.object.isRequired,
   }),
@@ -35,7 +25,7 @@ class About extends React.Component {
   static propTypes = aboutPropTypes
 
   render() {
-    let { profilePhoto, flagIt, skillIcons, toolIcons } = this.props.data
+    let { profilePhoto, skillIcons, toolIcons } = this.props.data
     return (
       <Layout>
         <SEO
@@ -120,13 +110,6 @@ export const query = graphql`
       childImageSharp {
         fluid(maxWidth: 800) {
           ...GatsbyImageSharpFluid_tracedSVG
-        }
-      }
-    }
-    flagIt: file(name: { eq: "flag-it" }) {
-      childImageSharp {
-        fixed(width: 50) {
-          ...GatsbyImageSharpFixed_tracedSVG
         }
       }
     }
