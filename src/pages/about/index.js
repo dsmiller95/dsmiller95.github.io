@@ -48,26 +48,21 @@ class About extends React.Component {
             <Img fluid={profilePhoto.childImageSharp.fluid} />
           </div>
           <div className={style.content}>
-            <h1>Hi, I'm Luigi!</h1>
+            <h1>Hi, I'm Dan!</h1>
             <h2>Software Developer</h2>
-            <p>Per la versione italiana clicca qui</p>
-            <a href={Utils.resolvePageUrl('../', 'it', 'about')}>
-              <Img
-                fixed={flagIt.childImageSharp.fixed}
-                style={{ display: 'block', margin: 'auto' }}
-              />
-            </a>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              cursus venenatis arcu, cursus pretium enim lacinia nec. Duis
-              viverra sagittis neque. Fusce non luctus urna. Vivamus suscipit
-              metus ac posuere egestas. Nunc a pulvinar purus. Vivamus nisi mi,
-              fringilla quis lacus et, sagittis mollis massa. Cras tempus massa
-              quis lobortis laoreet. Pellentesque metus odio, sagittis nec
-              venenatis non, maximus congue eros. Suspendisse pellentesque purus
-              sit amet ante commodo, et molestie mauris aliquet. Proin non nibh
-              libero. Fusce at nulla euismod, condimentum augue quis, convallis
-              justo.
+              I started my programming adventure by playing around with 
+              development environments such as Scratch, Processing, and Grobots.
+              I thing starting out in those environments has kept my
+              perspective on coding playful, and I find myself working on all
+              kinds of small games or simulations in my free time. This blog
+              comes from a desire to keep track of all the different projects I
+              pick up as I work on them.
+            </p>
+            <p>
+              As for my career, I went to college for Software Engineering.
+              The majority of my professional work has involved Angular
+              front ends and C# back ends, with an occasional NodeJs back end.
             </p>
             <br />
             <h2>Skills</h2>
