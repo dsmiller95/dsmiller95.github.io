@@ -201,7 +201,7 @@ Generated: 5
 Received: 5
 ```
 
-Another handy side effect of converting to use an Observable is that we no longer need to specify now many primes we want, we can instead only pull a specific number using rxjs operators. Or if we kept track of our subscription, we could decide to cancel it later on or switch it out for a different generator without forcing both of them to run at the same time.
+Another handy side effect of converting to use an Observable is that we no longer need to specify how many primes we want, we can instead only pull a specific number using rxjs operators. Or if we kept track of our subscription, we could decide to cancel it later on or switch it out for a different generator without forcing both of them to run at the same time.
 
 ```typescript
 function* getPrimes(): Generator<number> {
@@ -244,11 +244,11 @@ This workaround likely will not work well with any more than just one long-runni
 
 # Example Usage
 
-I used this approach when solving nonograms in my [nonogram designer](https://dsmiller95.github.io/nonogram-printer/?width=16&height=16&raw=AAAgHAOHYwDP45zRd%2BYgPG4jBcoOAxHX45DYeA4BAAA). It is used to update the UI with information about how many different solutions there are for the given design. The worst case for a given n\*n square nonogram is `n!` different designs, meaning that the default 16\*16 size could have up to 2×10^13 different solutions! Deferring this execution allows the user to change the layout of the nonogram until the execution time goes down.
+I used this approach when solving nonograms in my [nonogram designer](https://dsmiller95.github.io/nonogram-printer/?width=16&height=16&raw=AAAgHAOHYwDP45zRd%2BYgPG4jBcoOAxHX45DYeA4BAAA). It is used to update the UI with information about how many different solutions there are for the given design. The worst case for a given n\*n square nonogram is `n!` different designs, meaning that the default 16\*16 size could have up to 20 trillion different solutions! Deferring this execution allows the user to change the layout of the nonogram until the execution time goes down to something possible to compute.
 
 ## Implementation
 
-To suite the needs of the app, this implementation of the function only emits the very last item in the list. The other items aren't always needed, so they are not returned to help save time. It also adds a second interruptPeriod parameter, which sets the length of time passed into the timeout to allow for a longer period of free time on the UI thread.
+To suite the needs of the app, this implementation of the function only emits the very last item in the list. The other items aren't always needed, so to help save time they are not returned. It also adds a second interruptPeriod parameter, which sets the length of time passed into the timeout to allow for a longer period of free time on the UI thread.
 
 ```typescript
 function getLastItemWithInterrupt<T>(
