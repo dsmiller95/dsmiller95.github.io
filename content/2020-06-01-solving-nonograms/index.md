@@ -7,15 +7,39 @@ cover: ./preview.png
 excerpt: Finding a process to solve any nonogram, which can be implemented in code.
 ---
 
-Nonograms are a puzzle similar to sudoku, and solving them results in a small picture. 
+Nonograms are a puzzle similar to sudoku, and solving them results in a small picture.
 
 # Basic rules
 
 Each row and column has a list of numbers along it - each number represents a run of that length of "set" squares. When there are multiple numbers for one row/column, each run cannot touch each other!
 
------nonogram example here
-For example if a 6-cell row has [2, 3] associated with it, the result must be [110111]
------
+---nonogram example here
+---For example if a 6-cell row has [2, 3] associated with it, the result must be [110111]
+
+By combining the information from rows and columns we can place cells that we couldn't otherwise:
+
+---nonogram example
+---2x2 grid, one cell in corner
 
 ## Single row
 
+To be able to build up what we know about each row, we need to be able to represent when we are unsure about a cell's value verses when we are certain of what value it must be. From now on we'll use a checkered pattern to indicate when we're unsure if a cell is white or black, and only set a cell to a solid color when we're sure that it must be that color.
+
+Now we can work on partially solving rows! By imagining the overlap of all the possible arrangements of the numbers in the row, we can mark down spots that can be no color but black:
+
+---nonogram example
+---hidden column numbers
+---blank 1x7 grid, [2, 3] must be -X--XX-
+--- randomly generate them?
+
+Nice! This is a great way to start solving a nonogram when there isn't a completely full row. If you like, try a few different iterations to get a hang of how this type of deduction works.
+
+Next up, we're going to have to know how to take partial info and solve a row or column further. We can use the same method we used to solve an empty row: imagine all of the possible arrangements of cells, and only mark the ones that stay consistent:
+
+---nonogram example
+---hidden column numbers
+---1x7 grid. [2, 3] X------ => XXO-XX-
+
+---illustration:
+---XXOXXXO
+---XXOOXXX
