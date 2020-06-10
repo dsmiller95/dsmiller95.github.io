@@ -12,8 +12,7 @@ import Config from '../../../config'
 const Archive = ({ data, pageContext }) => {
   const { archivePage, lastArchivePage } = pageContext
   const prevPage = archivePage > 1 ? archivePage - 1 : null
-  const nextPage = archivePage < lastArchivePage ? archivePage + 1 : null
-
+  const nextPage = archivePage < lastArchivePage ? archivePage + 1 : null;
   return (
     <Layout title="Archive">
       <SEO
@@ -21,7 +20,7 @@ const Archive = ({ data, pageContext }) => {
         description="Old posts"
         path={Config.pages.archive}
       />
-      <PostList posts={data.allMarkdownRemark.edges} />
+      <PostList posts={data.allMdx.edges} />
       <ArchivePagination prevPage={prevPage} nextPage={nextPage} />
     </Layout>
   )
@@ -29,7 +28,7 @@ const Archive = ({ data, pageContext }) => {
 
 Archive.propTypes = {
   data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
+    allMdx: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     }).isRequired,
   }).isRequired,
@@ -41,10 +40,10 @@ Archive.propTypes = {
 
 export const query = graphql`
   query($postPaths: [String!]) {
-    allMarkdownRemark(
+    allMdx(
       filter: {
         frontmatter: { path: { in: $postPaths } }
-        fileAbsolutePath: { regex: "/index.md$/" }
+        fileAbsolutePath: { regex: "/index.mdx?$/" }
       }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {

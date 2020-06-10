@@ -5,7 +5,7 @@ module.exports = {
   siteTitle: 'Dan\'s Developer Diary',
   siteDescription: 'Things I think are neat',
   author: 'Dan Miller',
-  postsForArchivePage: 3,
+  postsPerArchivePage: 3,
   defaultLanguage: 'en',
   pages: {
     home: '/',

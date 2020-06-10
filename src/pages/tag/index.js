@@ -11,7 +11,7 @@ import Utils from '../../utils'
 import style from './tag.module.less'
 
 const Tag = ({ data }) => {
-  const rawTags = data.allMarkdownRemark.edges
+  const rawTags = data.allMdx.edges
     .map(edge => edge.node.frontmatter.tags)
     .reduce((prev, curr) => prev.concat(curr))
   const tags = rawTags
@@ -57,7 +57,7 @@ const Tag = ({ data }) => {
 
 Tag.propTypes = {
   data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
+    allMdx: PropTypes.shape({
       edges: PropTypes.arrayOf(
         PropTypes.shape({
           node: PropTypes.shape({
@@ -85,7 +85,7 @@ Tag.propTypes = {
 
 export const query = graphql`
   {
-    allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/index.md$/" } }) {
+    allMdx(filter: { fileAbsolutePath: { regex: "/index.mdx?$/" } }) {
       edges {
         node {
           frontmatter {

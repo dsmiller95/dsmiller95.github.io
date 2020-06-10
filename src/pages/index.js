@@ -12,14 +12,14 @@ import Config from '../../config'
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" description={Config.siteDescription} path="" />
-    <PostList posts={data.allMarkdownRemark.edges} />
+    <PostList posts={data.allMdx.edges} />
     <ArchivePagination nextPage={2} />
   </Layout>
 )
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
+    allMdx: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     }).isRequired,
   }).isRequired,
@@ -27,9 +27,9 @@ IndexPage.propTypes = {
 
 export const query = graphql`
   {
-    allMarkdownRemark(
+    allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fileAbsolutePath: { regex: "/index.md$/" } }
+      filter: { fileAbsolutePath: { regex: "/index.mdx?$/" } }
     ) {
       edges {
         node {
