@@ -22,6 +22,7 @@
     "gatsby-transformer-remark": "^2.6.27",
     "gatsby-transformer-sharp": "^2.2.20",
     "less": "^3.10.3",
+    "nonogram-grid": "^1.0.6",
     "prismjs": "^1.17.1",
     "prop-types": "^15.6.2",
     "react": "^16.10.2",
