@@ -14,12 +14,12 @@ Nonograms are a puzzle similar to sudoku, and solving them results in a small pi
 
 Each row and column has a list of numbers along it - each number represents a run of that length of "set" squares. When there are multiple numbers for one row/column, each run cannot touch each other!
 
-
--- TODO: allow turning off of certain axis's keys
--- TODO: fix rotation of gridString method usage
-<NonogramExample gridString={`
-    XXOXXX
-    `}/>
+<NonogramExample
+    gridString={`
+        XXOXXX
+        `}
+    hideColumnKey={true}
+    />
 By combining the information from rows and columns we can place cells that we couldn't otherwise:
 
 <NonogramExample gridString={`
@@ -34,14 +34,17 @@ To be able to build up what we know about each row, we need to be able to repres
 Now we can work on partially solving rows! By imagining the overlap of all the possible arrangements of the numbers in the row, we can mark down spots that can be no color but black:
 
 ---nonogram example
----hidden column numbers
----blank 1x7 grid, [2, 3] must be -X--XX-
 --- randomly generate them?
--- TODO: make nonogram accept a partial solution in some cases, but still display correct grid key
-<NonogramExample gridString={`
-    XO
-    OO
-    `}/>
+
+<NonogramExample
+    gridString={`
+        XXOXXXO
+        `}
+    targetGrid={`
+        -X--XX-
+        `}
+    hideColumnKey={true}
+    />
 
 Nice! This is a great way to start solving a nonogram when there isn't a completely full row. If you like, try a few different iterations to get a hang of how this type of deduction works.
 
@@ -50,6 +53,18 @@ Next up, we're going to have to know how to take partial info and solve a row or
 ---nonogram example
 ---hidden column numbers
 ---1x7 grid. [2, 3] X------ => XXO-XX-
+<NonogramExample
+    gridString={`
+        XXOXXXO
+        `}
+    targetGrid={`
+        XXO-XX-
+        `}
+    initialGrid={`
+        X------
+    `}
+    hideColumnKey={true}
+    />
 
 ---illustration:
 ---XXOXXXO
