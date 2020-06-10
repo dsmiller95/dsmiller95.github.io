@@ -5,15 +5,16 @@ import 'prismjs/themes/prism-solarizedlight.css'
 import './highlight-syntax.less'
 /* App imports */
 import style from './article.module.less'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
-const Article = ({ html }) => (
+const Article = ({ mdxBody }) => (
   <div className={style.container}>
-    <article dangerouslySetInnerHTML={{ __html: html }} />
+    <MDXRenderer>{mdxBody}</MDXRenderer>
   </div>
 )
 
 Article.propTypes = {
-  html: PropTypes.string.isRequired,
+  mdxBody: PropTypes.string.isRequired,
 }
 
 export default Article

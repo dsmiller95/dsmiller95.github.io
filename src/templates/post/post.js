@@ -14,7 +14,7 @@ import Utils from '../../utils'
 import style from './post.module.less'
 
 const Post = ({ data, pageContext }) => {
-  const { html, frontmatter, timeToRead } = data.markdownRemark
+  const { body, frontmatter, timeToRead } = data.mdx
   const { title, date, tags, cover, path, excerpt } = frontmatter
   const translations =
     pageContext.translations.length > 1 ? pageContext.translations : null
@@ -26,8 +26,8 @@ const Post = ({ data, pageContext }) => {
   )
   const coverUrl = Utils.resolveUrl(Config.siteUrl, img.src)
   const suggestedPosts = Utils.getSuggestedPosts(
-    data.markdownRemark,
-    data.allMarkdownRemark,
+    data.mdx,
+    data.allMdx,
     3
   )
 
@@ -51,7 +51,7 @@ const Post = ({ data, pageContext }) => {
             time={timeToRead}
             translations={translations}
           />
-          <Article html={html} />
+          <Article mdxBody={body} />
           <Share
             pageCanonicalUrl={canonicalUrl}
             title={title}
@@ -69,8 +69,8 @@ const Post = ({ data, pageContext }) => {
 
 export const pageQuery = graphql`
   query($postPath: String!) {
-    markdownRemark(frontmatter: { path: { eq: $postPath } }) {
-      html
+    mdx(frontmatter: { path: { eq: $postPath } }) {
+      body
       timeToRead
       frontmatter {
         title
@@ -87,10 +87,10 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(
+    allMdx(
       filter: {
         frontmatter: { path: { ne: $postPath } }
-        fileAbsolutePath: { regex: "/index.md$/" }
+        fileAbsolutePath: { regex: "/index.mdx?$/" }
       }
     ) {
       edges {

@@ -34,14 +34,14 @@ const TagPage = ({ data, pageContext }) => {
           <Img fluid={tagImage} />
         </div>
       </div>
-      <PostList posts={data.allMarkdownRemark.edges} />
+      <PostList posts={data.allMdx.edges} />
     </Layout>
   )
 }
 
 TagPage.propTypes = {
   data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
+    allMdx: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.object).isRequired,
     }).isRequired,
     allFile: PropTypes.shape({
@@ -64,10 +64,10 @@ TagPage.propTypes = {
 
 export const pageQuery = graphql`
   query($tag: String!) {
-    allMarkdownRemark(
+    allMdx(
       filter: {
         frontmatter: { tags: { in: [$tag] } }
-        fileAbsolutePath: { regex: "/index.md$/" }
+        fileAbsolutePath: { regex: "/index.mdx?$/" }
       }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {

@@ -2,12 +2,12 @@ const config = require('./config');
 const utils = require('./src/utils');
 
 module.exports = {
-  resolve: `gatsby-plugin-feed`,
+  resolve: `gatsby-plugin-feed-mdx`,
   options: {
     feeds: [
       {
-        serialize: ({ query: { allMarkdownRemark } }) => {
-          return allMarkdownRemark.edges.map(({ node }) => {
+        serialize: ({ query: { allMdx } }) => {
+          return allMdx.edges.map(({ node }) => {
             const { siteUrl, pathPrefix, author } = config
             const { title, date, path, excerpt } = node.frontmatter
             return Object.assign({}, node.frontmatter, {
@@ -18,20 +18,20 @@ module.exports = {
               date: date,
               author: author,
               custom_elements: [
-                { "content:encoded": node.html }
+                { "content:encoded": node.body }
               ],
             })
           })
         },
         query: `
           {
-            allMarkdownRemark(
+            allMdx(
               limit: 10,
               sort: { order: DESC, fields: [frontmatter___date] }
             ) {
               edges {
                 node {
-                  html
+                  body
                   frontmatter {
                     title
                     date
