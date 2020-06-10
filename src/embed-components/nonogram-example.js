@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { ManualSolveGrid, PixelDisplay, gridFromString } from 'nonogram-grid';
 import 'nonogram-grid/dist/index.css';
 
-const NonogramExample = ({gridString, cellSize}) => {
+const NonogramExample = ({gridString, targetGrid, initialGrid, cellSize, hideColumnKey, hideRowKey}) => {
   const divStyle = cellSize ?
     { width: 'fit-content', height: 'fit-content' } :
     { width: '200px', height: '200px' };
@@ -14,15 +14,24 @@ const NonogramExample = ({gridString, cellSize}) => {
     <div style={divStyle}>
       <ManualSolveGrid
         cellSize={cellSize}
+        initialPixels={initialGrid && gridFromString(initialGrid)}
         goalPixels={gridFromString(gridString)}
-        transitionModel={[PixelDisplay.Unknown, PixelDisplay.Black, PixelDisplay.White]}>
+        verificationPixels={targetGrid && gridFromString(targetGrid)}
+        transitionModel={[PixelDisplay.Unknown, PixelDisplay.Black, PixelDisplay.White]}
+        hideColKeys={hideColumnKey}
+        hideRowKeys={hideRowKey}
+      >
       </ManualSolveGrid>
     </div>)
 }
 
 NonogramExample.propTypes = {
   gridString: PropTypes.string.isRequired,
-  cellSize: PropTypes.number
+  initialGrid: PropTypes.string,
+  targetGrid: PropTypes.string,
+  cellSize: PropTypes.number,
+  hideColumnKey: PropTypes.bool,
+  hideRowKey: PropTypes.bool,
 }
 
 NonogramExample.defaultProps = {
