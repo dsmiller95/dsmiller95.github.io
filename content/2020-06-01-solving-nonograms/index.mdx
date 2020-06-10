@@ -6,6 +6,7 @@ path: blog/nonogram-solving
 cover: ./preview.png
 excerpt: Finding a process to solve any nonogram, which can be implemented in code.
 ---
+import NonogramExample from '../../src/embed-components/nonogram-example';
 
 Nonograms are a puzzle similar to sudoku, and solving them results in a small picture.
 
@@ -13,19 +14,18 @@ Nonograms are a puzzle similar to sudoku, and solving them results in a small pi
 
 Each row and column has a list of numbers along it - each number represents a run of that length of "set" squares. When there are multiple numbers for one row/column, each run cannot touch each other!
 
-```js
-<button>test</button>
-```
 
-<button>test</button>
-
----nonogram example here
----For example if a 6-cell row has [2, 3] associated with it, the result must be [110111]
-
+-- TODO: allow turning off of certain axis's keys
+-- TODO: fix rotation of gridString method usage
+<NonogramExample gridString={`
+    XXOXXX
+    `}/>
 By combining the information from rows and columns we can place cells that we couldn't otherwise:
 
----nonogram example
----2x2 grid, one cell in corner
+<NonogramExample gridString={`
+    XO
+    OO
+    `}/>
 
 ## Single row
 
@@ -37,6 +37,11 @@ Now we can work on partially solving rows! By imagining the overlap of all the p
 ---hidden column numbers
 ---blank 1x7 grid, [2, 3] must be -X--XX-
 --- randomly generate them?
+-- TODO: make nonogram accept a partial solution in some cases, but still display correct grid key
+<NonogramExample gridString={`
+    XO
+    OO
+    `}/>
 
 Nice! This is a great way to start solving a nonogram when there isn't a completely full row. If you like, try a few different iterations to get a hang of how this type of deduction works.
 
