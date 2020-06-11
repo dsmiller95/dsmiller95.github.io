@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 /* App imports */
 
 import NonogramExample from './nonogram-example';
+import style from './random-nonogram-example.module.less'
 
 class RandomExample extends React.Component {
   constructor(props){
@@ -17,7 +18,7 @@ class RandomExample extends React.Component {
   //    keeps the grid in its own state. could use a callback.
   render() {
     return (
-      <div>
+      <div className={style.exampleContainer}>
         <NonogramExample
           gridString={this.state.grid}
           cellSize={this.props.cellSize}
