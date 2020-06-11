@@ -7,12 +7,13 @@ cover: ./preview.png
 excerpt: Finding a process to solve any nonogram, which can be implemented in code.
 ---
 import NonogramExample from '../../src/embed-components/nonogram-example';
+import RandomExample from '../../src/embed-components/random-nonogram-example';
 
 Nonograms are a puzzle similar to sudoku, and solving them results in a small picture.
 
 # Basic rules
 
-Each row and column has a list of numbers along it - each number represents a run of that length of "set" squares. When there are multiple numbers for one row/column, each run cannot touch each other!
+Each row and column has a list of numbers along it - each number represents a group of that length of **set** squares. When there are multiple numbers on one row/column, each group cannot touch each other! Click and drag in the following grid and see if you can solve it with only the row's numbers:
 
 <NonogramExample
     gridString={`
@@ -20,7 +21,10 @@ Each row and column has a list of numbers along it - each number represents a ru
         `}
     hideColumnKey={true}
     />
-By combining the information from rows and columns we can place cells that we couldn't otherwise:
+
+
+And by combining the information from rows and columns we can place cells that we couldn't place if we only knew either the row or the column:
+
 
 <NonogramExample gridString={`
     XO
@@ -29,12 +33,9 @@ By combining the information from rows and columns we can place cells that we co
 
 ## Single row
 
-To be able to build up what we know about each row, we need to be able to represent when we are unsure about a cell's value verses when we are certain of what value it must be. From now on we'll use a checkered pattern to indicate when we're unsure if a cell is white or black, and only set a cell to a solid color when we're sure that it must be that color.
+To be able to build up what we know about each row, we need to be able to represent when we are unsure about a cell's value. From now on we'll use a checkered pattern fill to indicate if we're unsure if a cell is white or black, and only set a cell to a solid color when we're sure that it must be that color.
 
-Now we can work on partially solving rows! By imagining the overlap of all the possible arrangements of the numbers in the row, we can mark down spots that can be no color but black:
-
----nonogram example
---- randomly generate them?
+Now we can work on partially solving rows! By imagining the overlap of all the possible arrangements of the numbers in the row, we can mark down spots that are always the same in each arrangement. Try solving this row as far as you can, while leaving the unknown cells checkered:
 
 <NonogramExample
     gridString={`
@@ -46,13 +47,13 @@ Now we can work on partially solving rows! By imagining the overlap of all the p
     hideColumnKey={true}
     />
 
+
 Nice! This is a great way to start solving a nonogram when there isn't a completely full row. If you like, try a few different iterations to get a hang of how this type of deduction works.
 
-Next up, we're going to have to know how to take partial info and solve a row or column further. We can use the same method we used to solve an empty row: imagine all of the possible arrangements of cells, and only mark the ones that stay consistent:
+<!---TODO: Add randomly generated new grids --->
 
----nonogram example
----hidden column numbers
----1x7 grid. [2, 3] X------ => XXO-XX-
+Next up, we're going to have to know how to take partial info and solve a row or column further. We can use the same method we used to solve an empty row: imagine all of the possible arrangements of cells, and only mark the ones that don't change. This can allow us to place cells that we know are **unset**. Try that on this row, which starts with a new known cell:
+
 <NonogramExample
     gridString={`
         XXOXXXO
@@ -65,7 +66,19 @@ Next up, we're going to have to know how to take partial info and solve a row or
     `}
     hideColumnKey={true}
     />
+<br/>
 
 ---illustration:
 ---XXOXXXO
 ---XXOOXXX
+---use read-only nonogram grid?
+
+
+Congrats, you've mastered the hardest part of solving nonograms! By repeating this process on rows, then columns, then rows again, you can get pretty far in most nonograms. Try a few randomly generated ones here:
+
+
+<RandomExample
+    height={7}
+    width={7}
+    />
+<br/>
