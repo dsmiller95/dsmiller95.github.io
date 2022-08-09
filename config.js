@@ -1,7 +1,7 @@
 
 module.exports = {
   pathPrefix: '/dans-dev-diary',
-  siteUrl: 'https://lgcolella.github.io', // TODO
+  siteUrl: 'https://dsmiller95.github.io',
   siteTitle: 'Dan\'s Developer Diary',
   siteDescription: 'Things I think are neat',
   author: 'Dan Miller',
@@ -45,6 +45,15 @@ module.exports = {
     },
     typescript: {
       description: 'TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.'
+    },
+    procGen: {
+      description: 'Procedural generation is a technique used to generate parts of a game or interaction semi-randomly, to allow for greater replayability and design speed.'
+    },
+    graphics: {
+      description: 'Graphics reffers to graphical programming, typically referring to writing shaders or configuring rendering pipelines to acheive a particular appearance on-screen.'
+    },
+    tooling: {
+      description: 'Tooling is anything developed with the goal of accelerating further design and development.'
     },
     react: {
       description: 'React is an open source JavaScript library used for designing user interfaces.'

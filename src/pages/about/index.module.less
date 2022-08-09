@@ -2,28 +2,16 @@
 
 .container {
     .flex-center();
-    .frame-medium();
+    .scroll-panel-medium();
     @media @mobile {
         flex-direction: column;
         padding: @padding-small @padding-zero;
     }
-}
 
-.photo {
-    width: 30%;
-    box-sizing: border-box;
-    margin-right: auto;
-    margin-bottom: auto;
-    border: 1px solid @theme-title;
-    @media @mobile {
-        width: 100%;
-        margin: auto;
-    }
-}
-
-.content {
-    width: 70%;
-    box-sizing: border-box;
+    
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
     h1, h2, p {
         text-align: center;
     }
@@ -41,6 +29,43 @@
         width: 100%;
         h1, h2, p {
             padding: @padding-small @padding-zero;
+            text-align: center;
+        }
+    }
+
+    .inlineLink {
+        text-decoration: underline;
+    }
+}
+
+
+
+.imagePanelContent {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    row-gap: 15px;
+    max-height: 500px;
+    .photo {
+        flex: 0 0 30%;
+        max-height: 500px;
+        //width: 30%;
+        // flex-grow: 1;
+        // flex-basis: 100%;
+        box-sizing: border-box;
+        //margin-right: auto;
+        margin-bottom: auto;
+        border: 1px solid @theme-title;
+        @media @mobile {
+            width: 100%;
+            margin: auto;
+        }
+    }
+    .memberDesc {
+        //width: 70%;
+        flex-grow: 2;
+        box-sizing: border-box;
+        h1, h2, p {
             text-align: center;
         }
     }

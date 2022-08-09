@@ -5,6 +5,7 @@ date: 2020-05-31T05:25:44.226Z
 path: blog/javascript-multi-threading
 cover: ./preview.png
 excerpt: Learn a handy hack to run expensive code on the UI thread.
+author: Dan Miller
 ---
 
 While working on a long-running algorithm I came across a handy way to utilize javascript generator functions to keep it from blocking the UI thread.
