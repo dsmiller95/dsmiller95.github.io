@@ -1,7 +1,7 @@
 /* Vendor imports */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 /* App imports */
 import Layout from '../../components/layout'
@@ -34,26 +34,56 @@ class About extends React.Component {
           path="about"
         />
         <div className={style.container}>
-          <div className={style.photo}>
-            <Img fluid={profilePhoto.childImageSharp.fluid} />
-          </div>
-          <div className={style.content}>
-            <h1>Hi, I'm Dan!</h1>
-            <h2>Software Developer</h2>
-            <p>
-              I started my programming adventure by playing around with 
-              development environments such as Scratch, Processing, and Grobots.
-              I thing starting out in those environments has kept my
-              perspective on coding playful, and I find myself working on all
-              kinds of small games or simulations in my free time. This blog
-              comes from a desire to keep track of all the different projects I
-              pick up as I work on them.
-            </p>
-            <p>
-              As for my career, I went to college for Software Engineering.
-              The majority of my professional work has involved Angular
-              front ends and C# back ends, with an occasional NodeJs back end.
-            </p>
+          <div>
+            <div className={style.fullContent}>
+              <h1>Fraculation</h1>
+              <h2>About</h2>
+              <p>Fraculation is a single-person independent game development and contracting studio located at Milwaukee, Wisconsin.
+                Our goal is to build highly replayable games and push the limits of what can be generated in real-time game engines.
+                To achieve this, we specialize in <Link 
+                  to={"/tag/procGen"}
+                  className={style.inlineLink}
+                  key={"procGen"}>
+                  procedural generation
+                </Link>, <Link 
+                  to={"/tag/graphics"}
+                  className={style.inlineLink}
+                  key={"graphics"}>
+                  graphical programming
+                </Link>, and <Link 
+                  to={"/tag/tooling"}
+                  className={style.inlineLink}
+                  key={"tooling"}>
+                  editor tooling
+                </Link> in the Unity game engine.
+                Our first game <Link 
+                  to={"/blog/seeb-defender-project"}
+                  className={style.inlineLink}
+                  key={"seeb defender"}>
+                  Seeb Defender
+                </Link> allows the player to breed plants with unique gameplay properties
+                by simulating genetics, sunlight, and fluid flow. Fraculation LLC was founded by Dan Miller in August of 2021.</p>
+            </div>
+            <h1>Dan Miller</h1>
+            <div className={style.imagePanelContent}>
+              <div className={style.photo}>
+                <Img fluid={profilePhoto.childImageSharp.fluid} />
+              </div>
+              <div className={style.memberDesc}>
+                <p>
+                  I started out in web development, working primarily with Angular,
+                  C# backends, and clound infrastructure. Over the past couple years
+                  I have been involved in game design and development in Unity, although
+                  I started out learning software engineering by imagining small games.
+                  
+                  Optimizing real-time software and automating workloads have been
+                  long time passions of mine, and I find much overlap with game
+                  programming. In Unity specifically, utilising the DOTS and Jobs 
+                  systems to automate generating and simulating new content fills
+                  these niches fabulously.
+                </p>
+              </div>
+            </div>
             <br />
             <h2>Skills</h2>
             <ImageList edges={skillIcons.edges} />
