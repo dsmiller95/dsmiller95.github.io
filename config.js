@@ -10,7 +10,7 @@ module.exports = {
   pages: {
     home: '/',
     blog: 'blog',
-    about: 'about',
+    posts: 'posts',
     tag: 'tag',
     archive: 'archive'
   },
