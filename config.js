@@ -1,9 +1,9 @@
 
 module.exports = {
-  pathPrefix: '/dans-dev-diary',
+  pathPrefix: '/fraculation',
   siteUrl: 'https://dsmiller95.github.io',
-  siteTitle: 'Dan\'s Developer Diary',
-  siteDescription: 'Things I think are neat',
+  siteTitle: 'Fraculation',
+  siteDescription: 'developers blog',
   author: 'Dan Miller',
   postsPerArchivePage: 3,
   defaultLanguage: 'en',
@@ -16,7 +16,7 @@ module.exports = {
   },
   social: {
     github: 'https://github.com/dsmiller95',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/the-daniel-miller/',
     rss: ''
   },
   tags: {
