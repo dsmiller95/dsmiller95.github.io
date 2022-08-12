@@ -3,5 +3,11 @@
     "eslint.format.enable": true,
     "files.associations": {
     "*.mdx": "markdown"
-    }
+    },
+    "cSpell.words": [
+        "gameobjects",
+        "scriptable",
+        "Seeb",
+        "Seebs"
+    ]
 }
