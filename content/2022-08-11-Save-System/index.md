@@ -4,7 +4,7 @@ tags: [tooling]
 date: 2022-08-11T05:25:44.226Z
 path: blog/scene-save-system
 cover: ./preview.png
-excerpt: Explore the implementation of a Unity save system which exploits the natural hierarchy of game objects
+excerpt: Explore the implementation of a Unity save system which exploits the hierarchy of game objects
 author: Dan Miller
 ---
 
@@ -16,9 +16,9 @@ In this article, we'll explore how such a system is designed. In the case of See
 
 The seeb inventory covers the whole set of gameobjects which can contain Seebs, highlighted here:
 
-![Screenshot from Seeb Defender with all seeb inventory slots highlighted](./seeb-inventory.png)
+![The seeb inventory slots exist in many different parts of the game](./seeb-inventory.png)
 
-These gameobjects show up in different hierarchies, but all save the same type of data. Specifically, some of the slots are in a collection (the row in the bottom left), and some are one-off slots that will never be repeated. Whatever technique we use to save this data, it should be trivial to change the number of inventory slots in a collection of slots. We may want to reward the player with an inventory slot expansion, so we'll save and load a dynamic number of inventory slots. To represent all of this in a big object, we might come up with something like this:
+These gameobjects show up in different hierarchies, but all save the same type of data. Specifically, some of the slots are in a collection (the row in the bottom left), and some are one-off slots that will never be repeated. Whatever technique we use to save this data, it should be trivial to change the number of inventory slots in a collection. We may want to reward the player with an inventory slot expansion, so we'll save and load a dynamic number of inventory slots. To represent all of this in a big object, we might come up with something like this:
 
 ```CSharp
 class SaveObject{
@@ -34,7 +34,7 @@ To rehydrate this data, the singleton inventory slots must be custom coded to pu
 
 ## A Generic Solution
 
-With our problem case illustrated, lets start to think about what we can do to solve the generic case. From the example, we already have two things we want to support: specific "singleton" instances in a scene, and collections of instances nested under specific game objects. And, we would like the component which own data to be context-agnostic. We shouldn't make any code changes to a component based on whether it is saved as a singleton instance, or reproduced as a prefab. The approach we went with is to split the scene up into scopes, and iterate through the scopes, saving all relevant data into those scopes.
+With our problem case illustrated, lets start to think about what we can do to solve the generic case. From the example, we already have two things we want to support: specific "singleton" instances in a scene, and collections of instances nested under specific game objects. And, we would like the component which owns data to be context-agnostic. We shouldn't make any code changes to a component based on whether it is saved as a singleton instance, or reproduced as a prefab. The approach I went with was splitting the scene up into scopes, and saving the data in each scope separately.
 
 ### Scoping
 
@@ -57,7 +57,7 @@ Here's an example of what the game object hierarchy of our example might look li
 
 ### Prefab Instancing
 
-We've outlined the basics of how scoping slices our scene up into manageable chunks. This is most important part, but there are some details left. How exactly will we know what prefab to instantiate? We can use scriptable objects! By creating a special scriptable object which only holds an ID, and associating it with any prefab we will want to be saved. When saving the prefab instance we can simply save the ID of that prefab, and to rehydrate we will look up the prefab asset by its ID before instantiating.
+We've outlined the basics of how scoping slices our scene up into manageable chunks. This is most important part, but there are some details left. How exactly will we know what prefab to instantiate? We can use scriptable objects! We create a special scriptable object which only holds an ID, and associate instances of this with any prefab we want to be saved. When saving the prefab instance we can simply save the ID of that prefab, and to rehydrate we will look up the prefab asset by its ID before instantiating.
 
 ### Individual Save Components
 
@@ -73,7 +73,7 @@ public interface ISaveableData
 }
 ```
 
-Any implementing class must expose a unique identifier, often it suffices to return a constant name of the component's class. If multiple instances of the component are in the same scope however, a string text field should be exposed in the editor to be manually altered. This could benefit from an editor extension which would automatically check for colliding unique ID, if collisions end up happening often.
+Any implementing class must expose a unique identifier, often it suffices to return a constant name of the component's class. If multiple instances of the component are in the same scope however, a string text field should be exposed in the editor to be manually altered. This would benefit from an editor extension which automatically checks for colliding unique IDs, if collisions end up happening often.
 
 The only GetSaveObject method has the component return a serializable data object to be saved by the save system. This save object will then be passed into the SetupFromSaveObject method when loading save state again. So from the component perspective, all it needs to know is how to serialize its state and how to apply that serialized state to itself again.
 
