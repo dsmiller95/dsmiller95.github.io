@@ -1,7 +1,7 @@
 
 module.exports = {
   pathPrefix: '/fraculation',
-  siteUrl: 'https://dsmiller95.github.io',
+  siteUrl: 'https://www.fraculation.com',
   siteTitle: 'Fraculation',
   siteDescription: 'developers blog',
   author: 'Dan Miller',
