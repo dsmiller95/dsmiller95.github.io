@@ -1,6 +1,6 @@
 
 module.exports = {
-  pathPrefix: '/fraculation',
+  pathPrefix: '',
   siteUrl: 'https://www.fraculation.com',
   siteTitle: 'Fraculation',
   siteDescription: 'developers blog',
