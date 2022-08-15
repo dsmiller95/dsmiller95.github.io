@@ -18,23 +18,23 @@ This is the example scene we will be working with. We have one flat ellipse mesh
 
 # Using the Stencil buffer
 
-To get the interior only rendering once, we can use some stencil buffer settings. The stencil buffer is a one byte value stored for every pixel, and can be handy to mask out objects in various ways. In our case we can write a specific value to the stencil buffer when drawing either the infill or the edges material, and only draw to the render output if that specific value is -not- already present. In this way, only the first material to render to the screen will actually write to the output.
+To only render the infill once, we can use some stencil buffer settings. The stencil buffer is a one byte value stored for every pixel, and can be handy to mask out objects in various ways. In our case we can write a specific value to the stencil buffer when drawing either the infill or the edges material, and only draw to the render output if that specific value is <i>not</i> already present. In this way, only the first material in the render queue will actually write to the screen.
 
-For this example we will use URP's render settings to achieve this without writing any shader code! In other render pipelines or in other game engines this may require writing a custom shader to interact with the stencil buffer. But for URP, what we will do is configure our forward renderer asset in this way:
+For this example we will use URP's render settings to achieve this without writing any shader code! In other project setups or game engines this may require writing a custom shader to interact with the stencil buffer. But for URP, what we need is all achievable by modifying our Universal Renderer Data asset. This is what the default setup looks like:
 
 ![Our window into in-editor rendering config](./initial_render_settings.png)
 
 Lets walk through every change we need to make.
 
-First, we created a new layer "Single-Layer transparent" to assign to our ellipses. We remove this from the transparent layer mask of the forward renderer, this will prevent anything in this layer from being rendered as normal. After making only this change, none of our meshes should show up at all anymore.
+First, we create a new layer "Transparent Single Layer" to assign to our ellipses. We remove this from the transparent layer mask of the forward renderer, which prevents anything in this layer from being rendered as normal. After making only this change, none of our meshes should render at all anymore.
 
 <Video src="./turn_off_mask.mp4" caption="Excluding the Transparent Single Layer causes it to no longer render" />
 
-Next, we add a new render feature (Render Objects) and name it "Single Layer Transparent". We set the layer mask to only our previously excluded "Single-Layer transparent" layer, so that this feature will only render our target meshes. In addition, we put it in the Transparent queue and hook it to the BeforeRenderingTransparents so that it renders along with all other transparent objects. At this point our meshes are visible again! Although they look exactly as before, now we will be able to control their render settings directly.
+Next, we add a new render feature (Render Objects) and name it "Single Layer Transparent". We set the layer mask to only our previously excluded "Single-Layer transparent" layer, so that this feature will only render our target meshes. In addition, we put it in the Transparent queue and hook it to the BeforeRenderingTransparents event so it renders along with all other transparent objects. At this point our meshes are visible again! Although they look exactly as before, now we will be able to control their render settings directly.
 
 <Video src="./add_render_feature.mp4" caption="By adding a render feature, we control how a specific layer renders" />
 
-Now it's Stencil time! We can check the Stencil checkbox under Overrides on our render objects feature. This override lets us configure how we want to interact with the stencil buffer. This function will compare our value to whatever is in the stencil buffer for each pixel that renders, when it renders. If the compare function is True the shader has passed the stencil test, otherwise it fails. We can then also specify what changes, if any, to make to the value in the stencil buffer based on if we passed the stencil test or not! In addition, if the stencil test does not pass then no colors will be rendered to the screen. This is similar to how the depth buffer works, but is indented for customization. For more details on how the stencil buffer works, see the [ShaderLab documentation](https://docs.unity3d.com/Manual/SL-Stencil.html)
+Finally it's Stencil time! We can check the stencil checkbox under overrides on our render objects feature. This override lets us configure how we want to interact with the stencil buffer. This function will compare our value to whatever is in the stencil buffer for each pixel that renders, when it renders. If the compare function is True the shader has passed the stencil test, otherwise it fails. We also specify how to modify the stencil buffer, based on if we have passed or failed the stencil test! In addition, if the stencil test does not pass then no colors will be rendered to the screen. This is similar to how the depth buffer works, but is indented for customization. For more details on how the stencil buffer works, see the [ShaderLab documentation](https://docs.unity3d.com/Manual/SL-Stencil.html)
 
 ![the default stencil overrides](./default_stencil_config.png)
 
@@ -45,7 +45,7 @@ To configure our stencil override, lets pick a value of 1. We could pick any val
 In pseudocode, this is more or less what's going on with this configuration:
 
 ```CSharp
-if(stencil[pixelCoord] not equal to 3){
+if(stencil[pixelCoord] != 3){
   color[pixelCoord] = BlendMaterialIntoColor(color[pixelCoord]);
   stencil[pixelCoord] = 3;
 }
@@ -55,7 +55,7 @@ And we're done! Or are we? With this configuration applied to our overlapping me
 
 <Video src="./moving_overlaps.mp4" caption="The meshes default rendering causes them to be ordered differently based on how we look at them" />
 
-This effect is interesting, but it's not what we want. Fortunately there is a way to force different materials to be rendered in a different order. By modifying the Priority on our edges material we can tell the render pipeline to render our edges after rendering the infill, so they will only render on pixels which the infill did not render onto already.
+This effect is interesting, but it's not what we want. Fortunately there is a way to force materials to be rendered in a different order relative to each other. By modifying the Priority on our edges material we can tell the render pipeline to render our edges after rendering the infill, so they will only render on pixels which the infill did not render onto already.
 
 <Video src="./set_material_priority.mp4" caption="By adjusting the material property of the edge, we can cause it to render and check the stencil buffer after the infill material renders" />
 
@@ -65,7 +65,7 @@ with a priority of 1, we complete the effect!
 
 This is an animated example of what this technique was used for in seeb defender. The overlapping meshes are used to indicate the total range of each plant defense tower. Each plant has multiple weapons, each with their own unique range. Rendering all of these ranges on their own can quickly become very visually noisy, rendering them as if they were one range makes the net threat range of the tower much easier to parse.
 
-The left side of this animation is what the ranges looked like before this technique, and instead rendered the whole 3D range of every weapon. These 3D ranges would test the depth buffer, and render as a different color when they are close to another surface. This would help highlight the threat range of the towers, but also can be quite distracting when they overlap with each other significantly.
+The left side of this animation is what the ranges looked like before this technique, rendering the whole 3D range of every weapon. These 3D ranges would test the depth buffer, and render as a different color when they are close to another surface. This would help highlight the threat range of the towers, but also can be quite distracting when they overlap with each other significantly.
 
 <Video src="./range-anim.mp4" caption="Animation comparing previous results to new improved results" />
 
