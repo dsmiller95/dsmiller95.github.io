@@ -5,13 +5,21 @@ import 'prismjs/themes/prism-solarizedlight.css'
 import './highlight-syntax.less'
 /* App imports */
 import style from './article.module.less'
+import {MDXProvider} from '@mdx-js/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import GifVideo from '../../gif-video'
 
-const Article = ({ mdxBody }) => (
-  <div className={style.container}>
-    <MDXRenderer>{mdxBody}</MDXRenderer>
-  </div>
-)
+
+const Article = ({ mdxBody }) => {
+  const shortCodes = {Video: GifVideo}
+  return (
+    <div className={style.container}>
+      <MDXProvider components={shortCodes}>
+          <MDXRenderer>{mdxBody}</MDXRenderer>
+      </MDXProvider>
+    </div>
+  )
+}
 
 Article.propTypes = {
   mdxBody: PropTypes.string.isRequired,
