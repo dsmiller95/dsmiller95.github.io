@@ -44,7 +44,7 @@ module.exports = {
           }
         `,
         output: "/rss.xml",
-        title: "Luigi Colella RSS Feed",
+        title: "Fraculation's Dev update feed",
       },
     ],
   },
