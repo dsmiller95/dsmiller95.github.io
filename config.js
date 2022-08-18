@@ -17,7 +17,9 @@ module.exports = {
   social: {
     github: 'https://github.com/dsmiller95',
     linkedin: 'https://www.linkedin.com/in/the-daniel-miller/',
-    rss: 'rss.xml'
+    rss: 'rss.xml',
+    email:'dan.miller@fraculation.com',
+    twitter:"https://twitter.com/dan0mighte"
   },
   tags: {
     angular: {

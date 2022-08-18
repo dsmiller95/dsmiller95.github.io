@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
-import { FaBars, FaTimes, FaGithub, FaLinkedin, FaRss } from 'react-icons/fa'
+import { FaBars, FaTimes, FaGithub, FaLinkedin, FaRss, FaTwitter, FaEnvelope } from 'react-icons/fa'
 /* App imports */
 import useEvent from '../../hooks/useEvent'
 import style from './header.module.less'
 import Config from '../../../../config'
 import Utils from '../../../utils'
+import Obfuscate from 'react-obfuscate'
 
 const Header = () => {
   const [isMenuCollapsed, setMenuCollapsed] = useState(false)
@@ -93,6 +94,25 @@ const Header = () => {
             <Link to={Utils.resolveUrl(Config.social.rss)}>
               <FaRss size="30" />
             </Link>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              href={Config.social.twitter}
+            >
+              <FaTwitter size="30" />
+            </a>
+          </li>
+          <li>
+            <Obfuscate
+              email={Config.social.email}
+              headers={{
+                subject: 'Business Inquiry',
+              }}
+            >
+              <FaEnvelope size="30" />
+            </Obfuscate>
           </li>
         </ul>
       </div>
