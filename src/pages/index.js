@@ -71,16 +71,18 @@ class About extends React.Component {
               </div>
               <div className={style.memberDesc}>
                 <p>
-                  I started out in web development, working primarily with Angular,
-                  C# backends, and clound infrastructure. Over the past couple years
-                  I have been involved in game design and development in Unity, although
-                  I started out learning software engineering by imagining small games.
+                  
+                  I started out in web development working primarily with Angular,
+                  C# backends, and cloud infrastructure for 4 years professionally. 
+                  The past couple years I have been designing and developing games in 
+                  Unity, carrying through my lifelong passion for games into creating them
                   
                   Optimizing real-time software and automating workloads have been
                   long time passions of mine, and I find much overlap with game
-                  programming. In Unity specifically, utilising the DOTS and Jobs 
-                  systems to automate generating and simulating new content fills
-                  these niches fabulously.
+                  programming. In Unity specifically, utilizing the DOTS and Jobs 
+                  systems to automate generation of new content and simulation fills
+                  these niches fabulously. As well as building in-editor tooling to
+                  speed up design workflows inside Unity.
                 </p>
               </div>
             </div>
