@@ -1,24 +1,24 @@
 ---
-title: Rendering overlapping meshes only once in URP
+title: Rendering transparent overlapping meshes only once in URP
 tags: [graphics]
 date: 2022-08-14T05:25:44.226Z
 path: blog/overlapping-mesh-render
 cover: ./before-after-comparison.png
-excerpt: Learn how to render any number of overlapping transparent polygons as if they were a single superset polygon, using stencil buffer settings in Unity URP
+excerpt: Learn how to render overlapping transparent meshes as a single superset polygon, using stencil buffer settings in Unity URP
 author: Dan Miller
 ---
 
-I found while working on seeb defender that we could really use a way to render a bunch of overlapping meshes as if they were one. If these were opaque meshes, this would be no problem: we could just stack them up on top of each other and call it a day. The complication here is that our meshes are transparent. Specifically, we have several flat meshes with a transparent interior and an opaque border. By default the additive transparent interior will stack up until it starts triggering our bloom effect. And the opaque border will overlap with itself and the transparent interior. We would like to only see the border on the edges of the whole overlapping region, and only see a single-layer of the transparent interior otherwise.
+I found while working on seeb defender that we could use a way to render a bunch of overlapping meshes as if they were one. If these were opaque meshes, this would be no problem: we could just stack them up on top of each other and call it a day. The complication here is that our meshes are transparent. Specifically, we have several flat meshes with a transparent interior and an opaque border. By default the additive transparent interior will stack up until it starts triggering our bloom effect. And the opaque border will overlap with itself and the transparent interior. We would like to only see the border on the edges of the whole overlapping region, and only see a single-layer of the transparent interior otherwise.
 
 # Initial setup
 
-This is the example scene we will be working with. We have one flat ellipse mesh with two submeshes, each with a different material. See the material configurations here:
+This is the example scene we will be working with. We have several instances of a flat ellipse mesh with two submeshes, each with a different material. See the material configurations here:
 
 ![scene and inspector view](./initial-setup.png)
 
 # Using the Stencil buffer
 
-To only render the infill once, we can use some stencil buffer settings. The stencil buffer is a one byte value stored for every pixel, and can be handy to mask out objects in various ways. In our case we can write a specific value to the stencil buffer when drawing either the infill or the edges material, and only draw to the render output if that specific value is <i>not</i> already present. In this way, only the first material in the render queue will actually write to the screen.
+To only render the infill once, we can use some stencil buffer settings. The stencil buffer is a one byte value stored for every pixel, and can be handy to mask out objects in various ways. In our case we can write a specific value to the stencil buffer when drawing either the infill or the edges material, and only draw to the render output if that specific value is <i>not</i> already present. In this way, only the first draw in the render queue will actually write to the screen.
 
 For this example we will use URP's render settings to achieve this without writing any shader code! In other project setups or game engines this may require writing a custom shader to interact with the stencil buffer. But for URP, what we need is all achievable by modifying our Universal Renderer Data asset. This is what the default setup looks like:
 
@@ -34,7 +34,7 @@ Next, we add a new render feature (Render Objects) and name it "Single Layer Tra
 
 <Video src="./add_render_feature.mp4" caption="By adding a render feature, we control how a specific layer renders" />
 
-Finally it's Stencil time! We can check the stencil checkbox under overrides on our render objects feature. This override lets us configure how we want to interact with the stencil buffer. This function will compare our value to whatever is in the stencil buffer for each pixel that renders, when it renders. If the compare function is True the shader has passed the stencil test, otherwise it fails. We also specify how to modify the stencil buffer, based on if we have passed or failed the stencil test! In addition, if the stencil test does not pass then no colors will be rendered to the screen. This is similar to how the depth buffer works, but is indented for customization. For more details on how the stencil buffer works, see the [ShaderLab documentation](https://docs.unity3d.com/Manual/SL-Stencil.html)
+Finally it's Stencil time! We can check the stencil checkbox under overrides on our render objects feature. These overrides configure interaction with the stencil buffer. For every pixel, our selected value will be compared against the stencil buffer, determining if the shader will run on this pixel or not. If the compare function is True the shader has passed the stencil test, otherwise it fails. We also specify how to modify the stencil buffer, based on if we have passed or failed the stencil test! In addition, if the stencil test does not pass then no colors will be rendered to the screen. This is similar to how the depth buffer works, but is indented for customization. For more details on how the stencil buffer works, see the [ShaderLab documentation](https://docs.unity3d.com/Manual/SL-Stencil.html)
 
 ![the default stencil overrides](./default_stencil_config.png)
 
