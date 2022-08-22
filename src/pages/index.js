@@ -71,7 +71,6 @@ class About extends React.Component {
               </div>
               <div className={style.memberDesc}>
                 <p>
-                  
                   I started out in web development working primarily with Angular,
                   C# backends, and cloud infrastructure for 4 years professionally. 
                   The past couple years I have been designing and developing games in 
