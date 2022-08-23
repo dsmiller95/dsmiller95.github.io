@@ -7,7 +7,6 @@
         flex-direction: column;
         padding: @padding-small @padding-zero;
     }
-
     
     display: flex;
     flex-grow: 1;
@@ -62,15 +61,26 @@
         }
     }
     .memberDesc {
-        //width: 70%;
         flex-grow: 2;
         box-sizing: border-box;
         h1, h2, p {
             text-align: center;
         }
     }
+
 }
 
+.flexDuo{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+}
+.flexTop{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+}
 .iconsContainer {
     .flex-center();
 }

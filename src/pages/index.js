@@ -8,6 +8,7 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Utils from '../utils'
 import style from './index.module.less'
+import { FaFileAlt } from 'react-icons/fa'
 
 export const aboutPropTypes = {
   data: PropTypes.shape({
@@ -25,7 +26,7 @@ class About extends React.Component {
   static propTypes = aboutPropTypes
 
   render() {
-    let { profilePhoto, skillIcons, toolIcons } = this.props.data
+    let { profilePhoto, skillIcons, toolIcons, resumes } = this.props.data
     return (
       <Layout>
         <SEO
@@ -83,6 +84,7 @@ class About extends React.Component {
                   these niches fabulously. As well as building in-editor tooling to
                   speed up design workflows inside Unity.
                 </p>
+                <ResumeList edges={resumes.edges} />
               </div>
             </div>
             <br />
@@ -96,6 +98,40 @@ class About extends React.Component {
     )
   }
 }
+
+export const resumeListPropTypes = {
+  edges: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        publicUrl: PropTypes.string.isRequired,
+      }).isRequired,
+    })
+  ).isRequired,
+}
+class ResumeList extends React.Component {
+  static propTypes = resumeListPropTypes
+
+  render = () => (
+    <div className={style.flexDuo}>
+      {this.props.edges
+        .sort((edgeA, edgeB) =>
+          edgeA.node.name.toLowerCase() > edgeB.node.name.toLowerCase() ? 1 : -1
+        )
+        .map(({ node: { name, publicURL } }) => (
+          <div className={style.flexTop}>
+            <a href={publicURL}>
+              <FaFileAlt size="30"/>
+            </a>
+            <a href={publicURL}>
+              <div>{name}</div>
+            </a>
+          </div>
+      ))}
+    </div>
+  )
+}
+
 
 export const imageListPropTypes = {
   edges: PropTypes.arrayOf(
@@ -165,6 +201,14 @@ export const query = graphql`
               ...GatsbyImageSharpFixed_tracedSVG
             }
           }
+        }
+      }
+    }
+    resumes: allFile(filter: { dir: { regex: "/about/resumes$/" } }) {
+      edges {
+        node {
+          name
+          publicURL
         }
       }
     }
