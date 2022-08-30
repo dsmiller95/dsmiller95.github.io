@@ -22,7 +22,7 @@ const GifVideo = ({ threshold = 0.15, ...playerProps }) => {
       className={style.standardVideo}
       autoPlay playsInline muted loop 
       {...playerProps} />
-    {playerProps.caption && <p className={style.caption}>{playerProps.caption}</p>}
+    {playerProps.caption && <span className={style.caption}>{playerProps.caption}</span>}
   </div>
 }
 
