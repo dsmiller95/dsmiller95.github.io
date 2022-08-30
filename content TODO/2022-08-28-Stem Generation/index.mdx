@@ -1,0 +1,29 @@
+---
+title: Procedurally generating plant stems
+tags: [graphics, procGen]
+date: 2022-08-14T05:25:44.226Z
+path: blog/trunk-generation
+cover: ./before-after-comparison.png
+excerpt: Improving the appearance and performance of runtime-generated branching trees
+author: Dan Miller
+---
+
+# Overview
+
+On the road to better looking plants, I reached a point where I had to make the branches look much better. 
+
+This system should have very simple inputs, to keep it more flexible. The system will be provided with a series of points forming a path for each stem, connected to each other in exclusively a tree structure. Each point will have an extra number attached to them indicating the thickness of the tree at that point. In addition, certain material properties may be passed on such as a pallet index or vertex color. These material properties may or may not be blended by the branch generator system, but they will definitely be passed through to the final mesh's vertexes. In this way, we are forced to design an algorithm which is highly agnostic and hopefully reusable. For example, when we have a trunk that's branching into many other stems, we don't need to rely on information about which child stem is the "same" trunk. All child stems of a branching area are consider equally. This will make it easier to plug into our existing L-system.
+
+# Library setup
+
+I'll go over briefly how adding a new extension to the L-system library works here. A lot can be done inside the l-system language itself, but use cases like this require some custom code. Luckily the library has some support for this! We just need to write a new scriptable object class, and assign an instance of it to the Turtle. Since we only care about turning the l-system string into a mesh, we don't need to worry about writing to the l-system state, and can restrict our use case to the turtle alone.
+
+
+
+# Naive approach
+
+Simply copy the same cylinder mesh over and over to produce an illusion of a single stem. We can easily improve on this by instead welding each consecutive cylinder to the next in a single chain, effectively this is drawing a spline
+
+# First complication
+
+Splines are all fine and good, but things get a bit more complicated when we add branching into the mix. whats the best way to represent branches? One approach we can go with is to -not- handle branching. We could simply clip the new branch inside of the old branch. Here's how that looks
