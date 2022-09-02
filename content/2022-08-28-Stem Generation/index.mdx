@@ -1,0 +1,160 @@
+---
+title: Procedurally generating plant stems
+tags: [graphics, procGen]
+date: 2022-09-05T12:25:44.226Z
+path: blog/trunk-generation
+cover: ./before-after-comparison.png
+excerpt: Improving the appearance and performance of runtime-generated branching trees
+author: Dan Miller
+---
+
+# Overview
+
+On the road to better looking plants, I reached a point where I had to make the branches look much better. 
+
+This system should have very simple inputs, to keep it more flexible. The system will be provided with a series of points forming a path for each stem, connected to each other in exclusively a tree structure. Each point will have an extra number attached to them indicating the thickness of the tree at that point. In addition, certain material properties may be passed on such as a pallet index or vertex color. These material properties may or may not be blended by the branch generator system, but they will definitely be passed through to the final mesh's vertexes. In this way, we are forced to design an algorithm which is highly agnostic and hopefully reusable. For example, when we have a trunk that's branching into many other stems, we don't need to rely on information about which child stem is the "same" trunk. All child stems of a branching area are consider equally. This will make it easier to plug into our existing L-system.
+
+# Library setup
+
+I'll go over briefly how adding a new extension to the L-system library works here. A lot can be done inside the l-system language itself, but use cases like this require some custom code. Luckily the library has some support for this! We just need to write a new TurtleOperationSet scriptable object class, and assign an instance of it to the Turtle. Since we only care about turning the l-system string into a mesh, we don't need to worry about extending the l-system update step, and can restrict our use case to the turtle alone.
+
+the majority of the code involved in this update is here: [github folder link](https://github.com/dsmiller95/LindenmayerPlantSimulation/tree/custom-stems/Packages/com.dman.l-system/Runtime/UnityObjects/TurtleOperations/TurtleStemTrunkComposite)
+
+# Naive approach
+
+This is the current state of the system. To produce an illusion of a single stem, simply copy the same cylinder mesh multiple times onto the path we wish the stem to represent. Ultimately the L-system only outputs a series of oriented points, so this is the natural way to implement stems in that system.
+
+In our example, this looks pretty decent. There are several drawbacks to this approach though:
+- Sharp edges when changing scale. At the tree's base, there are hard edged steps from one trunk diameter to another
+- Sharp normals when drawing tight curves. The cylinder's normals have no way to blend with each other, so it becomes very apparent the stem is segmented when the turning radius is tight
+- Breaks in stem at tight curves. When turning tightly there are visible breaks in the stem since this system has no knowledge of corners
+- Seamless UV mapping is impossible. As we copy the mesh, we copy the UV coordinates as well. There's no easy way to use this technique to map a seamless bark texture onto our trunk without significant stretching and warping
+
+
+
+import copiedCylinders from "./basic-mesh-copy.mp4";
+import cylindersScronked from "./scrunkled-cylinder.mp4";
+import descronkled from "./deskrunkled.mp4";
+import circleRingShifted from "./circle-ring-shifted.mp4";
+import basicMapBrokenWrap from "./basic-texture uv-wrap-broken.mp4";
+import basicMapFixedWrap from "./basic-texture uv-wrap-fixed.mp4";
+import textureBlendInitial from "./texture-blended-cylinders.mp4";
+
+
+<Video src="./basic-mesh-copy.mp4" caption="The naive approach of copying many cylinders in a path" />
+
+
+An easy way to expand on this is by welding the vertices of each mesh to each other.
+
+# Welded cylinders
+
+At this point we will abandon the idea of "copying" meshes, instead our system will dynamically generate all vertices and triangles for the trunk. Each stem segment will be replaced with only one circle of vertexes, and will draw triangles connecting to the previous stem segment to build the cylinder. The circle's orientation will come directly from the orientation used to copy the mesh, and triangles will be connected based on angle from the local y-axis.
+
+<CompareSlider src1={copiedCylinders} src2={cylindersScronked} loop={false} />
+
+This solves some of our problems! We no longer have sharp edges, and the normals blend nicely now that it is all in one mesh. No UVs yet. But, there is one problem! We have these weird scronkled regions wherever the tree branches into multiple segments. This is due to the fact that the organs orientation actually rotate in multiple directions when splitting, this throws off the triangle linking.
+
+## Descronkling
+
+These are the orientations we're dealing with. This comes from using the initial copy-mesh approach, and plugging in an axis indicator mesh. We can see that the orientation rotates nearly 180 degrees at the trunk's split
+
+<Video src="./orientation-visualization.mp4" caption="The local orientation of every stem segment in the plant" loop={false} />
+
+We need to find a way to adjust our triangle indexes based on a rotational offset from the previous stem. Unfortunately, this means we must use *MATH* ! Don't worry though, most of it is handled by Matrix4x4 transformations for us. What we will do is project the y-axis of the next-segment onto the y-z plane of the previous-segment (in our coordinate system, x-axis is forward). Taking the angle between this projected vector and the y-axis vector of the previous-segment plane will give us our offset. Below is the code for this, unfortunately I don't have a good visualization for this. But I can recommend [this tool](https://www.falstad.com/dotproduct/) to help build intuition about dot-product's function.
+
+
+<details>
+  <summary>Offset Rotation calculation</summary>
+
+```CSharp
+/// <summary>
+/// returns a value representing the rotation required to align the y axis of <paramref name="next"/> up as closely as possible to the y axis of <paramref name="parent"/>
+/// </summary>
+/// <param name="parent">the previous-stem orientation</param>
+/// <param name="next">the next-stem orientation</param>
+/// <returns>a value between -0.5 and 0.5, representing rotations about the x-axis from -180 to 180 degrees</returns>
+static float GetNormalizedCircleOffset(Matrix4x4 parent, Matrix4x4 next)
+{
+    var parentBasisPlaneX = parent.MultiplyVector(new Vector3(0, 0, 1));
+    var parentBasisPlaneY = parent.MultiplyVector(new Vector3(0, 1, 0));
+    var parentBasisPlaneNormal = parent.MultiplyVector(new Vector3(1, 0, 0));
+
+    var nextY = next.MultiplyVector(new Vector3(0, 1, 0));
+    var nextYProjectedOnParentBasisPlane = ProjectOntoPlane(nextY, parentBasisPlaneX, parentBasisPlaneY);
+
+    var angleOffset = Vector3.SignedAngle(parentBasisPlaneY, nextYProjectedOnParentBasisPlane, parentBasisPlaneNormal);
+    return angleOffset / 360f;
+}
+
+static Vector3 ProjectOntoPlane(Vector3 projectionVector, Vector3 planeBasisX, Vector3 planeBasisY)
+{
+    var projectedX = planeBasisX * (Vector3.Dot(planeBasisX, projectionVector));
+    var projectedY = planeBasisY * (Vector3.Dot(planeBasisY, projectionVector));
+    return projectedX + projectedY;
+}
+```
+</details>
+
+With this normalized value, we can remap it to the # of vertices on our stem, and offset our triangle indexes by that much:
+```CSharp
+var myCircleIndexOffset = (int)math.round((GetNormalizedCircleOffset(parentStem.orientation, pointTransform) + 1) * radialResolution);
+```
+
+<CompareSlider src1={cylindersScronked} src2={descronkled} loop={false} />
+
+Much better, successfully descronkled! There's one final touch we can improve though. The stems become significantly narrower abruptly when splitting. Currently, the first stem segment after a split is placed directly above the parent stem, so the cylinder downscales and overlaps with itself. Ideally, this downscaling would also be accompanied with a movement down the new forward axis of each child stem segment.
+
+We can fix this by offsetting all of the vertex circles by 1/2 of their length, effectively sliding the edge loops up along the mesh. Here's a comparison, it's a subtle difference but I think it helps. This also looks like it bears some benefit to the more tightly curved parts of the stem!
+
+<CompareSlider src1={descronkled} src2={circleRingShifted} loop={false} />
+
+
+# UV Mapping
+
+Another drawback we can now address is seamless texturing! Our goal will be to wrap a seamlessly tiling texture around the trunk, and make sure it blends at least a little reasonably between stem segments and branching. The first approach we can try is wrapping the one axis of the uv map radially around the trunk. Luckily this part is pretty simple, we convert the angle to normalized coordinates in 0..1, and that's our x-coordinate! Easy... or so I thought. This approach actually requires an extra vertex in our circle mesh. Because UVs interpolate between vertexes, the very last vertex at uv `4/5` will interpolate down to the first vertex's `0/5` coordinate. So we need to break the mesh at the 0-th vertex, to make sure the uvs interpolate correctly. 
+
+This is what we're missing without our extra vertex. Fixed mesh is on the right, improperly wrapped circle meshes on the left. It might be hard to catch, but sections of the tree on the left are blurrier and stretched due to the UVs interpolating at a higher gradient than they should be. With this issue fixed, the plant is looking pretty decent!
+
+<CompareSlider src1={basicMapBrokenWrap} src2={basicMapFixedWrap} loop={false} />
+
+
+
+
+# Texture Blending
+
+Texture blending between different textures is something we'll want. The fresh growth tips of a tree never looks the same as the more gnarled, aged bark of the trunk, and we need to represent this smoothly!
+
+To accomplish texture blending, we use the [Extra Vertex Data](https://github.com/dsmiller95/LindenmayerPlantSimulation/tree/master/Packages/com.dman.l-system#extra-vertex-data) l-system extension to indicate a texture-index in our shader, based on the depth of the L-system. In this case, we'll use 4 textures, each progressively appearing less aged and more freshly grown. Here's the texture pallet itself:
+
+![The multi-species "bark" texture pallette](./bark_multi.png)
+
+By mapping this onto our plant, we can get the stems which have leaves on them to look much more realistically green. The texture blending shader also applies some adjustable fuzzing between adjacent textures in the map, which is why we will see spots of brown mixed in with the green.
+
+<CompareSlider src1={basicMapFixedWrap} src2={textureBlendInitial} loop={false} />
+
+Keen-eyed readers might recognize the new texture has no mipmaps and appears more noisy, and those readers would be right! The shader currently accepts this texture as a texture3D with only 4 z-levels to help with interpolation. But, when generating mipmaps on a texture that thin, unity will blend all of the z-levels together into an unrecognizable mess. So for now we just turn it off. To improve this the next shader version should probably use a Texure2D array and handle lerping manually.
+
+
+# Performance
+
+Since this is targeting real-time gameplay generation, any change we make must also consider how it affects performance. So, lets pull out the profiler! All of the difference in work here will apply to the jobs threads, so we will have a look at how long the total mesh-building process takes with a mature tree, before and after changes. Another relevant property is the complexity of the resulting mesh. The previous method's cylinder pentagonal mesh used a total of 20 vertexes, and 16 triangles: a substantial sum compared to the new method's 6 vertexes and 10 triangles to accomplish the same effect.
+
+I selected the highest-value time for this process across ~10 different frames of it. This isn't the best way to gather info, but at least it gives us an idea of any large effects. here are the results:
+
+![Starting performance](./performance-initial.png)
+![Final performance](./performance-final.png)
+
+Amazingly, our technique has actually decreased the time to run from 1.2ms to 0.9ms, almost 25% less time! My theory as to why is that, even though we do more math per-stem-segment, this is offset by using nearly 1/4 the number of vertexes. The actual writing of data to memory isn't cheap, and generating mesh bounds greatly benefits from needing to process fewer vertexes. Overall, we see a 62% reduction in vertexes and a 22% reduction in triangles. This will make the resulting mesh much more performant to push onto the GPU, and to copy around in our game if we wish.
+
+I'm very happy this solution does nothing to hamper the game speed, and in fact may speed it up slightly. I should be able to roll this out into Seeb Defender without concerns.
+
+# Wrapping up
+
+Overall, I consider this a great improvement over the existing system. I think there are yet many more details to consider, I'll summarize the possible next directions here:
+
+1. Something like how [Speed Tree](https://docs.speedtree.com/doku.php?id=branchintersections) handles branch intersections would be phenomenal, but may not be practical under real-time gameplay constraints.
+2. Normal blending along with uv mapping could make the branch divisions much more smooth
+3. At the tree's branching points, the UVs are warped. Since we know an orientation change is happening there, this shifts the UV coordinates along with it. This is trickier to solve than the triangle matching problem, since if we simply remap the UVs for the first rotated circle we will also have to rotate the UVs for the next child circle.
+4. The UVs are stretching out on the especially thin stems. This is because every stem segment wraps the whole texture's horizontal axis along its circumference, which means as the stems get thinner the texture will necessarily start compressing on itself. We'll need some way to adaptively tile or wrap textures around the stems to fix this problem.
+
+Hopefully at some point in the future, I'll put up another post looking into at least one of these four improvements. Thanks for reading!

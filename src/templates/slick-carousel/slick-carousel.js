@@ -26,11 +26,11 @@ const SlickCarousel = ({ settings, images, threshold = 0.15 }) => {
         <Slider {...settings} className={style.carouselOverrides}>
             {images.map((image, i) => (
                 <div key={i}>
-                    {image.src.endsWith("mp4") &&
-                    <GifVideo src={image.src} caption={image.alt}/> ||
-                    <img 
-                        className={style.fillImage}
-                        src={`${image.src}`} alt={`${image.alt}`}></img>}
+                    {image.src.endsWith("mp4") ?
+                        <GifVideo src={image.src} caption={image.alt}/> :
+                        <img 
+                            className={style.fillImage}
+                            src={`${image.src}`} alt={`${image.alt}`}></img>}
                 </div>
             ))}
         </Slider>

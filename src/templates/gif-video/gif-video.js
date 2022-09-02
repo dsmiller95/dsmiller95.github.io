@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { useInView } from "react-intersection-observer"
 import style from './gif-video.module.less'
 
-const GifVideo = ({ threshold = 0.15, ...playerProps }) => {
+const GifVideo = ({ threshold = 0.15, loop = true, ...playerProps }) => {
   const [ref, inView] = useInView({ threshold })
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const GifVideo = ({ threshold = 0.15, ...playerProps }) => {
     <video 
       ref={ref}
       className={style.standardVideo}
-      autoPlay playsInline muted loop 
+      autoPlay playsInline muted loop={loop}
       {...playerProps} />
     {playerProps.caption && <span className={style.caption}>{playerProps.caption}</span>}
   </div>
@@ -30,6 +30,7 @@ const GifVideo = ({ threshold = 0.15, ...playerProps }) => {
 GifVideo.propTypes = {
   src: PropTypes.string,
   threshold: PropTypes.number,
+  loop: PropTypes.bool,
   className: PropTypes.string,
 }
 
