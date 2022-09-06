@@ -42,22 +42,31 @@
 .imagePanelContent {
     display: flex;
     flex-grow: 1;
-    flex-direction: row;
+    @media @mobile {
+        flex-direction: column;
+    }
+    @media @tablet, @desktop {
+        flex-direction: row;
+    }
     row-gap: 15px;
-    max-height: 500px;
     .photo {
         flex: 0 0 30%;
         max-height: 500px;
-        //width: 30%;
-        // flex-grow: 1;
-        // flex-basis: 100%;
         box-sizing: border-box;
-        //margin-right: auto;
         margin-bottom: auto;
-        border: 1px solid @theme-title;
+        margin: auto;
+        //@media 
+        //border: 1px solid @theme-title;
+        img {
+            width: 97% !important;
+            height: 97% !important;
+            border: 2px solid @theme-title;
+        }
         @media @mobile {
-            width: 100%;
-            margin: auto;
+            width: 50%;
+            img {
+                border-radius: 50%;
+            }
         }
     }
     .memberDesc {
