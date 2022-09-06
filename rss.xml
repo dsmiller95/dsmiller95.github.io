@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 06 Sep 2022 16:50:53 GMT</lastBuildDate><item><title><![CDATA[Procedurally generating plant stems]]></title><description><![CDATA[Improving the appearance and performance of runtime-generated branching trees]]></description><link>https://www.fraculation.com/blog/trunk-generation</link><guid isPermaLink="false">https://www.fraculation.comblog/trunk-generationProcedurally generating plant stems</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Mon, 05 Sep 2022 12:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 06 Sep 2022 20:21:21 GMT</lastBuildDate><item><title><![CDATA[Procedurally generating plant stems]]></title><description><![CDATA[Improving the appearance and performance of runtime-generated branching trees]]></description><link>https://www.fraculation.com/blog/trunk-generation</link><guid isPermaLink="false">https://www.fraculation.comblog/trunk-generationProcedurally generating plant stems</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Mon, 05 Sep 2022 12:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i &lt; sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -5156,20 +5156,16 @@ return function MDXContent(_ref) {
   }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
-    &quot;className&quot;: &quot;token parameter&quot;
-  }), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
-  }, {
     &quot;className&quot;: &quot;token builtin&quot;
   }), &quot;number&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
+    parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
   }), &quot;:&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
+    parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token builtin&quot;
-  }), &quot;number&quot;)), mdx(&quot;span&quot;, _extends({
+  }), &quot;number&quot;), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -5345,19 +5341,15 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;(&quot;), &quot;n&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token parameter&quot;
-  }), &quot;n&quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
   }), &quot;:&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
+    parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token builtin&quot;
-  }), &quot;number&quot;)), mdx(&quot;span&quot;, _extends({
+  }), &quot;number&quot;), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -5445,19 +5437,15 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;(&quot;), &quot;n&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token parameter&quot;
-  }), &quot;n&quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
   }), &quot;:&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
+    parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token builtin&quot;
-  }), &quot;number&quot;)), mdx(&quot;span&quot;, _extends({
+  }), &quot;number&quot;), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -5929,19 +5917,31 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token keyword&quot;
-  }), &quot;function&quot;), &quot; pullFromGenerator&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;function&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token generic-function&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;pullFromGenerator&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token generic class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
   }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token constant&quot;
   }), &quot;T&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
-  }), &quot;&gt;&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;&gt;&quot;))), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -6172,19 +6172,31 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token keyword&quot;
-  }), &quot;function&quot;), &quot; pullFromGenerator&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;function&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token generic-function&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;pullFromGenerator&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token generic class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
   }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token constant&quot;
   }), &quot;T&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
-  }), &quot;&gt;&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;&gt;&quot;))), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -6605,19 +6617,31 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token keyword&quot;
-  }), &quot;function&quot;), &quot; pullFromGenerator&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;function&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token generic-function&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;pullFromGenerator&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token generic class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
   }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token constant&quot;
   }), &quot;T&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
-  }), &quot;&gt;&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;&gt;&quot;))), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -6693,11 +6717,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token parameter&quot;
-  }), &quot;subscriber&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;(&quot;), &quot;subscriber&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -7216,11 +7236,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token parameter&quot;
-  }), &quot;prime&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;(&quot;), &quot;prime&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -7426,11 +7442,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token parameter&quot;
-  }), &quot;prime&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;(&quot;), &quot;prime&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -7863,11 +7875,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token parameter&quot;
-  }), &quot;prime&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;(&quot;), &quot;prime&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -8001,19 +8009,31 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token keyword&quot;
-  }), &quot;function&quot;), &quot; getLastItemWithInterrupt&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;function&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token generic-function&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;getLastItemWithInterrupt&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token generic class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
   }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token constant&quot;
   }), &quot;T&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
+    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
-  }), &quot;&gt;&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;&gt;&quot;))), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -8185,11 +8205,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token parameter&quot;
-  }), &quot;subscriber&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;(&quot;), &quot;subscriber&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -8586,23 +8602,19 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;(&quot;), &quot;\n  keys&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token parameter&quot;
-  }), &quot;keys&quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
   }), &quot;:&quot;), &quot; Observable&quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
+    parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
   }), &quot;&lt;&quot;), &quot;NonogramKey&quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
+    parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
-  }), &quot;&gt;&quot;)), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;&gt;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -8650,11 +8662,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token parameter&quot;
-  }), &quot;key&quot;), mdx(&quot;span&quot;, _extends({
+  }), &quot;(&quot;), &quot;key&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
