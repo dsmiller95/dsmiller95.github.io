@@ -26,7 +26,7 @@
     "gatsby-transformer-sharp": "^2.2.20",
     "less": "^3.10.3",
     "nonogram-grid": "^1.0.13",
-    "prismjs": "^1.17.1",
+    "prismjs": "^1.29.0",
     "prop-types": "^15.6.2",
     "react": "^16.10.2",
     "react-compare-slider": "^2.2.0",
