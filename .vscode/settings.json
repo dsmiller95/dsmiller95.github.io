@@ -9,6 +9,7 @@
         "gameplay",
         "scriptable",
         "Seeb",
-        "Seebs"
+        "Seebs",
+        "struct"
     ]
 }
