@@ -104,7 +104,7 @@ export const resumeListPropTypes = {
     PropTypes.shape({
       node: PropTypes.shape({
         name: PropTypes.string.isRequired,
-        publicUrl: PropTypes.string.isRequired,
+        publicURL: PropTypes.string.isRequired,
       }).isRequired,
     })
   ).isRequired,
@@ -119,7 +119,7 @@ class ResumeList extends React.Component {
           edgeA.node.name.toLowerCase() > edgeB.node.name.toLowerCase() ? 1 : -1
         )
         .map(({ node: { name, publicURL } }) => (
-          <div className={style.flexTop}>
+          <div className={style.flexTop} key={name}>
             <a href={publicURL}>
               <FaFileAlt size="30"/>
             </a>

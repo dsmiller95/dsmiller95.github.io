@@ -258,6 +258,7 @@ Since this is targeting real-time gameplay generation, any change we make must a
 I selected the highest-value time for this process compared across about 10 different samples. This isn't the best way to gather info, but at least it gives us an idea of any large effects. here are the results:
 
 ![Starting performance](./performance-initial.png)
+
 ![Final performance](./performance-final.png)
 
 Amazingly, our technique has actually decreased the time to run from 1.2ms to 0.9ms, almost 25% less time! My theory as to why is that even though we do more math per-stem-segment, this is offset by using nearly 1/4 the number of vertexes. The actual writing of data to memory isn't cheap, and the job generating our mesh bounds scales directly with vertex count. Overall, we see a 62% reduction in vertexes and a 22% reduction in triangles. This will make the resulting mesh much more performant to push onto the GPU, and to copy around in our game if we wish.
