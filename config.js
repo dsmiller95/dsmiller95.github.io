@@ -63,6 +63,10 @@ module.exports = {
     vuejs: {
       name: 'Vue.js',
       description: 'Vue.js is a JavaScript framework for building interactive web applications.'
+    },
+    shell: {
+      name: "Shell script",
+      description: "shell script is a command line scripting language useful for building simple CLI tools that can run anywhere"
     }
   }
 }
