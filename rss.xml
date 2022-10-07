@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 06 Sep 2022 20:21:21 GMT</lastBuildDate><item><title><![CDATA[Procedurally generating plant stems]]></title><description><![CDATA[Improving the appearance and performance of runtime-generated branching trees]]></description><link>https://www.fraculation.com/blog/trunk-generation</link><guid isPermaLink="false">https://www.fraculation.comblog/trunk-generationProcedurally generating plant stems</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Mon, 05 Sep 2022 12:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 07 Oct 2022 14:36:33 GMT</lastBuildDate><item><title><![CDATA[Procedurally generating plant stems]]></title><description><![CDATA[Improving the appearance and performance of runtime-generated branching trees]]></description><link>https://www.fraculation.com/blog/trunk-generation</link><guid isPermaLink="false">https://www.fraculation.comblog/trunk-generationProcedurally generating plant stems</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Mon, 05 Sep 2022 12:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i &lt; sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -8743,6 +8743,1156 @@ return function MDXContent(_ref) {
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
   }), &quot;}&quot;)))));
+}
+;
+MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Cleaning up local GIT branches with no Remote]]></title><description><![CDATA[A convenient command line tool to cleanup branches with no matching remote]]></description><link>https://www.fraculation.com/blog/cleanup-git-branches</link><guid isPermaLink="false">https://www.fraculation.comblog/cleanup-git-branchesCleaning up local GIT branches with no Remote</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Fri, 07 Feb 2020 00:00:00 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i &lt; sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i &lt; sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; target[key] = source[key]; } return target; }
+
+/* @jsx mdx */
+var _frontmatter = {
+  &quot;title&quot;: &quot;Cleaning up local GIT branches with no Remote&quot;,
+  &quot;tags&quot;: [&quot;tooling&quot;, &quot;shell&quot;],
+  &quot;date&quot;: &quot;2020-02-07T00:00:00.000Z&quot;,
+  &quot;path&quot;: &quot;blog/cleanup-git-branches&quot;,
+  &quot;cover&quot;: &quot;./preview.png&quot;,
+  &quot;excerpt&quot;: &quot;A convenient command line tool to cleanup branches with no matching remote&quot;,
+  &quot;author&quot;: &quot;Dan Miller&quot;
+};
+
+var makeShortcode = function makeShortcode(name) {
+  return function MDXDefaultShortcode(props) {
+    console.warn(&quot;Component &quot; + name + &quot; was not imported, exported, or provided by MDXProvider as global scope&quot;);
+    return mdx(&quot;div&quot;, props);
+  };
+};
+
+var layoutProps = {
+  _frontmatter: _frontmatter
+};
+var MDXLayout = &quot;wrapper&quot;;
+return function MDXContent(_ref) {
+  var components = _ref.components,
+      props = _objectWithoutProperties(_ref, [&quot;components&quot;]);
+
+  return mdx(MDXLayout, _extends({}, layoutProps, props, {
+    components: components,
+    mdxType: &quot;MDXLayout&quot;
+  }), mdx(&quot;p&quot;, null, &quot;If you don&apos;t actively clean up old branches in your local git repository, it&apos;s very easy for it to get polluted with old branches which have been deleted on the remote repository. In the worst case this will make listing your local branches almost useless! I believe git branch should show a relevant listing of active work that you have checked out, not a list of every branch you&apos;ve ever checked out locally. Fortunately, there is an easy way around this, if we&apos;re willing to put in a little bit of work into automating it.&quot;), mdx(&quot;h2&quot;, null, &quot;TL;DR: Just Give Me the Script&quot;), mdx(&quot;p&quot;, null, &quot;This is the finished product, safeguards and all. Run this from a bash or shell terminal and follow the prompts, and your local repository should get cleaned up. Read on for a more detailed explanation, or skip to making it a git command to make it easier to use.&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;sh&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token shebang important&quot;
+  }), &quot;#!/usr/bin/env sh&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;if&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;!&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;git rev-parse --is-inside-work-tree&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;then&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token builtin class-name&quot;
+  }), &quot;echo&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;Not inside a git repository, aborting\&quot;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token builtin class-name&quot;
+  }), &quot;exit&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;0&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;fi&quot;), &quot;\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; remote prune origin\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-r&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;--format&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;%(refname:lstrip=3)\&quot;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; remotes\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;--format&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;%(refname:lstrip=2)\&quot;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; locals\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;cat&quot;), &quot; locals &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;|&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;grep&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-xv&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-f&quot;), &quot; remotes &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; branchesToDelete\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;# -w checks word counts to ignore blank lines&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;if&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;$(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;wc&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-w&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&lt;&quot;), &quot; branchesToDelete&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;)&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-gt&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;0&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;then&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token builtin class-name&quot;
+  }), &quot;echo&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;$(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;wc&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-l&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&lt;&quot;), &quot; branchesToDelete&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;)&quot;)), &quot; branches without matching remote found, outputting to editor\&quot;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token builtin class-name&quot;
+  }), &quot;echo&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;Waiting for editor to close\&quot;&quot;), &quot;\n    code branchesToDelete &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-w&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;for&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token for-or-select variable&quot;
+  }), &quot;branch&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;in&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;`&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;cat&quot;), &quot; branchesToDelete&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;`&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;do&quot;), &quot;\n        &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-D&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;$branch&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;done&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;else&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token builtin class-name&quot;
+  }), &quot;echo&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;There are no branches to cleanup.\&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;fi&quot;), &quot;\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;rm&quot;), &quot; branchesToDelete remotes locals&quot;))), mdx(&quot;h2&quot;, null, &quot;Getting to the Root of It&quot;), mdx(&quot;p&quot;, null, &quot;The process behind identifying dead local branches that we&apos;ll use follows a few basic steps:&quot;), mdx(&quot;ol&quot;, null, mdx(&quot;li&quot;, {
+    parentName: &quot;ol&quot;
+  }, &quot;Get lists of remote and local branch names&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ol&quot;
+  }, &quot;Compare the lists of branches, and keep only local branches which aren&apos;t in the list of remote branches&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ol&quot;
+  }, &quot;Since we will be forcing branch deletion, confirm with the user that we have the right branches before deleting&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ol&quot;
+  }, &quot;Delete all of the branches resulting from the comparison of the two lists&quot;)), mdx(&quot;h2&quot;, null, &quot;Listing the Branches&quot;), mdx(&quot;p&quot;, null, &quot;The only unique requirement when listing out local and remote branches for this purpose is to make sure that the two lists are comparable. We want to be sure that a branch in the remote list can match up exactly with a corresponding branch in the list of local branches. Luckily git gives us the tools we need to format our branches into a clean list:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;sh&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-r&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;--format&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;%(refname:lstrip=3)\&quot;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; remotes\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;--format&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;%(refname:lstrip=2)\&quot;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; locals&quot;))), mdx(&quot;details&quot;, null, mdx(&quot;summary&quot;, null, &quot;Breakdown by Phrase&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;git branch&quot;), mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Lists out all local branches by default, adding the -r parameter lists only remote branches&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;--format&quot;), mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Gives options to output only specific pieces of information about each branch&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;refname&quot;), mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;This part of the format string specifies that we only want the refname field from this branch. This is a complete unique identifier for each branch&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;For local branches, this would look like refs/heads/master&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;For remote branches, this would look like refs/remotes/origin/master&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;:lstrip=n&quot;), mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;This is a modifier on the &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;refname&quot;), &quot; field. It is used to specify that the first &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;n&quot;), &quot; path sections should be removed from the branch name before it is output. For example, by stripping the first 3 sections off of a remote branch name &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;refs/remotes/origin/feature/dropdown&quot;), &quot; , it leaves just &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;feature/dropdown&quot;), &quot;. More info on git&apos;s formatting syntax is &quot;, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;href&quot;: &quot;https://git-scm.com/docs/git-for-each-ref#_field_names&quot;
+  }), &quot;available here&quot;)))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;&gt; [filename]&quot;), mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Output everything into a file for use later on&quot;))))), mdx(&quot;h2&quot;, null, &quot;Comparing the Lists&quot;), mdx(&quot;p&quot;, null, &quot;The &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;grep&quot;), &quot; command is configurable enough to use it for this purpose by using a few command line options. In effect this configuration attempts to exactly match each line in &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;locals&quot;), &quot; against every line in remotes, and only output lines from &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;locals&quot;), &quot; which do not match.&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;sh&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;cat&quot;), &quot; locals &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;|&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;grep&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-x&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-v&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-f&quot;), &quot; remotes &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; branchesToDelete&quot;))), mdx(&quot;details&quot;, null, mdx(&quot;summary&quot;, null, &quot;Breakdown by Phrase&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;cat locals |&quot;), mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Takes the &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;locals&quot;), &quot; file and pipes it into the next command. &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;grep&quot;), &quot; accepts this piped input&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;grep&quot;), mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;The grep command&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;-x&quot;), mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Forces grep to only match full lines, instead of the default of partial matches inside of a line&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;-v&quot;), mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Inverts the output: typically grep would only output the input lines which match, now it will only output lines which do not match&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;-f remotes* &quot;), mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Tells grep to attempt to match each input against every line in the &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;remotes&quot;), &quot; file&quot;))))), mdx(&quot;h2&quot;, null, &quot;Deleting the Branches&quot;), mdx(&quot;p&quot;, null, &quot;Once we have a list of all of the branches we want to get rid of, they are looped through, with each one deleted in sequence:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;sh&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;for&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token for-or-select variable&quot;
+  }), &quot;branch&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;in&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;`&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;cat&quot;), &quot; branchesToDelete&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;`&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;do&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-D&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;$branch&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;done&quot;)))), mdx(&quot;h2&quot;, null, &quot;Cleaning It Up&quot;), mdx(&quot;p&quot;, null, &quot;So far we have a pretty basic setup that will get us what we need:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;sh&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-r&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;--format&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;%(refname:lstrip=3)\&quot;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; remotes\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;--format&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;%(refname:lstrip=2)\&quot;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; locals\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;cat&quot;), &quot; locals &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;|&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;grep&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-x&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-v&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-f&quot;), &quot; remotes &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; branchesToDelete\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;for&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token for-or-select variable&quot;
+  }), &quot;branch&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;in&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;`&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;cat&quot;), &quot; branchesToDelete&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;`&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;do&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-D&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;$branch&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;done&quot;)))), mdx(&quot;p&quot;, null, &quot;But this has a few problems if we want to start using it more reliably. Most obvious is that it leaves a bunch of files lying around! Let&apos;s clean those up by adding a &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;rm&quot;), &quot; at the end:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;sh&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;rm&quot;), &quot; branchesToDelete remotes locals&quot;))), mdx(&quot;h2&quot;, null, &quot;User Input to Protect Active Local Branches&quot;), mdx(&quot;p&quot;, null, &quot;Next up, there&apos;s another problem. What if I&apos;ve got a new local branch that I haven&apos;t pushed up yet? That branch would get deleted with what we have now, it&apos;d be nice if I could exclude it from this process. Let&apos;s add an option to edit the list of branches right before they get deleted:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;sh&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), &quot;code branchesToDelete &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-w&quot;)))), mdx(&quot;p&quot;, null, &quot;This opens VSCode to edit the &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;branchesToDeletefile&quot;), &quot;, and &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;-w&quot;), &quot; blocks the script execution until the file is closed. Now I can look through the list that&apos;s about to be deleted and make sure there&apos;s nothing I care about in there. This could be replaced with any editor command, even &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;notepad branchesToDelete&quot;), &quot; would work if you prefer not to use VSCode.&quot;), mdx(&quot;p&quot;, null, &quot;What we have now does well when we&apos;re in a git repository, and have some branches to delete, but this might not always be the case when running the script. To finish it up let&apos;s add some early exits in case we&apos;re not in a repository, or in case we end up with no branches to delete. And a few informational printouts so a new user doesn&apos;t feel lost. That leaves us with the final product:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;sh&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-sh&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token shebang important&quot;
+  }), &quot;#!/usr/bin/env sh&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;if&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;!&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;git rev-parse --is-inside-work-tree&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;then&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token builtin class-name&quot;
+  }), &quot;echo&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;Not inside a git repository, aborting\&quot;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token builtin class-name&quot;
+  }), &quot;exit&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;0&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;fi&quot;), &quot;\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; remote prune origin\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-r&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;--format&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;%(refname:lstrip=3)\&quot;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; remotes\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;--format&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;%(refname:lstrip=2)\&quot;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; locals\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;cat&quot;), &quot; locals &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;|&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;grep&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-xv&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-f&quot;), &quot; remotes &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; branchesToDelete\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;# -w checks word counts to ignore blank lines &quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;if&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;$(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;wc&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-w&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&lt;&quot;), &quot; branchesToDelete&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;)&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-gt&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;0&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;then&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token builtin class-name&quot;
+  }), &quot;echo&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;$(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;wc&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-l&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&lt;&quot;), &quot; branchesToDelete&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;)&quot;)), &quot; branches without matching remote found, outputting to editor\&quot;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token builtin class-name&quot;
+  }), &quot;echo&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;Waiting for editor to close\&quot;&quot;), &quot;\n    code branchesToDelete &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-w&quot;), &quot;\n\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;for&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token for-or-select variable&quot;
+  }), &quot;branch&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;in&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;`&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;cat&quot;), &quot; branchesToDelete&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;`&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;do&quot;), &quot;\n        &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;git&quot;), &quot; branch &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token parameter variable&quot;
+  }), &quot;-D&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token variable&quot;
+  }), &quot;$branch&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;done&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;else&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token builtin class-name&quot;
+  }), &quot;echo&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;There are no branches to cleanup.\&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;fi&quot;), &quot;\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;rm&quot;), &quot; branchesToDelete remotes locals&quot;))), mdx(&quot;h1&quot;, null, &quot;Registering as git command&quot;), mdx(&quot;p&quot;, null, &quot;To use this script in multiple repositories easily or in any console, it can be set up as a git command so that all it takes to run it is git clean-branches. The setup for this is pretty quick:&quot;), mdx(&quot;h2&quot;, null, &quot;Create script in /usr/bin/&quot;), mdx(&quot;p&quot;, null, &quot;Copy or create a script to become a git command into your git installation&apos;s &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;/usr/bin/&quot;), &quot; directory, on Windows it is likely here: &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;C:\\Program Files\\Git\\usr\\bin&quot;), &quot;.&quot;), mdx(&quot;p&quot;, null, &quot;This can be found on windows by navigating to &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;/usr/bin/&quot;), &quot; in a Git bash console, and opening an explorer window at that location with &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;explorer .&quot;)), mdx(&quot;h2&quot;, null, &quot;Set script name&quot;), mdx(&quot;p&quot;, null, &quot;Rename the script based on what you want the name of the command to be. In this case \&quot;git-clean-branches\&quot;; note that there is no &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;.sh&quot;), &quot; extension in the name. Git will look for filenames starting with \&quot;git-\&quot;, and take the remaining part of the whole filename as the command&apos;s name.&quot;), mdx(&quot;p&quot;, null, &quot;Since there is no file extension there must be a shebang at the start of the file to indicate how the script is to be run ( &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;#!/usr/bin/env sh&quot;), &quot; )&quot;), mdx(&quot;h2&quot;, null, &quot;Done!&quot;), mdx(&quot;p&quot;, null, &quot;Now any terminal that has access to regular Git commands will also have access to your new custom script&quot;), mdx(&quot;h1&quot;, null, &quot;Conclusion&quot;), mdx(&quot;p&quot;, null, &quot;Taking some time to build tools to help yourself or other work a little faster is something that I find can be quite rewarding. I hope that this not only helps clean up your git repos in the future, but also inspires you to look for other ways you can reduce repetitiveness in your workflow with these sorts of tools. Once you start automating things, it&apos;s hard to resist continuing to automate.&quot;), mdx(&quot;h1&quot;, null, &quot;About Me&quot;), mdx(&quot;p&quot;, null, &quot;I started my programming adventure by playing around with development environments such as &quot;, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;href&quot;: &quot;https://web.archive.org/web/20201128043833/https://scratch.mit.edu/&quot;
+  }), &quot;Scratch&quot;), &quot;, &quot;, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;href&quot;: &quot;https://web.archive.org/web/20201128043833/https://processing.org/&quot;
+  }), &quot;Processing&quot;), &quot;, and &quot;, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;href&quot;: &quot;https://web.archive.org/web/20201128043833/http://grobots.sourceforge.net/&quot;
+  }), &quot;Grobots&quot;), &quot;. After making it through college I got started in web development, working with Angular front-ends and NodeJS or C# backends. In my free time I love to play games like Factorio and Noita, or occasionally trying my hand at woodwork.&quot;));
 }
 ;
 MDXContent.isMDXComponent = true;</content:encoded></item></channel></rss>
