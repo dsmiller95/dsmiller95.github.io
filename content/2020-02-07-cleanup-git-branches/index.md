@@ -196,7 +196,7 @@ Since there is no file extension there must be a shebang at the start of the fil
 
 ## Done!
 
-Now any terminal that has access to regular Git commands will also have access to your new custom script
+Now any terminal that has access to regular Git commands will also have access to your new custom script, just type out `git clean-branches` and you're off!
 
 # Conclusion
 
