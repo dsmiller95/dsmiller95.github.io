@@ -67,7 +67,7 @@ class About extends React.Component {
                 </Link>! Which allows the player to breed plants with unique gameplay properties
                 by simulating genetics, sunlight, and fluid flow.
                 Join the <a 
-                  href="https://discord.gg/PRCBHAurg6"
+                  href="https://discord.gg/a78gs33vk5"
                   className={style.inlineLink}
                   key={"seeb defender discord link"}>
                    Discord
