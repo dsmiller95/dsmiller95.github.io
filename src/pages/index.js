@@ -39,7 +39,7 @@ class About extends React.Component {
             <div className={style.fullContent}>
               <h1>Fraculation LLC</h1>
               <h2>About</h2>
-              <p>Fraculation is a single-person independent game development and contracting studio located at Milwaukee, Wisconsin.
+              <p>Fraculation is a single-person independent game development studio located at Milwaukee, Wisconsin.
                 Our goal is to build highly replayable games and push the limits of what can be generated in real-time game engines.
                 To achieve this, we specialize in <Link 
                   to={"/tag/procGen"}
@@ -57,13 +57,21 @@ class About extends React.Component {
                   key={"tooling"}>
                   editor tooling
                 </Link> in the Unity game engine.
-                Our first game <Link 
+                </p>
+                <p>
+                  Check out our first game <Link 
                   to={"/blog/seeb-defender-project"}
                   className={style.inlineLink}
                   key={"seeb defender"}>
                   Seeb Defender
-                </Link> allows the player to breed plants with unique gameplay properties
-                by simulating genetics, sunlight, and fluid flow. Fraculation LLC was founded in August of 2021 by Dan Miller.</p>
+                </Link>! Which allows the player to breed plants with unique gameplay properties
+                by simulating genetics, sunlight, and fluid flow.
+                Join the <a 
+                  href="https://discord.gg/PRCBHAurg6"
+                  className={style.inlineLink}
+                  key={"seeb defender discord link"}>
+                   Discord
+                </a> to keep up to date with development and try out alpha builds.</p>
             </div>
             <h2>Dan Miller</h2>
             <div className={style.imagePanelContent}>
