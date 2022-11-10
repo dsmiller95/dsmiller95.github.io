@@ -6,6 +6,10 @@ path: blog/overlapping-mesh-render
 cover: ./before-after-comparison.png
 excerpt: Learn how to render overlapping transparent meshes as a single superset polygon, using stencil buffer settings in Unity URP
 author: Dan Miller
+projectImages: [{
+    src: "./range-anim.mp4",
+    description: "A single plant's tower range visualized as a composite of each individual weapon, before and after"
+}]
 ---
 
 I found while working on seeb defender that we could use a way to render a bunch of overlapping meshes as if they were one. If these were opaque meshes, this would be no problem: we could just stack them up on top of each other and call it a day. The complication here is that our meshes are transparent. Specifically, we have several flat meshes with a transparent interior and an opaque border. By default the additive transparent interior will stack up until it starts triggering our bloom effect. And the opaque border will overlap with itself and the transparent interior. We would like to only see the border on the edges of the whole overlapping region, and only see a single-layer of the transparent interior otherwise.

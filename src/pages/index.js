@@ -9,6 +9,7 @@ import SEO from '../components/seo'
 import Utils from '../utils'
 import style from './index.module.less'
 import { FaFileAlt } from 'react-icons/fa'
+import GifVideo from '../templates/gif-video'
 
 export const aboutPropTypes = {
   data: PropTypes.shape({
@@ -19,6 +20,7 @@ export const aboutPropTypes = {
     }).isRequired,
     skillIcons: PropTypes.object.isRequired,
     toolIcons: PropTypes.object.isRequired,
+    workShowcase: PropTypes.object.isRequired,
   }),
 }
 
@@ -26,7 +28,7 @@ class About extends React.Component {
   static propTypes = aboutPropTypes
 
   render() {
-    let { profilePhoto, skillIcons, toolIcons, resumes } = this.props.data
+    let { profilePhoto, skillIcons, toolIcons, resumes, workShowcase } = this.props.data
     return (
       <Layout>
         <SEO
@@ -35,7 +37,7 @@ class About extends React.Component {
           path=""
         />
         <div className={style.container}>
-          <div>
+          <div className={style.textContainerPanel}>
             <div className={style.fullContent}>
               <h1>Fraculation LLC</h1>
               <h2>About</h2>
@@ -101,7 +103,11 @@ class About extends React.Component {
             <h2>Tools</h2>
             <ImageList edges={toolIcons.edges} />
           </div>
+          
         </div>
+        
+        <h2>My Work</h2>
+        <WorkShowcaseList edges={workShowcase.edges} />
       </Layout>
     )
   }
@@ -179,6 +185,86 @@ class ImageList extends React.Component {
   )
 }
 
+export const workShowcasePropTypes = {
+  edges: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        frontmatter: PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          path: PropTypes.string.isRequired,
+          tags: PropTypes.arrayOf(
+            PropTypes.string.isRequired
+          ),
+          projectImages: PropTypes.arrayOf(
+            PropTypes.shape({
+              description: PropTypes.string.isRequired,
+              src: PropTypes.shape({
+                extension: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+                publicURL: PropTypes.string.isRequired,
+                childImageSharp: PropTypes.shape({
+                  fluid: PropTypes.object.isRequired,
+                }),
+              })
+            })
+          )
+        }),
+      }).isRequired,
+    })
+  ).isRequired,
+}
+
+class WorkShowcaseList extends React.Component {
+  static propTypes = workShowcasePropTypes
+
+  render = () => {
+    var allImages = this.props.edges
+      .filter(edge => (edge.node.frontmatter.projectImages?.length ?? 0) > 0)
+      .sort((edgeA, edgeB) =>
+        edgeA.node.frontmatter.title.toLowerCase() > edgeB.node.frontmatter.title.toLowerCase() ? 1 : -1
+      )
+      .flatMap(edge => 
+        edge.node.frontmatter.projectImages.map(projectImg => ({
+          title: edge.node.frontmatter.title,
+          path: edge.node.frontmatter.path,
+          tags: edge.node.frontmatter.tags,
+          ...projectImg
+        }))
+      );
+
+    return (
+    <div className={style.imageShowcaseContainer}>
+      {allImages
+        .map(({ src: {extension, name, childImageSharp, publicURL}, description, path  }) => (
+          <Link 
+            to={path}
+            className={style.imageShowcaseWrapper}
+            key={name + description}>
+            <div className={style.imageShowcaseWrapperTwo}>
+              {extension === 'mp4' 
+              ?
+                <video 
+                  className={style.imageShowcaseMedia}
+                  autoPlay playsInline muted loop={true}
+                  src={publicURL}
+                />
+              : <Img
+                  className={style.imageShowcaseMedia}
+                  fluid={childImageSharp.fluid}
+                  alt={name}
+                  title={description}
+                />}
+              <label>
+                {Utils.capitalize(description)}
+              </label>
+            </div>
+          </Link>
+        ))}
+    </div>
+  );
+        }
+}
+
 export const query = graphql`
   {
     profilePhoto: file(name: { eq: "profile-photo" }) {
@@ -220,8 +306,35 @@ export const query = graphql`
         }
       }
     }
+    workShowcase: allMdx{
+      edges {
+        node {
+          frontmatter {
+            title
+            tags
+            path
+            projectImages {
+              description
+              src {
+                extension
+                name
+                publicURL
+                childImageSharp {
+                  fluid(maxWidth: 1920, maxHeight: 1080) {
+                    ...GatsbyImageSharpFluid_noBase64
+                    ...GatsbyImageSharpFluidLimitPresentationSize
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
   }
 `
+
 // Use to set specific icons names
 export const iconsNameMap = {
   css: 'CSS',

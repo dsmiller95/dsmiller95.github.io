@@ -13,11 +13,11 @@ const SlickCarousel = ({ settings, images, threshold = 0.15 }) => {
     const [ref, inView] = useInView({ threshold })
     useEffect(() => {
         if(ref.current){
-        if (inView) {
-            ref.current.play();
-        } else {
-            ref.current.pause()
-        }
+            if (inView) {
+                ref.current.play();
+            } else {
+                ref.current.pause()
+            }
         }
     }, [ref, inView])
 
