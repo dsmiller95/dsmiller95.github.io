@@ -139,7 +139,7 @@
     align-content: stretch;
     justify-content: stretch;
 
-    gap: 10px 10px;
+    gap: 1rem 1rem;
 }
 
 .imageShowcaseWrapper{
@@ -171,9 +171,26 @@
         bottom: 0%;
         object-position: center center;
         
-        background-color: fade(@label-theme-2, 50%);
-        color: @label-text-2;
-        border: @label-border;
+        background-color: fade(@label-theme-2, 20%);
+        color: fade(@label-text-2, 0%);
+        border-color: fade(@theme-text, 20%);
+
+        transition-property: color, background-color, border-color;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in;
+
+        @media (hover: none){
+            background-color: fade(@label-theme-2, 80%);
+            color: fade(@label-text-2, 100%);
+            border-color: fade(@theme-text, 100%);
+        }
+    }
+    &:hover {
+        label{
+            background-color: fade(@label-theme-2, 80%);
+            color: fade(@label-text-2, 100%);
+            border-color: fade(@theme-text, 100%);
+        }
     }
 }
 
