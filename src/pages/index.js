@@ -232,10 +232,15 @@ class WorkShowcaseList extends React.Component {
         }))
       );
 
+    var mediaClassname = (align) => {
+      if(align == null || style[align] == null) return style.imageShowcaseMedia;
+      return style.imageShowcaseMedia + " " + style[align];
+    }
+    
     return (
     <div className={style.imageShowcaseContainer}>
       {allImages
-        .map(({ src: {extension, name, childImageSharp, publicURL}, description, path  }) => (
+        .map(({ src: {extension, name, childImageSharp, publicURL}, description, path, align  }) => (
           <Link 
             to={path}
             className={style.imageShowcaseWrapper}
@@ -244,18 +249,18 @@ class WorkShowcaseList extends React.Component {
               {extension === 'mp4' 
               ?
                 <video 
-                  className={style.imageShowcaseMedia}
+                  className={mediaClassname(align)}
                   autoPlay playsInline muted loop={true}
                   src={publicURL}
                 />
               : <Img
-                  className={style.imageShowcaseMedia}
+                  className={mediaClassname(align)}
                   fluid={childImageSharp.fluid}
                   alt={name}
                   title={description}
                 />}
               <label>
-                {Utils.capitalize(description)}
+                {Utils.capitalize(description) + align}
               </label>
             </div>
           </Link>
@@ -315,6 +320,7 @@ export const query = graphql`
             path
             projectImages {
               description
+              align
               src {
                 extension
                 name
