@@ -260,7 +260,7 @@ class WorkShowcaseList extends React.Component {
                   title={description}
                 />}
               <label>
-                {Utils.capitalize(description) + align}
+                {Utils.capitalize(description)}
               </label>
             </div>
           </Link>
