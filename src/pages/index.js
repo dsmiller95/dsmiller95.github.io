@@ -18,6 +18,11 @@ export const aboutPropTypes = {
         fluid: PropTypes.object.isRequired,
       }).isRequired,
     }).isRequired,
+    titleAnimation: PropTypes.shape({
+      extension: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      publicURL: PropTypes.string.isRequired,
+    }),
     skillIcons: PropTypes.object.isRequired,
     toolIcons: PropTypes.object.isRequired,
     workShowcase: PropTypes.object.isRequired,
@@ -28,7 +33,7 @@ class About extends React.Component {
   static propTypes = aboutPropTypes
 
   render() {
-    let { profilePhoto, skillIcons, toolIcons, resumes, workShowcase } = this.props.data
+    let { profilePhoto, titleAnimation, skillIcons, toolIcons, resumes, workShowcase } = this.props.data
     return (
       <Layout>
         <SEO
@@ -39,8 +44,13 @@ class About extends React.Component {
         <div className={style.container}>
           <div className={style.textContainerPanel}>
             <div className={style.fullContent}>
-              <h1>Fraculation LLC</h1>
-              <h2>About</h2>
+              <div className={style.titleImageHeader}>
+                <video
+                  autoPlay playsInline muted loop={true}
+                  src={titleAnimation.publicURL}
+                />
+              </div>
+              <h4>Fraculation LLC</h4>
               <p>Fraculation is a single-person independent game development studio located at Milwaukee, Wisconsin.
                 Our goal is to build highly replayable games and push the limits of what can be generated in real-time game engines.
                 To achieve this, we specialize in <Link 
@@ -59,8 +69,8 @@ class About extends React.Component {
                   key={"tooling"}>
                   editor tooling
                 </Link> in the Unity game engine.
-                </p>
-                <p>
+              </p>
+              <p>
                   Check out our first game <Link 
                   to={"/blog/seeb-defender-project"}
                   className={style.inlineLink}
@@ -278,6 +288,11 @@ export const query = graphql`
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
+    }
+    titleAnimation: file(name: { eq: "fraculation-llc-animation" }) {
+      extension
+      name
+      publicURL
     }
     skillIcons: allFile(filter: { dir: { regex: "/about/skills$/" } }) {
       edges {
