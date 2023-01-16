@@ -10,6 +10,8 @@ import Utils from '../utils'
 import style from './index.module.less'
 import { FaFileAlt } from 'react-icons/fa'
 import GifVideo from '../templates/gif-video'
+import Obfuscate from 'react-obfuscate'
+import Config from '../../config'
 
 export const aboutPropTypes = {
   data: PropTypes.shape({
@@ -41,6 +43,17 @@ class About extends React.Component {
             <div className={style.fullContent}>
               <h1>Fraculation LLC</h1>
               <h2>About</h2>
+                <p>Fraculation LLC is currently providing part-time consulting services as a 
+                  specialist in the Unity game engine. For business inquiries, contact <Obfuscate
+                    email={Config.social.email}
+                    className={style.inlineLink}
+                    headers={{
+                      subject: 'Business Inquiry',
+                    }}
+                  >
+                    Dan Miller
+                  </Obfuscate>
+                </p>
               <p>Fraculation is a single-person independent game development studio located at Milwaukee, Wisconsin.
                 Our goal is to build highly replayable games and push the limits of what can be generated in real-time game engines.
                 To achieve this, we specialize in <Link 
