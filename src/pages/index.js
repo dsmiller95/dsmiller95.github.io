@@ -20,6 +20,11 @@ export const aboutPropTypes = {
         fluid: PropTypes.object.isRequired,
       }).isRequired,
     }).isRequired,
+    titleAnimation: PropTypes.shape({
+      extension: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      publicURL: PropTypes.string.isRequired,
+    }),
     skillIcons: PropTypes.object.isRequired,
     toolIcons: PropTypes.object.isRequired,
     workShowcase: PropTypes.object.isRequired,
@@ -30,7 +35,7 @@ class About extends React.Component {
   static propTypes = aboutPropTypes
 
   render() {
-    let { profilePhoto, skillIcons, toolIcons, resumes, workShowcase } = this.props.data
+    let { profilePhoto, titleAnimation, skillIcons, toolIcons, resumes, workShowcase } = this.props.data
     return (
       <Layout>
         <SEO
@@ -41,19 +46,24 @@ class About extends React.Component {
         <div className={style.container}>
           <div className={style.textContainerPanel}>
             <div className={style.fullContent}>
-              <h1>Fraculation LLC</h1>
-              <h2>About</h2>
-                <p>Fraculation LLC is currently providing part-time consulting services as a 
-                  specialist in the Unity game engine. For business inquiries, contact <Obfuscate
-                    email={Config.social.email}
-                    className={style.inlineLink}
-                    headers={{
-                      subject: 'Business Inquiry',
-                    }}
-                  >
-                    Dan Miller
-                  </Obfuscate>
-                </p>
+              <div className={style.titleImageHeader}>
+                <video
+                  autoPlay playsInline muted loop={true}
+                  src={titleAnimation.publicURL}
+                />
+              </div>
+              <h4>Fraculation LLC</h4>
+              <p>Fraculation LLC is currently providing part-time consulting services as a 
+                specialist in the Unity game engine. For business inquiries, contact <Obfuscate
+                  email={Config.social.email}
+                  className={style.inlineLink}
+                  headers={{
+                    subject: 'Business Inquiry',
+                  }}
+                >
+                  Dan Miller
+                </Obfuscate>
+              </p>
               <p>Fraculation is a single-person independent game development studio located at Milwaukee, Wisconsin.
                 Our goal is to build highly replayable games and push the limits of what can be generated in real-time game engines.
                 To achieve this, we specialize in <Link 
@@ -72,8 +82,8 @@ class About extends React.Component {
                   key={"tooling"}>
                   editor tooling
                 </Link> in the Unity game engine.
-                </p>
-                <p>
+              </p>
+              <p>
                   Check out our first game <Link 
                   to={"/blog/seeb-defender-project"}
                   className={style.inlineLink}
@@ -245,10 +255,15 @@ class WorkShowcaseList extends React.Component {
         }))
       );
 
+    var mediaClassname = (align) => {
+      if(align == null || style[align] == null) return style.imageShowcaseMedia;
+      return style.imageShowcaseMedia + " " + style[align];
+    }
+    
     return (
     <div className={style.imageShowcaseContainer}>
       {allImages
-        .map(({ src: {extension, name, childImageSharp, publicURL}, description, path  }) => (
+        .map(({ src: {extension, name, childImageSharp, publicURL}, description, path, align  }) => (
           <Link 
             to={path}
             className={style.imageShowcaseWrapper}
@@ -257,12 +272,12 @@ class WorkShowcaseList extends React.Component {
               {extension === 'mp4' 
               ?
                 <video 
-                  className={style.imageShowcaseMedia}
+                  className={mediaClassname(align)}
                   autoPlay playsInline muted loop={true}
                   src={publicURL}
                 />
               : <Img
-                  className={style.imageShowcaseMedia}
+                  className={mediaClassname(align)}
                   fluid={childImageSharp.fluid}
                   alt={name}
                   title={description}
@@ -286,6 +301,11 @@ export const query = graphql`
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
+    }
+    titleAnimation: file(name: { eq: "fraculation-llc-animation" }) {
+      extension
+      name
+      publicURL
     }
     skillIcons: allFile(filter: { dir: { regex: "/about/skills$/" } }) {
       edges {
@@ -328,6 +348,7 @@ export const query = graphql`
             path
             projectImages {
               description
+              align
               src {
                 extension
                 name
