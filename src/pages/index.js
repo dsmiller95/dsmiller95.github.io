@@ -52,8 +52,23 @@ class About extends React.Component {
                   src={titleAnimation.publicURL}
                 />
               </div>
+              <h4>Seeb Defender</h4>
+              <p>
+                  Check out our upcoming game on steam: <a
+                  href="https://store.steampowered.com/app/2362660/Seeb_Defender/"
+                  className={style.inlineLink}
+                  key={"seeb defender steam link"}>Seeb Defender</a>! 
+                  Breed plants with unique gameplay mechanics by simulating genetics, sunlight, and fluid flow.
+                Join the <a 
+                  href="https://discord.gg/a78gs33vk5"
+                  className={style.inlineLink}
+                  key={"seeb defender discord link"}>
+                   Discord
+                </a> to keep up to date with development and try out alpha builds.</p>
+                
+                <iframe src="https://store.steampowered.com/widget/2362660/" frameborder="0" width="100%" height="190"></iframe>
               <h4>Fraculation LLC</h4>
-              <p>Fraculation LLC is currently providing part-time consulting services as a 
+              <p>Fraculation LLC is currently offering part-time consulting services as a 
                 specialist in the Unity game engine. For business inquiries, contact <Obfuscate
                   email={Config.social.email}
                   className={style.inlineLink}
@@ -83,20 +98,6 @@ class About extends React.Component {
                   editor tooling
                 </Link> in the Unity game engine.
               </p>
-              <p>
-                  Check out our first game <Link 
-                  to={"/blog/seeb-defender-project"}
-                  className={style.inlineLink}
-                  key={"seeb defender"}>
-                  Seeb Defender
-                </Link>! Which allows the player to breed plants with unique gameplay properties
-                by simulating genetics, sunlight, and fluid flow.
-                Join the <a 
-                  href="https://discord.gg/a78gs33vk5"
-                  className={style.inlineLink}
-                  key={"seeb defender discord link"}>
-                   Discord
-                </a> to keep up to date with development and try out alpha builds.</p>
             </div>
             <h2>Dan Miller</h2>
             <div className={style.imagePanelContent}>
