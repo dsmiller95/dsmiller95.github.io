@@ -1,6 +1,6 @@
 ---
 title: Scene-aware unity Save system
-tags: [tooling]
+tags: [tooling, unity]
 date: 2022-08-11T05:25:44.226Z
 path: blog/scene-save-system
 cover: ./preview.png
