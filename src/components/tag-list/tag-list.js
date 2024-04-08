@@ -12,11 +12,19 @@ const TagList = ({ tags }) => (
     {tags
       .filter((tag, index) => index === tags.indexOf(tag)) // Remove duplicate values
       .sort()
-      .map(tag => (
-        <Link to={Utils.resolvePageUrl(Config.pages.tag, tag)} key={tag}>
-          {Config.tags[tag].name || Utils.capitalize(tag)}
-        </Link>
-      ))}
+      .map(tag => {
+        const tagPageUrl = Utils.resolvePageUrl(Config.pages.tag, tag);
+        const tagData = Config.tags[tag]
+        if (!tagData) {
+          console.error(`Tag data for ${tag} not found`)
+        }
+
+        return (
+          <Link to={tagPageUrl} key={tag}>
+            {tagData?.name || Utils.capitalize(tag)} 
+          </Link>
+      )})
+      }
   </div>
 )
 

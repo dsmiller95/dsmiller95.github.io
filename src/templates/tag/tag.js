@@ -13,11 +13,17 @@ import Utils from '../../utils'
 
 const TagPage = ({ data, pageContext }) => {
   const tag = pageContext.tag
-  const tagName = Config.tags[tag].name || Utils.capitalize(tag)
+  const tagData = Config.tags[tag];
+  if (!tagData) {
+    console.error(`Tag data for ${tag} not found`);
+  }
+  const tagName = tagData?.name || Utils.capitalize(tag)
   const tagPagePath = Config.pages.tag
-  const tagImage = data.allFile.edges.find(edge => edge.node.name === tag).node
-    .childImageSharp.fluid
-
+  const tageImageAsset = data.allFile.edges.find(edge => edge.node.name === tag);
+  if (!tageImageAsset) {
+    console.error(`Tag image for ${tag} not found`);
+  }
+  
   return (
     <Layout>
       <SEO
@@ -31,7 +37,7 @@ const TagPage = ({ data, pageContext }) => {
           <h1>{tagName}</h1>
         </div>
         <div className={style.cover}>
-          <Img fluid={tagImage} />
+          {tageImageAsset ? <Img fluid={tageImageAsset.node.childImageSharp.fluid} /> : <div />}
         </div>
       </div>
       <PostList posts={data.allMdx.edges} />

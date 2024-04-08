@@ -27,29 +27,39 @@ const Tag = ({ data }) => {
         path={tagPage}
       />
       <div>
-        {tags.map(tag => (
+        {tags.map(tag => {
+          const tagImage = data.allFile.edges.find(edge => edge.node.name === tag);
+          if (!tagImage) {
+            console.error(`Tag image for ${tag} not found`);
+          }
+          let tagComponent = null;
+          if(tagImage){
+            tagComponent = <Image fluid={tagImage.node.childImageSharp.fluid} />
+          }
+          let tagData = Config.tags[tag];
+          if (!tagData) {
+            console.error(`Tag data for ${tag} not found`);
+            tagData = { name: Utils.capitalize(tag), description: ''};
+          }
+
+          return (
           <Link
             to={Utils.resolvePageUrl(tagPage, tag)}
             className={style.card}
             key={tag}
           >
             <div className={style.cover}>
-              <Image
-                fluid={
-                  data.allFile.edges.find(edge => edge.node.name === tag).node
-                    .childImageSharp.fluid
-                }
-              />
+              {tagComponent ?? <div />}
             </div>
             <div className={style.content}>
-              <h2>{Config.tags[tag].name || Utils.capitalize(tag)}</h2>
-              <p>{Config.tags[tag].description}</p>
+              <h2>{tagData.name || Utils.capitalize(tag)}</h2>
+              <p>{tagData.description}</p>
               <label>{`${
                 rawTags.filter(sTag => sTag === tag).length
               } Posts`}</label>
             </div>
           </Link>
-        ))}
+        )})}
       </div>
     </Layout>
   )
