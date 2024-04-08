@@ -67,6 +67,10 @@ module.exports = {
     shell: {
       name: "Shell script",
       description: "shell script is a command line scripting language useful for building simple CLI tools that can run anywhere"
+    },
+    unity: {
+      name: "Unity",
+      description: "Unity is a game engine used to develop 2D and 3D games"
     }
   }
 }
