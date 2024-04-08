@@ -12,3 +12,9 @@ nvm install Gallium
 npm i
 npm run start
 ```
+
+## publishing to gh pages
+
+```bash
+npm run deploy
+```
