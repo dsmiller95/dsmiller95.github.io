@@ -13,7 +13,7 @@ author: Dan Miller
 
 I've built a couple grid-based games during game jams at this point. They are a delight to work with due to the simplicity of the domain. Because every object has an exact location, then interactions between objects can be precisely defined. And the state of the world can be easily represented and/or stored in something akin to a 2 or 3D array.
 
-First, I will talk through what my ideal test case should look like. Then, I'll go through the steps needed to attach that test case to a grid-based game. These techniques have emerged during my development of grid-based games, for example: TODO link to gobbies and disconnect. 
+First, I will talk through what my ideal test case should look like. Then, I'll go through the steps needed to attach that test case to a grid-based game, and best practices to build games which work with this technique. These techniques have emerged during my development of grid-based games, for example: TODO link to gobbies and disconnect. 
 
 
 # The Goal
@@ -30,7 +30,7 @@ XXX XXX ---
 XXX --- ---
 XXX -P- ---
 ";
-    CreateWorld(map, WorldBuildConfig.DefaultHorizLevels);
+    CreateWorld(map);
     EnableDash();
     EnableJump();
     var playerId = GetSingle<Player>();
@@ -98,15 +98,18 @@ XXX -P- ---
 
 ## Command Pattern and Immutability
 
-Another valuable aspect of this approach is how we modify the world state. Every one of the tests will interact with the world via some variation of ApplyCommands/ApplyCommandsAndTick , which generate a new world-state to assert against. In the previous example, these are abstracted behind a helper struct `MovementCommands`. All this struct does is construct a set of commonly used commands linked to the given entity id, to make tests easier to write. For example, `mv.jump = DungeonCommandFactory.JumpEntity(id) = new JumpCommand(id)`.
+In order to write tests in this way, we use both the command pattern and immutability of the world state object. To some degree this is optional, but I find that these approaches fit together very well in practice. We see usage of the command pattern via the helper `MovementCommands` struct. This struct contains a set of commonly used commands linked to the given entity id, to make tests easier to write. For example, `mv.jump == DungeonCommandFactory.JumpEntity(id) == new JumpCommand(id)` . We see evidence of immutability in the repeated use of `World = World`, keeping the `World` field up-to-date with all commands.
 
-The command pattern is useful in Gobbies to manage the valid entry-points into the system while maintaining immutability. Other games with smaller interfaces wouldn't need to go this far.
+The command pattern is useful in Gobbies to manage the valid entry-points into the system while maintaining immutability. Other games with smaller interfaces wouldn't need to go this far. The story is similar for usage of immutability. There is significant developement and performance overhead to implementing immutable data structures, but it forces many good practices which are useful when building something 
+complex.
+
+I'll demonstrate some of these advantages via examples as best I can! They may end up a little contrived because the majority of the benefits here come from avoiding footguns, rather than making simple examples simpler.
 
 Keeping the world state immutable helps keep your guns pointed away from your feet. In my experience, this makes it much harder to maintain complex dependencies between objects, or relying on object references directly. Instead every entity in the game needs to track its references via Ids, or ideally hold no references to other objects at all if possible. This also applies to external users of the system. If the game's UI held direct references to game entities then object reference identity becomes a part of the system under test! Thus the test harness must also assert that specific game entities are not re-created or swapped out with different instances. If we had to test in this way, we could no longer assert only off of the world state. We would need to hold on to object references and assert against those references.
 
 ### Immutability examples
 
-In addition, an immutable world makes it much easier to avoid modifying the state of entities directly from the UI or other external systems. If we allowed mutation of game entities via object references it would be very tempting to write something simple like so:
+One footgun we'd like to avoid is mutating entities directly from the UI or other external systems. If we allowed mutation of game entities via object references it would be very tempting to write something simple like so:
 ```csharp
 if (Input.KeyDown(this.dashKey)) {
   Player.MoveForward(2);
@@ -119,6 +122,22 @@ Imagine what this MoveForward function must or may do:
 3. It may be capable of causing changes to entities other than the player, for example picking up a pickup.
 
 These possibilities raise a whole host of questions: Should this mutation cause update events to fire back to the gui? Should it trigger the enemy's turn after the player moved, or does that happen somewhere else? Does this operation cause the player to pick up an item on the tile they move into? Where else is this function being called, and how many other functions make changes like this that we need to find and test? 
+
+
+Or even worse, we could end up writing something like this in an ui controller:
+```csharp
+void Update() {
+  if (player.locationNeedsUpdate) {
+    string formattedPositionText = this.ExpensiveFormatPlayerLocation(player.position);
+    this.textComponent.text = formattedPositionText;
+    player.locationNeedsUpdate = false;
+  }
+}
+```
+
+Now we've stored extra state in our player and tied it to a specific ui controller! How are we going to test that? If the Player class decides it needs to check if `locationChanged` was flipped back to `false` before moving again to make sure the ui effects occur in proper order, we would have very effectively tightly coupled our Player logic to the UI.
+
+Of course, there are obvious solutions to these problems without reaching for immutability. With sufficient experience, we can see code like this and tell that it's going to lead to problems in the future. But when working with other people or my past self, I prefer to make these types of dependencies either glaringly obvious or impossible to represent.
 
 In contrast, consider this approach:
 
@@ -221,15 +240,25 @@ All queries against the game state rely on entity IDs as opposed to object refer
 
 This pattern is similar to the [Command Query Responsibility Segregation (CQRS)](https://en.wikipedia.org/wiki/Command_Query_Responsibility_Segregation) architecture. We place commands into their own objects and delegate querying to entities themselves or extension methods. If we wanted even greater segregation we could isolate the queries into their own objects as well.
 
-As an example, lets compare what test cases might look like for our previous MoveForward example.
-
-With mutable data:
+As an example, lets compare what test cases might look like for our previous MoveForward example. With some shared code:
 
 ```csharp
-World NewWorldWithFloor(Vector3Int size){
-  ///
+/// Creates a world based on a layout string. 'P' == Player, 'X' == wall, '-' == empty space
+World CreateWorld(string mapLayoutString){ 
+  /* Omitted */ 
 }
 
+/// Assert that the entities contained in the World match
+///   the entities which would be created by the given layout string
+void AssertWorldMatches(World world, string expectedLayout){
+  /* Omitted */
+}
+```
+
+
+#### With mutable data:
+
+```csharp
 void AssertPosition(Vector3Int expected, IHavePosition entity){
   Vector3Int position = entity.GetPosition();
   Assert.AreEqual(expected, position);
@@ -237,41 +266,48 @@ void AssertPosition(Vector3Int expected, IHavePosition entity){
 
 [Test]
 void TestPlayerMovesForward(){
-  var world = NewWorldWithFloor(new Vector3Int(3, 3, 3));
-  var player = new Player(new Vector3Int(0, 1, 0), FacingDirections.North);
-
-  // think about what must happen here. player needs to know about pathing information from the world. How will it keep track of that?
-  world.AddEntity(player); 
+  var map = @"
+XXX ---
+XXX ---
+XXX -P-
+";
+  World world = CreateWorld(map);
+  Player player = world.GetEntityAt(new Vector3Int(0, 1, 0)) as Player;
 
   player.MoveForward(2);
 
   AssertPosition(new Vector3Int(0, 1, 2), player);
+  AssertWorldMatches(world, @"
+XXX -P-
+XXX ---
+XXX ---
+");
 }
 ```
 
-With immutable data:
+#### With immutable data and commands:
 
 ```csharp
-World NewWorldWithFloor(Vector3Int size){
-  ///
-}
-
-void AssertPosition(Vector3Int expected, World world, EntityId id){
-  var position = world.Get(id).GetPosition();
-  Assert.AreEqual(new Vector3Int(0, 1, 2), position);
-}
-
 [Test]
 void TestPlayerMovesForward(){
-  var world = NewWorldWithFloor(new Vector3Int(3, 3, 3));
-  var player = new Player(new Vector3Int(0, 1, 0), FacingDirections.North);
-  world = world.AddEntity(player);
-  var playerId = world.GetEntityOfType<Player>();
+  var map = @"
+XXX ---
+XXX ---
+XXX -P-
+";
+  World world = CreateWorld(map);
+  EntityId playerId = world.GetEntityAt(new Vector3Int(0, 1, 0));
+  ICommand moveForward = CommandFactory.MoveForward(playerId, 2);
 
-  var moveForward = new MoveForwardCommand{distance = 2, targetEntityId = playerId};
   world = world.ApplyCommand(moveForward);
-  
-  AssertPosition(new Vector3Int(0, 1, 2), world, playerId);
+
+  AssertWorldMatches(world, @"
+XXX -P-
+XXX ---
+XXX ---
+");
 }
 ```
 
+
+Note that the tests which rely on Commands enjoy a greater separation of concerns. The test case code itself only depends on shared types: `World`, `EntityId`, and `ICommand`. As well as components of the test harness via `CommandFactory`, `CreateWorld`, and `AssertWorldMatches`. This is an indicator that this test case will be much more maintainable. I like to think of this as bringing the test case closer towards data on a spectrum of code<->data.
