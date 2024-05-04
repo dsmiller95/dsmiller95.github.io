@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 04 May 2024 17:02:56 GMT</lastBuildDate><item><title><![CDATA[A General approach to testing grid-based games]]></title><description><![CDATA[An approach to writing tests in a highly adaptable way for grid-based games]]></description><link>https://www.fraculation.com/blog/tdd-grid-games</link><guid isPermaLink="false">https://www.fraculation.comblog/tdd-grid-gamesA General approach to testing grid-based games</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Thu, 25 Apr 2024 00:00:00 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 04 May 2024 21:02:43 GMT</lastBuildDate><item><title><![CDATA[A General approach to testing grid-based games]]></title><description><![CDATA[An approach to writing tests in a highly adaptable way for grid-based games]]></description><link>https://www.fraculation.com/blog/tdd-grid-games</link><guid isPermaLink="false">https://www.fraculation.comblog/tdd-grid-gamesA General approach to testing grid-based games</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Thu, 25 Apr 2024 00:00:00 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i &lt; sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -158,8 +158,20 @@ return function MDXContent(_ref) {
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;li&quot;
   }, {
-    &quot;href&quot;: &quot;#the-tdd-Workflow&quot;
-  }), &quot;The TDD Workflow&quot;))))), mdx(&quot;h1&quot;, {
+    &quot;href&quot;: &quot;#the-tdd-workflow&quot;
+  }), &quot;The TDD Workflow&quot;)), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;href&quot;: &quot;#when-not-to-use&quot;
+  }), &quot;When not to use&quot;)))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;li&quot;
+  }, {
+    &quot;href&quot;: &quot;#conclusion&quot;
+  }), &quot;Conclusion&quot;))), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;overview&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -184,15 +196,27 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Overview&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ve built a couple grid-based games during game jams at this point. They are a delight to work with due to the simplicity of the domain. Because every object has an exact location, then interactions between objects can be precisely defined. And the state of the world can be easily represented and/or stored in something akin to a 2 or 3D array.&quot;), mdx(&quot;p&quot;, null, &quot;First, I will talk through what my ideal test case should look like. Then, I&apos;ll go through the steps needed to attach that test case to a grid-based game, and best practices to build games which work with this technique. These techniques have emerged during my development of grid-based games, for example: &quot;, mdx(&quot;a&quot;, _extends({
+  })))), &quot;Overview&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ve built a couple grid-based games during game jams at this point. They are a delight to work with due to the simplicity of the domain. Because every object has an exact location, interactions between objects can be precisely defined. And the state of the game can be easily represented and/or stored in something akin to a 2D or 3D array. Examples of what I&apos;d call \&quot;grid-based games\&quot; are: Chess, Connect 4, Tetris, Sokoban, &quot;, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;href&quot;: &quot;https://store.steampowered.com/app/736260/Baba_Is_You/&quot;
+  }), &quot;Baba Is You&quot;), &quot;, &quot;, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;href&quot;: &quot;https://store.steampowered.com/app/590380/Into_the_Breach/&quot;
+  }), &quot;Into the Breach&quot;), &quot;, &quot;, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;href&quot;: &quot;https://boardgamegeek.com/boardgame/272409/tiny-epic-tactics&quot;
+  }), &quot;Tiny Epic Tactics&quot;), &quot;, or the two games I&apos;ve made: &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://spikedevelops.itch.io/disconnect&quot;
-  }), &quot;Disconnect, a riff on connect 4&quot;), &quot; or &quot;, mdx(&quot;a&quot;, _extends({
+  }), &quot;Disconnect, a riff on connect 4&quot;), &quot; and &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://limeblossomjams.itch.io/gobbies-stole-my-ruins&quot;
-  }), &quot;Gobbies Stole my Ruins, a puzzle dungeon crawler&quot;), &quot;. &quot;), mdx(&quot;h1&quot;, {
+  }), &quot;Gobbies Stole my Ruins, a puzzle dungeon crawler&quot;), &quot; .&quot;), mdx(&quot;p&quot;, null, &quot;The purpose of this blog post is to keep track of my own thoughts and share them with you. I&apos;d like to turn this approach into a more reusable package and potentially release it as FOSS, so I welcome any feedback on potential footguns I could be walking into here.&quot;), mdx(&quot;p&quot;, null, &quot;First, we&apos;ll walk through the two greatest components of this testing paradigm: a highly readable layout string, and a command pattern to interact with the game state. Then I&apos;ll close out with a real-world test case from \&quot;Gobbies Stole my Ruins\&quot; and my guidlines for games which will benefit the most from this approach.&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;map-layout-string&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -816,7 +840,7 @@ return function MDXContent(_ref) {
     parentName: &quot;pre&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;Expected player at (1, 1, 1), instead found (1, 1, 0)&quot;))), mdx(&quot;p&quot;, null, &quot;The difference here isn&apos;t extreme but it scales well when we add multiple pathfinding enemies into the mix.&quot;), mdx(&quot;h2&quot;, {
+  }), &quot;Expected player at (1, 1, 1), instead found (1, 1, 0)&quot;))), mdx(&quot;p&quot;, null, &quot;The difference here isn&apos;t extreme but it scales well when we add multiple moving entities into the mix.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;map-implementation&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -1228,7 +1252,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;charArray[0][2][1]&quot;), &quot; . This definitely isn&apos;t in x, y, z order.&quot;), mdx(&quot;h3&quot;, {
+  }), &quot;charArray[0][2][1]&quot;), &quot; . This definitely isn&apos;t in x, y, z order. Ideally we&apos;d access it at the (x, y, z) position of (1, 2, 2) .&quot;), mdx(&quot;h3&quot;, {
     &quot;id&quot;: &quot;axis-transformer&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -1574,7 +1598,7 @@ return function MDXContent(_ref) {
     parentName: &quot;ul&quot;
   }, &quot;X points left (char arrays are already ordered left to right)&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;Y points left across the layers&quot;)), mdx(&quot;div&quot;, {
+  }, &quot;Y points left across the layers&quot;)), mdx(&quot;p&quot;, null, &quot;Laid out on a 2x2x2 grid, these are the Z, X, and Y coordinate values at every point:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;text&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -1618,7 +1642,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;Dictionary&lt;char, Func&lt;Vector3Int, IEntity&gt;&gt;&quot;), &quot; , and invoke the Func pointed to by each character at each position. With simplified code:&quot;), mdx(&quot;div&quot;, {
+  }), &quot;Dictionary&lt;char, Func&lt;Vector3Int, IEntity&gt;&gt;&quot;), &quot; , and invoke the Func pointed to by each character at each position. With code:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -2158,7 +2182,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Command Pattern&quot;), mdx(&quot;p&quot;, null, &quot;The other useful components of these tests are the command pattern and immutable objects. To some degree this is optional, but I find that these approaches fit together very well in practice. The command pattern helps manage the entry-points into the system, so games with smaller interfaces wouldn&apos;t need to go this far. The story is similar for usage of immutability: there is significant developement and performance overhead to implementing immutable data structures. But it forces many good practices which pay of when building something complex.&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ll demonstrate some of these advantages via examples as best I can; focusing on the command pattern. Immutability is less relevant to the tests themselves and more about how the code under test is arranged.&quot;), mdx(&quot;p&quot;, null, &quot;We see usage of the command pattern via the helper struct &quot;, mdx(&quot;code&quot;, _extends({
+  })))), &quot;Command Pattern&quot;), mdx(&quot;p&quot;, null, &quot;The other useful components of these tests are the command pattern and immutable objects. To some degree this is optional, but I believe that these approaches fit together very well in practice. The command pattern helps manage the entry-points into the system, so games with smaller interfaces wouldn&apos;t need to go this far. The story is similar for usage of immutability: there is significant developement and performance overhead to implementing immutable data structures. But it forces many good practices which pay of when building something complex.&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ll demonstrate some of these advantages via examples as best I can; focusing on the command pattern. Immutability is less relevant to the tests themselves and more about how the code under test is arranged.&quot;), mdx(&quot;p&quot;, null, &quot;We see usage of the command pattern via the helper struct &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -4601,7 +4625,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;We&apos;re adding attacking! And assuming enemies exist, and the enemy kills usif we don&apos;t kill it. We&apos;ll need to add the interface into the Attacking command too.&quot;), mdx(&quot;div&quot;, {
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;We&apos;re adding attacking! And enemies killing us if we don&apos;t kill it first. This test will not compile right away, first we need to add an Attacking command factory:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -4692,11 +4716,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token comment&quot;
-  }), &quot;/* ... */&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;}&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -4717,6 +4737,10 @@ return function MDXContent(_ref) {
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
   }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... */&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token keyword&quot;
@@ -4752,7 +4776,11 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;{&quot;), &quot;\n    attackForward &quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;{&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... */&quot;), &quot;\n    attackForward &quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token operator&quot;
@@ -4784,7 +4812,81 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;At this point, our test is complete. The implementation work will involve creating the AttackForwardCommand implementation, and implementing enemies attacking adjacent players. In the future, I hope to build a shareable library around these concepts! I&apos;ll make another blog post at that point. Hopefully after I&apos;ve battle-tested it in a few more game jams. Thanks for reading!&quot;));
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;At this point, our test is complete: compiling and failing. The implementation work will involve creating the AttackForwardCommand implementation, and implementing enemies attacking adjacent players. In the course of the implementation we&apos;ll replace the contents of the CommandFactory.AttackForward function as well.&quot;), mdx(&quot;h2&quot;, {
+    &quot;id&quot;: &quot;when-not-to-use&quot;,
+    &quot;style&quot;: {
+      &quot;position&quot;: &quot;relative&quot;
+    }
+  }, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;h2&quot;
+  }, {
+    &quot;href&quot;: &quot;#when-not-to-use&quot;,
+    &quot;aria-label&quot;: &quot;when not to use permalink&quot;,
+    &quot;className&quot;: &quot;anchor before&quot;
+  }), mdx(&quot;svg&quot;, _extends({
+    parentName: &quot;a&quot;
+  }, {
+    &quot;aria-hidden&quot;: &quot;true&quot;,
+    &quot;focusable&quot;: &quot;false&quot;,
+    &quot;height&quot;: &quot;16&quot;,
+    &quot;version&quot;: &quot;1.1&quot;,
+    &quot;viewBox&quot;: &quot;0 0 16 16&quot;,
+    &quot;width&quot;: &quot;16&quot;
+  }), mdx(&quot;path&quot;, _extends({
+    parentName: &quot;svg&quot;
+  }, {
+    &quot;fillRule&quot;: &quot;evenodd&quot;,
+    &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
+  })))), &quot;When not to use&quot;), mdx(&quot;p&quot;, null, &quot;This approach may only work well for specific types of games. The article is about grid-based games for a reason: typically, grid games are totally predictable or can be made to be deterministic. These are the general requirements I imaging a game must have in order to fit into this test harness:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Deterministic&quot;, mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;The game must run the exact same way every time from the same starting conditions&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;If randomness is used it must be based on a random seed such that supplying the same seed results in the same sequence of events&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Grid-aligned&quot;, mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Everything under test must align to 2D or 3D grid positions, at creation time and at assertion time&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;This is a looser requirement. we can always round positions to the nearest grid position, but could make our tests flaky.&quot;)))), mdx(&quot;p&quot;, null, &quot;Consider how we could make Chess fit into this framework. It is an ideal candidate! Every game piece occupies a grid square. Every change to the game state is a movement of one piece from one grid square to the next grid square. The chess community has already started using a standard format for commands, too: &quot;, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;href&quot;: &quot;https://en.wikipedia.org/wiki/Algebraic_notation_(chess)&quot;
+  }), &quot;Algebraic notation (chess)&quot;), &quot; (For example, &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Be5&quot;), &quot; bishop moves to e5). We could start writing tests representing the whole board and a series of moves to test a chess rules engine right away!&quot;), mdx(&quot;p&quot;, null, &quot;What if we wanted to test something like Minecraft? Minecraft&apos;s blocks are all necessarily Grid-aligned but the player character is allowed to walk around freely! The zombies and item pickups are also allowed to float free from the grid. We could easily test the blocks&apos; interactions but would have trouble testing the players or mobs in the same way. Of course we could use our method on only the blocks if we would like to ignore the edge cases! We must consider if the test harness will save us enough time to make up for the exceptions to the rule.&quot;), mdx(&quot;p&quot;, null, &quot;For a game like Overwatch this testing approach is completely untenable. Every movement is both tiny in distance -and- potentially relevant, there&apos;s no grid, and everything is highly reliant on potentially unpredictable physics. It may be possible to build a harness that uses the command pattern to represent player moves at best.&quot;), mdx(&quot;h1&quot;, {
+    &quot;id&quot;: &quot;conclusion&quot;,
+    &quot;style&quot;: {
+      &quot;position&quot;: &quot;relative&quot;
+    }
+  }, mdx(&quot;a&quot;, _extends({
+    parentName: &quot;h1&quot;
+  }, {
+    &quot;href&quot;: &quot;#conclusion&quot;,
+    &quot;aria-label&quot;: &quot;conclusion permalink&quot;,
+    &quot;className&quot;: &quot;anchor before&quot;
+  }), mdx(&quot;svg&quot;, _extends({
+    parentName: &quot;a&quot;
+  }, {
+    &quot;aria-hidden&quot;: &quot;true&quot;,
+    &quot;focusable&quot;: &quot;false&quot;,
+    &quot;height&quot;: &quot;16&quot;,
+    &quot;version&quot;: &quot;1.1&quot;,
+    &quot;viewBox&quot;: &quot;0 0 16 16&quot;,
+    &quot;width&quot;: &quot;16&quot;
+  }), mdx(&quot;path&quot;, _extends({
+    parentName: &quot;svg&quot;
+  }, {
+    &quot;fillRule&quot;: &quot;evenodd&quot;,
+    &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
+  })))), &quot;Conclusion&quot;), mdx(&quot;p&quot;, null, &quot;In the future, I hope to build a shareable library around these concepts! I&apos;ll make another blog post at that point. Hopefully after I&apos;ve battle-tested it in a few more game jams. Thanks for reading, if you have any feedback I&apos;d love to hear it!&quot;));
 }
 ;
 MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Procedurally generating plant stems]]></title><description><![CDATA[Improving the appearance and performance of runtime-generated branching trees]]></description><link>https://www.fraculation.com/blog/trunk-generation</link><guid isPermaLink="false">https://www.fraculation.comblog/trunk-generationProcedurally generating plant stems</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Mon, 05 Sep 2022 12:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
