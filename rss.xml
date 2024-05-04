@@ -1,4 +1,3687 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 08 Apr 2024 20:30:49 GMT</lastBuildDate><item><title><![CDATA[Procedurally generating plant stems]]></title><description><![CDATA[Improving the appearance and performance of runtime-generated branching trees]]></description><link>https://www.fraculation.com/blog/trunk-generation</link><guid isPermaLink="false">https://www.fraculation.comblog/trunk-generationProcedurally generating plant stems</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Mon, 05 Sep 2022 12:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 04 May 2024 15:32:48 GMT</lastBuildDate><item><title><![CDATA[A General approach to testing grid-based games]]></title><description><![CDATA[An approach to writing tests in a highly adaptable way for grid-based games]]></description><link>https://www.fraculation.com/blog/tdd-grid-games</link><guid isPermaLink="false">https://www.fraculation.comblog/tdd-grid-gamesA General approach to testing grid-based games</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Thu, 25 Apr 2024 00:00:00 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i &lt; sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i &lt; sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; target[key] = source[key]; } return target; }
+
+/* @jsx mdx */
+var _frontmatter = {
+  &quot;title&quot;: &quot;A General approach to testing grid-based games&quot;,
+  &quot;tags&quot;: [&quot;tooling&quot;, &quot;unity&quot;, &quot;tdd&quot;],
+  &quot;date&quot;: &quot;2024-04-25T00:00:00.000Z&quot;,
+  &quot;path&quot;: &quot;blog/tdd-grid-games&quot;,
+  &quot;cover&quot;: &quot;./preview.png&quot;,
+  &quot;excerpt&quot;: &quot;An approach to writing tests in a highly adaptable way for grid-based games&quot;,
+  &quot;author&quot;: &quot;Dan Miller&quot;,
+  &quot;hidden&quot;: true
+};
+
+var makeShortcode = function makeShortcode(name) {
+  return function MDXDefaultShortcode(props) {
+    console.warn(&quot;Component &quot; + name + &quot; was not imported, exported, or provided by MDXProvider as global scope&quot;);
+    return mdx(&quot;div&quot;, props);
+  };
+};
+
+var layoutProps = {
+  _frontmatter: _frontmatter
+};
+var MDXLayout = &quot;wrapper&quot;;
+return function MDXContent(_ref) {
+  var components = _ref.components,
+      props = _objectWithoutProperties(_ref, [&quot;components&quot;]);
+
+  return mdx(MDXLayout, _extends({}, layoutProps, props, {
+    components: components,
+    mdxType: &quot;MDXLayout&quot;
+  }), mdx(&quot;h1&quot;, null, &quot;Outline&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Overview&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Map Layout string&quot;, mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Goal&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Implementation&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Command pattern&quot;, mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Goal&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Implementation&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;tying it all together&quot;)), mdx(&quot;h1&quot;, null, &quot;Overview&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ve built a couple grid-based games during game jams at this point. They are a delight to work with due to the simplicity of the domain. Because every object has an exact location, then interactions between objects can be precisely defined. And the state of the world can be easily represented and/or stored in something akin to a 2 or 3D array.&quot;), mdx(&quot;p&quot;, null, &quot;First, I will talk through what my ideal test case should look like. Then, I&apos;ll go through the steps needed to attach that test case to a grid-based game, and best practices to build games which work with this technique. These techniques have emerged during my development of grid-based games, for example: TODO link to gobbies and disconnect. &quot;), mdx(&quot;h1&quot;, null, &quot;Map Layout String&quot;), mdx(&quot;p&quot;, null, &quot;The map layout string is designed to be a readable representation of the geometry of a whole map in one string. Ideally this will make our tests easy to read and simple to maintain.&quot;), mdx(&quot;h2&quot;, null, &quot;Goal&quot;), mdx(&quot;p&quot;, null, &quot;We want to map every character of the string into a single tile in the 3D grid. We can lay them out in horizontal slices then stack up the horizontal slices to get a full 3D world: similar to MRI data or the output of a 3D printing slicer. The left-most slice is the bottom slice and the right-most is the top slice. &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;X&quot;), &quot; is a block, &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;-&quot;), &quot; is empty space, and &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;P&quot;), &quot; is the player character. Here&apos;s an example of a string and what the world generated by the string would look like:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;text&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;XXX XXX ---\nXXX --- ---\nXXX -P- ---&quot;))), mdx(&quot;figure&quot;, {
+    &quot;className&quot;: &quot;gatsby-resp-image-figure&quot;,
+    &quot;style&quot;: {}
+  }, &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;figure&quot;
+  }, {
+    &quot;className&quot;: &quot;gatsby-resp-image-wrapper&quot;,
+    &quot;style&quot;: {
+      &quot;position&quot;: &quot;relative&quot;,
+      &quot;display&quot;: &quot;block&quot;,
+      &quot;marginLeft&quot;: &quot;auto&quot;,
+      &quot;marginRight&quot;: &quot;auto&quot;,
+      &quot;maxWidth&quot;: &quot;902px&quot;
+    }
+  }), &quot;\n      &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;gatsby-resp-image-background-image&quot;,
+    &quot;style&quot;: {
+      &quot;paddingBottom&quot;: &quot;85.6%&quot;,
+      &quot;position&quot;: &quot;relative&quot;,
+      &quot;bottom&quot;: &quot;0&quot;,
+      &quot;left&quot;: &quot;0&quot;,
+      &quot;backgroundImage&quot;: &quot;url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAA7DAAAOwwHHb6hkAAACRUlEQVQ4y4WUW2/aQBCF/Vw1CZBIgO01SURBTfD97pSmVKVpDSF97v//H9MzezFuSNWH0Y738u2ZMwvWrp7RvpoRj7vK09HPPdpj7VnuO37LtXp2ElZ3sD6FHBC/9PyT3vOsv3n9rbBYnbmRcz7wIhc92hQeBakgO3JpGLh0i/ExE/9RWKsS5c0MKT0KAXEjQee+S+8RY9+hhT+l1f2YmsiWB1sAW5xra0/lPMfAtlJqmowhLiAOvQNkhHHm2+SvJpQh8tWYUgC/xDa9NEph2wslzGOg8oNvnt9PyNNqYg3JAEl1HmCchw6VufL0YDyVinXJBrhJnU5JriEp54gI+TXUjuDjGS5kK8ahS8tE0KfCNEwptVpt7rYQlOBgImEKxCpvAbqUIJcuEJexS/nvhbTmbOVIj5eRg3KF9NMy9f/ERO5PpDJW9AGgK61mACCrGyAfwue7w1zlmLvBvjKYQp2QHKuVZP4QVIVTafwCm84DIVXxoYGOIeaG/vF76av9TTTVJQulkBPu9DqxKbpDI7gBoU0OfLoIBQKjBvJFV8h9wEzDvuXuEWgSU/Yaz4J9LAGsY4c+wvgRQ1kxxingSXCEbQHb9xiWSczIi18zh3IcKgBdo/s1nslNOqPrWMiLMu31tvgbdqJQ+qnL/1EKekjw5qDyscCzwjtrYr7Ils37/gq202fVT+8NqNm0QUkPqUuf8d4q2FGicU+lOFHWlWyArxf6FjCAgQ0Un8Bq80r0T68P/JfavW4Y29CtVz0B3V+gR38AXPENIVcT8v4AAAAASUVORK5CYII=&apos;)&quot;,
+      &quot;backgroundSize&quot;: &quot;cover&quot;,
+      &quot;display&quot;: &quot;block&quot;
+    }
+  })), &quot;\n  &quot;, mdx(&quot;img&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;gatsby-resp-image-image&quot;,
+    &quot;alt&quot;: &quot;level layout&quot;,
+    &quot;title&quot;: &quot;level layout&quot;,
+    &quot;src&quot;: &quot;/static/ae99e99195fcf3cdb92789a50b5f8a51/e56b9/test_level_layout.png&quot;,
+    &quot;srcSet&quot;: [&quot;/static/ae99e99195fcf3cdb92789a50b5f8a51/3e256/test_level_layout.png 250w&quot;, &quot;/static/ae99e99195fcf3cdb92789a50b5f8a51/b30f8/test_level_layout.png 500w&quot;, &quot;/static/ae99e99195fcf3cdb92789a50b5f8a51/e56b9/test_level_layout.png 902w&quot;],
+    &quot;sizes&quot;: &quot;(max-width: 902px) 100vw, 902px&quot;,
+    &quot;style&quot;: {
+      &quot;width&quot;: &quot;100%&quot;,
+      &quot;height&quot;: &quot;100%&quot;,
+      &quot;margin&quot;: &quot;0&quot;,
+      &quot;verticalAlign&quot;: &quot;middle&quot;,
+      &quot;position&quot;: &quot;absolute&quot;,
+      &quot;top&quot;: &quot;0&quot;,
+      &quot;left&quot;: &quot;0&quot;
+    },
+    &quot;loading&quot;: &quot;lazy&quot;
+  })), &quot;\n    &quot;), &quot;\n    &quot;, mdx(&quot;figcaption&quot;, _extends({
+    parentName: &quot;figure&quot;
+  }, {
+    &quot;className&quot;: &quot;gatsby-resp-image-figcaption&quot;
+  }), &quot;level layout&quot;), &quot;\n  &quot;), mdx(&quot;p&quot;, null, &quot;We need two utilities to use this string format. A function to build a world from the string and another to assert a world against a given world string. For many of the movement-related tests is the only assertion we need! Compare the following examples, which do you find easier to reason about?&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;csharp&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token attribute&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Test&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;void&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;TestPlayerMovesForward_ThenIsBlocked_WithLayout&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; map &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;@\&quot;\nXXX -X-\nXXX ---\nXXX -P-\n\&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;World&quot;), &quot; world &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;CreateWorld&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;map&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... move player forward ... */&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;AssertWorldMatches&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;@\&quot;\nXXX -X-\nXXX -P-\nXXX ---\n\&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... move player forward again ... */&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;AssertWorldMatches&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;@\&quot;\nXXX -X-\nXXX -P-\nXXX ---\n\&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token attribute&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Test&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;void&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;TestPlayerMovesForward_ThenIsBlocked_WithoutLayout&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; world &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;CreateWorld&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;PlaceFloor&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;PlaceWall&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;Vector3Int&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;2&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;PlacePlayer&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;Vector3Int&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;0&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... move player forward ... */&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;AssertPlayerPosition&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;Vector3Int&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... move player forward again ... */&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;AssertPlayerPosition&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;Vector3Int&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;If you&apos;re still not convinced, consider what the test failure messages would look like:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;text&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Expected:\nXXX -X-\nXXX -P-\nXXX ---\n\nActual:\nXXX -X-\nXXX ---\nXXX -P-&quot;))), mdx(&quot;p&quot;, null, &quot;Versus:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;text&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Expected player at (1, 1, 1), instead found (1, 1, 0)&quot;))), mdx(&quot;p&quot;, null, &quot;The difference here isn&apos;t extreme but it scales well when we add multiple pathfinding enemies into the mix.&quot;), mdx(&quot;h2&quot;, null, &quot;Implementation&quot;), mdx(&quot;p&quot;, null, &quot;The map layout string can be build up from a few components. A parser to parse the string into a 3D array, an axis transformer, and a lookup table of game entity factories. &quot;), mdx(&quot;h3&quot;, null, &quot;Parser&quot;), mdx(&quot;p&quot;, null, &quot;The parser is relatively simple, consisting of a few successive Split commands:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;csharp&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;char&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;ParseLayoutString&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;string&quot;)), &quot; layoutString&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;string&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;)), &quot;   byLine &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; layoutString&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Split&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;\\n\&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;string&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;)), &quot; byLineThenLayer &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; byLine\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Select&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;line &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&gt;&quot;), &quot; \n      line&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Split&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot; \&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;ToArray&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  \n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;char&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;)), &quot; byLineThenLayerThenChar &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; byLineThenLayer\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Select&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;line &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&gt;&quot;), &quot; \n      line&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Select&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;lineLayer &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&gt;&quot;), &quot; \n        lineLayer&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;ToCharArray&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot;\n      &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;ToArray&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;ToArray&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  \n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;return&quot;), &quot; byLineThenLayerThenChar&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Done! Before we move on, consider the indexes we need to access the &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;i&quot;), &quot; in this layout:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;text&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;abc def gih\njkl mno pqr\nstu vwx yz0&quot;))), mdx(&quot;p&quot;, null, &quot;Its indexed by line first, then by each layer in the line, then by the character order inside each segment. So we&apos;d need something like &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;charArray[0][2][1]&quot;), &quot; . This definitely isn&apos;t in x, y, z order.&quot;), mdx(&quot;h3&quot;, null, &quot;Axis transformer&quot;), mdx(&quot;p&quot;, null, &quot;So we&apos;d like to get an array we can access with Unity&apos;s axis layout, in (x, y, z) order. We could use unity&apos;s Matrix4x4 to do this for us, once we found the correct combination of flips and rotations. I decided to home bake a utility specifically for re-ordering and flipping axises. This is roughly how we&apos;ll get the layout we need:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;csharp&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), &quot;Array3D&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;char&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;TransformLayout&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Array3D&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;char&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;)), &quot; input&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;DimensionalityTransform&quot;), &quot; transformation &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetDefaultCoordinateTransform&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; newLayoutSize &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; transformation&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Transform&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;input&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetSize&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; output &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;Array3D&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;char&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token named-parameter punctuation&quot;
+  }), &quot;size&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;:&quot;), &quot; newLayoutSize&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;foreach&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; outputCoordinate &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;in&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;AllCoordinatesInside&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;newLayoutSize&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; inputCoordinate &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; transformation&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;InverseTransform&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;outputCoordinate&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; inputTile &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; input&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), &quot;inputCoordinate&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    output&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), &quot;outputCoordinate&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; inputTile&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;return&quot;), &quot; output&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;For this specific layout we want our DimensionalityTransform to look something like this: &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;[-Z][+Y][+X]&quot;), &quot; . This will end up with a layout where:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Z points up (lines are ordered from top down, so we need to invert)&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;X points left (char arrays are already ordered left to right)&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Y points left across the layers&quot;)), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;text&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Z\n11 11\n00 00\n\nX\n01 01\n01 01\n\nY\n00 11\n00 11&quot;))), mdx(&quot;h3&quot;, null, &quot;Lookup table&quot;), mdx(&quot;p&quot;, null, &quot;From here, we need a way to map a single character to a way to create something at that location. In C#, we can use the &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Func&lt;&gt;&quot;), &quot; type for this. So we&apos;ll build something like a &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Dictionary&lt;char, Func&lt;Vector3Int, IEntity&gt;&gt;&quot;), &quot; , and invoke the Func pointed to by each character at each position. With simplified code:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;csharp&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), &quot;World&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;BuildWorld&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Array3D&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;char&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;)), &quot; xyzLayout&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Dictionary&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;char&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; Func&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), &quot;Vector3Int&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; IEntity&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;)), &quot; tileFactories&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;World&quot;), &quot; world &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;World&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;xyzLayout&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;Size&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;foreach&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Vector3Int&quot;), &quot; coordinate &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;in&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;AllCoordinatesInside&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;xyzLayout&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;Size&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;char&quot;)), &quot; atLocation &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; xyzLayout&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), &quot;coordinate&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;if&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;tileFactories&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;TryGetValue&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;atLocation&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;out&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; factoryFunction&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n      &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IEntity&quot;), &quot; createdEntity &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;factoryFunction&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;coordinate&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n      world &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;AddEntity&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;createdEntity&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;return&quot;), &quot; world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), &quot;Dictionary&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;char&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; Func&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), &quot;Vector3Int&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; IEntity&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetDefaultFactories&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;return&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;Dictionary&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;char&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; Func&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), &quot;Vector3Int&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; IEntity&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token char&quot;
+  }), &quot;&apos;X&apos;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; CreateWall   &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token char&quot;
+  }), &quot;&apos;P&apos;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; CreatePlayer &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), &quot;IEntity&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;CreatePlayer&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Vector3Int&quot;), &quot; location&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... */&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), &quot;IEntity&quot;), &quot; CreateWall  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Vector3Int&quot;), &quot; location&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... */&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;We can chain these 3 components together to get our world builder working! To get a world assertion working from here, we can supplement the factory functions. For my purposes, I use a hard type-check: a &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;P&quot;), &quot; verifies there is an entity at that position of exact type &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Player&quot;), &quot;. One can imagine attaching more complex assertions to those characters, in the same way that we attach factory functions to them. For example asserting based on a string tag match or the presence of a specific interface.&quot;), mdx(&quot;p&quot;, null, &quot;This gives us all the tools we need to build our world from a layout string, and assert against it! This approach can be adapated into the test harness for any kind of grid-based game. We only need a couple things from our world implementation to attach this harness to it:&quot;), mdx(&quot;ol&quot;, null, mdx(&quot;li&quot;, {
+    parentName: &quot;ol&quot;
+  }, &quot;Create an entity at a specific grid location, when building the world&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ol&quot;
+  }, &quot;Get entities at a specific grid location, when asserting agains the world.&quot;)), mdx(&quot;p&quot;, null, &quot;In theory we could even use this with GameObjects as long as they were at grid-aligned positions!&quot;), mdx(&quot;h1&quot;, null, &quot;Command Pattern&quot;), mdx(&quot;p&quot;, null, &quot;The other useful components of these tests are the command pattern and immutable objects. To some degree this is optional, but I find that these approaches fit together very well in practice. The command pattern helps manage the entry-points into the system, so games with smaller interfaces wouldn&apos;t need to go this far. The story is similar for usage of immutability: there is significant developement and performance overhead to implementing immutable data structures. But it forces many good practices which pay of when building something complex.&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ll demonstrate some of these advantages via examples as best I can; focusing on the command pattern. Immutability is less relevant to the tests themselves and more about how the code under test is arranged.&quot;), mdx(&quot;p&quot;, null, &quot;We see usage of the command pattern via the helper struct &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;MovementCommands&quot;), &quot; which contains a set of commonly used commands. For example, &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;mv.jump == DungeonCommandFactory.JumpEntity(id) == new JumpCommand(id)&quot;), &quot; . We see evidence of immutability in the repeated use of &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;World = World&quot;), &quot;, keeping the &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;World&quot;), &quot; field up-to-date with all commands.&quot;), mdx(&quot;h2&quot;, null, &quot;Goal&quot;), mdx(&quot;p&quot;, null, &quot;In our tests, the command pattern will isolate our tests from most changes in our game logic. We would like to reference only a Factory and the ICommand interface instead of referencing any methods directly on the game entities. I&apos;ll start with a comparitive example:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;csharp&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token attribute&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Test&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;void&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;TestPlayerMovesForward_WithCommands&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;World&quot;), &quot; world &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... create world ... */&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;EntityId&quot;), &quot; playerId &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetSingleAt&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;Vector3Int&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;0&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;ICommand&quot;), &quot; moveForwardCommand &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; CommandFactory&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;MoveForward&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;playerId&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  world &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;ApplyCommand&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;moveForwardCommand&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... assert movement occurred ... */&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token attribute&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Test&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;void&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;TestPlayerMovesForward_WithoutCommands&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;World&quot;), &quot; world &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... create world ... */&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;EntityId&quot;), &quot; playerId &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetSingleAt&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;Vector3Int&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;0&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Player&quot;), &quot; player &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetEntity&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;playerId&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  player&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;MoveForward&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... assert movement occurred ... */&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Note that the tests which rely on Commands enjoy a greater separation of concerns. The test case code itself depends on shared types: &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;World&quot;), &quot;, &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;EntityId&quot;), &quot;, and &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;ICommand&quot;), &quot;. As well as components of the test harness via &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;CommandFactory&quot;), &quot;. This is an indicator that this test case may be much more maintainable.&quot;), mdx(&quot;h2&quot;, null, &quot;Implementation&quot;), mdx(&quot;p&quot;, null, &quot;To set up our command pattern we will start with a foundation of various interfaces. The command implementation itself becomes much clearer after we define the interfaces it has to work with.&quot;), mdx(&quot;h3&quot;, null, &quot;The Interfaces&quot;), mdx(&quot;p&quot;, null, &quot;We&apos;ll have several interfaces. Most of these describe how the command&apos;s implementation interacts with the world, and finally the interface which the command itself must conform to:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;csharp&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;interface&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IWorldWriter&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), &quot;IEntity&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetEntity&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;EntityId&quot;), &quot; id&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;void&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;SetEntity&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;EntityId&quot;), &quot; id&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IEntity&quot;), &quot; newEntity&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;interface&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IPathingWorld&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;bool&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;IsBlocked&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Vector3Int&quot;), &quot; position&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;interface&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IHavePosition&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), &quot;Vector3Int&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetPosition&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), &quot;IEntity&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;WithPosition&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Vector3Int&quot;), &quot; newPosition&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;interface&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IEntity&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;interface&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;ICommand&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;void&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Execute&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IWorldWriter&quot;), &quot; writer&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;)))), mdx(&quot;h3&quot;, null, &quot;The implementation&quot;), mdx(&quot;p&quot;, null, &quot;Now we can implement our command. The &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;MoveForwardCommand&quot;), &quot; should hold all the logic related to moving and being blocked by walls.&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;csharp&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;class&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;MoveForwardCommand&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;:&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token type-list&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;ICommand&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;public&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;int&quot;)), &quot; distance&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;public&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;EntityId&quot;), &quot; targetEntityId&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;public&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;void&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Execute&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IWorldWriter&quot;), &quot; worldWriter&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IEntity&quot;), &quot; targetEntity &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; worldWriter&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetEntity&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;targetEntityId&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IHavePosition&quot;), &quot; entityWithPosition &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; targetEntity &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;as&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IHavePosition&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;if&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;entityWithPosition &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;==&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;null&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;throw&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;InvalidOperationException&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;\&quot;Attempted to move an entity which does not have a position\&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Vector3Int&quot;), &quot; newPosition &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;MoveForwardFrom&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;entityWithPosition&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetPosition&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; worldWriter&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;pathingData&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IEntity&quot;), &quot; newEntity &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; entityWithPosition&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;WithPosition&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;newPosition&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    worldWriter&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;SetEntity&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;targetEntityId&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; newEntity&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;private&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), &quot;Vector3Int&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;MoveForwardFrom&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Vector3Int&quot;), &quot; position&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;IPathingWorld&quot;), &quot; pathing&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;/* ... implement moving forward, blocked by walls, this.distance steps ... */&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Really anything could be inside this command, depending on the game&apos;s specific implementation. Importantly it can be constructed from only very basic types: an &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;int&quot;), &quot; and a custom &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;EntityId&quot;), &quot; type. All of the commands should be constructed from simple serializable types such as this. &quot;), mdx(&quot;h3&quot;, null, &quot;Aside - benefits of Commands in the game&quot;), mdx(&quot;p&quot;, null, &quot;Lets have a brief look at what commands can do in a game&apos;s implementation. In this example we use commands to represent user input directly rather than making method calls inside the input manager itself! This allowed us to trivially implement input queuing:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;csharp&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;class&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;InputManager&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;:&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token type-list&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;MonoBehavior&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;private&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;World&quot;), &quot; _world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;          &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;// set on Start&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;private&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;EntityId&quot;), &quot; _playerId&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;// set after world initialization&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;private&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;KeyCode&quot;), &quot; _dashKey &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; KeyCode&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;Shift&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;private&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Queue&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), &quot;ICommand&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;)), &quot; _queuedCommands&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;void&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Update&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; inputCommand &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetInputCommand&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;if&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;inputCommand &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;!=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;null&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n      _queuedCommands&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Enqueue&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;inputCommand&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;if&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;_world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;IsUpdating &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&amp;&amp;&quot;), &quot; _queuedCommands&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;Count &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;&gt;&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;0&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n      &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;ICommand&quot;), &quot; nextCommand &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; _queuedCommands&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Dequeue&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n      _world &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; _world&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;ApplyCommand&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;nextCommand&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), &quot;ICommand&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;?&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetInputCommand&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;if&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;Input&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;KeyDown&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;this&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;_dashKey&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n      &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;return&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;MoveForwardCommand&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n        distance &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;2&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot;\n        targetEntityId &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;this&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;_playerId\n      &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;return&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;null&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;One can imagine a many options unlocked by serializable commands, including:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Input queueing&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Passing commands over the network&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Saving commands in a local file&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Replaying a recorded series of commands to acheive identical world state&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Inspecting commands in other parts of the system with listeners. For example, triggering a sword animation after an AttackCommand listener triggered&quot;)), mdx(&quot;h1&quot;, null, &quot;Tying it all together&quot;), mdx(&quot;p&quot;, null, &quot;To tie together the map layout and commands, I&apos;ll use a real-world test right out of Gobbies Stole My Ruins:&quot;), mdx(&quot;div&quot;, {
+    &quot;className&quot;: &quot;gatsby-highlight&quot;,
+    &quot;data-language&quot;: &quot;csharp&quot;
+  }, mdx(&quot;pre&quot;, _extends({
+    parentName: &quot;div&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;code&quot;, _extends({
+    parentName: &quot;pre&quot;
+  }, {
+    &quot;className&quot;: &quot;language-csharp&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;[&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token attribute&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;Test&quot;)), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;]&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;public&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token return-type class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;void&quot;)), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;WhenPlayerJumps_ThenDashesOverGap_MovesOverGap&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;{&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;// arrange&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; map &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;@\&quot;\nXXX XXX ---\nXXX --- ---\nXXX -P- ---\n\&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;CreateWorld&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;map&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;// places the dash and jump items into the players inventory&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;EnableDash&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;EnableJump&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), &quot;EntityId&quot;), &quot; playerId &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token generic-method&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetSingle&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token generic class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&lt;&quot;), &quot;Player&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;&gt;&quot;))), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; mv &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;new&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token constructor-invocation class-name&quot;
+  }), &quot;MovementCommands&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;playerId&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;AssertPosition&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;playerId&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;1&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token number&quot;
+  }), &quot;0&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;,&quot;), &quot; FacingDirection&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;North&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    \n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token comment&quot;
+  }), &quot;// act + assert&quot;), &quot;\n    World &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; World\n        &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;ApplyCommandsAndTick&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;mv&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;jump&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;AssertWorldMatches&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;@\&quot;\nXXX XXX ---\nXXX --- ---\nXXX --- -P-\n\&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    \n    World &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; World\n        &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;ApplyCommandsAndTick&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;mv&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), &quot;dash&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;AssertWorldMatches&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token string&quot;
+  }), &quot;@\&quot;\nXXX XXX -P-\nXXX --- ---\nXXX --- ---\n\&quot;&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;So, this is what we get by combining all these techniques together. In my opinion this is everything we need it to be:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Highly maintainable because the test has no direct dependencies on implementation details &quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;Easy to read thanks to the map layout strings&quot;)), mdx(&quot;p&quot;, null, &quot;In the future, I hope to build a shareable library around these concepts! I&apos;ll make another blog post at that point. Hopefully after I&apos;ve battle-tested it in a few more game jams. Thanks for reading!&quot;));
+}
+;
+MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Procedurally generating plant stems]]></title><description><![CDATA[Improving the appearance and performance of runtime-generated branching trees]]></description><link>https://www.fraculation.com/blog/trunk-generation</link><guid isPermaLink="false">https://www.fraculation.comblog/trunk-generationProcedurally generating plant stems</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Mon, 05 Sep 2022 12:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i &lt; sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
