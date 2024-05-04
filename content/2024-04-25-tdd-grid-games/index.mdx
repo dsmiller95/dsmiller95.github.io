@@ -25,14 +25,17 @@ hidden: true
     - [The Implementation](#the-implementation)
     - [Aside - benefits of Commands in the game](#aside---benefits-of-commands-in-the-game)
 - [Tying it all together](#tying-it-all-together)
-  - [The TDD Workflow](#the-tdd-Workflow)
+  - [The TDD Workflow](#the-tdd-workflow)
+  - [When not to use](#when-not-to-use)
+- [Conclusion](#conclusion)
 
 # Overview
 
-I've built a couple grid-based games during game jams at this point. They are a delight to work with due to the simplicity of the domain. Because every object has an exact location, then interactions between objects can be precisely defined. And the state of the world can be easily represented and/or stored in something akin to a 2 or 3D array.
+I've built a couple grid-based games during game jams at this point. They are a delight to work with due to the simplicity of the domain. Because every object has an exact location, interactions between objects can be precisely defined. And the state of the game can be easily represented and/or stored in something akin to a 2D or 3D array. Examples of what I'd call "grid-based games" are: Chess, Connect 4, Tetris, Sokoban, [Baba Is You](https://store.steampowered.com/app/736260/Baba_Is_You/), [Into the Breach](https://store.steampowered.com/app/590380/Into_the_Breach/), [Tiny Epic Tactics](https://boardgamegeek.com/boardgame/272409/tiny-epic-tactics), or the two games I've made: [Disconnect, a riff on connect 4](https://spikedevelops.itch.io/disconnect) and [Gobbies Stole my Ruins, a puzzle dungeon crawler](https://limeblossomjams.itch.io/gobbies-stole-my-ruins) .
 
-First, I will talk through what my ideal test case should look like. Then, I'll go through the steps needed to attach that test case to a grid-based game, and best practices to build games which work with this technique. These techniques have emerged during my development of grid-based games, for example: [Disconnect, a riff on connect 4](https://spikedevelops.itch.io/disconnect) or [Gobbies Stole my Ruins, a puzzle dungeon crawler](https://limeblossomjams.itch.io/gobbies-stole-my-ruins). 
+The purpose of this blog post is to keep track of my own thoughts and share them with you. I'd like to turn this approach into a more reusable package and potentially release it as FOSS, so I welcome any feedback on potential footguns I could be walking into here.
 
+First, we'll walk through the two greatest components of this testing paradigm: a highly readable layout string, and a command pattern to interact with the game state. Then I'll close out with a real-world test case from "Gobbies Stole my Ruins" and my guidlines for games which will benefit the most from this approach.
 
 # Map Layout String
 
@@ -109,7 +112,7 @@ Versus:
 Expected player at (1, 1, 1), instead found (1, 1, 0)
 ```
 
-The difference here isn't extreme but it scales well when we add multiple pathfinding enemies into the mix.
+The difference here isn't extreme but it scales well when we add multiple moving entities into the mix.
 
 ## Map Implementation
 
@@ -146,7 +149,7 @@ jkl mno pqr
 stu vwx yz0
 ```
 
-Its indexed by line first, then by each layer in the line, then by the character order inside each segment. So we'd need something like `charArray[0][2][1]` . This definitely isn't in x, y, z order.
+Its indexed by line first, then by each layer in the line, then by the character order inside each segment. So we'd need something like `charArray[0][2][1]` . This definitely isn't in x, y, z order. Ideally we'd access it at the (x, y, z) position of (1, 2, 2) .
 
 ### Axis transformer
 
@@ -175,6 +178,8 @@ For this specific layout we want our DimensionalityTransform to look something l
 - X points left (char arrays are already ordered left to right)
 - Y points left across the layers
 
+Laid out on a 2x2x2 grid, these are the Z, X, and Y coordinate values at every point:
+
 ```
 Z
 11 11
@@ -191,7 +196,7 @@ Y
 
 ### Lookup table
 
-From here, we need a way to map a single character to a way to create something at that location. In C#, we can use the `Func<>` type for this. So we'll build something like a `Dictionary<char, Func<Vector3Int, IEntity>>` , and invoke the Func pointed to by each character at each position. With simplified code:
+From here, we need a way to map a single character to a way to create something at that location. In C#, we can use the `Func<>` type for this. So we'll build something like a `Dictionary<char, Func<Vector3Int, IEntity>>` , and invoke the Func pointed to by each character at each position. With code:
 
 ```csharp
 World BuildWorld(Array3D<char> xyzLayout, Dictionary<char, Func<Vector3Int, IEntity>> tileFactories) {
@@ -230,7 +235,7 @@ In theory we could even use this with GameObjects as long as they were at grid-a
 
 # Command Pattern
 
-The other useful components of these tests are the command pattern and immutable objects. To some degree this is optional, but I find that these approaches fit together very well in practice. The command pattern helps manage the entry-points into the system, so games with smaller interfaces wouldn't need to go this far. The story is similar for usage of immutability: there is significant developement and performance overhead to implementing immutable data structures. But it forces many good practices which pay of when building something complex.
+The other useful components of these tests are the command pattern and immutable objects. To some degree this is optional, but I believe that these approaches fit together very well in practice. The command pattern helps manage the entry-points into the system, so games with smaller interfaces wouldn't need to go this far. The story is similar for usage of immutability: there is significant developement and performance overhead to implementing immutable data structures. But it forces many good practices which pay of when building something complex.
 
 I'll demonstrate some of these advantages via examples as best I can; focusing on the command pattern. Immutability is less relevant to the tests themselves and more about how the code under test is arranged.
 
@@ -403,6 +408,7 @@ So, this is what we get by combining all these techniques together. In my opinio
 - Highly maintainable because the test has no direct dependencies on implementation details 
 - Easy to read thanks to the map layout strings
 
+
 ## The TDD Workflow
 
 Lets walk through what a typical update to the application logic would look like, from a TDD perspective.
@@ -454,7 +460,7 @@ XXX ---
 }
 ```
 
-We're adding attacking! And assuming enemies exist, and the enemy kills usif we don't kill it. We'll need to add the interface into the Attacking command too.
+We're adding attacking! And enemies killing us if we don't kill it first. This test will not compile right away, first we need to add an Attacking command factory:
 
 ```csharp
 public static class CommandFactory {
@@ -462,19 +468,37 @@ public static class CommandFactory {
   public static ICommand AttackForward(EntityId id) {
     return NoopCommand();
   }
-  /* ... */
 }
 public class MovementCommands {
+  /* ... */
   public ICommand attackForward;
   public MovementCommands(EntityId entityId){
+    /* ... */
     attackForward = CommandFactory.AttackForward(entityId);
   }
 }
 ```
 
-At this point, our test is complete. The implementation work will involve creating the AttackForwardCommand implementation, and implementing enemies attacking adjacent players. In the future, I hope to build a shareable library around these concepts! I'll make another blog post at that point. Hopefully after I've battle-tested it in a few more game jams. Thanks for reading!
+At this point, our test is complete: compiling and failing. The implementation work will involve creating the AttackForwardCommand implementation, and implementing enemies attacking adjacent players. In the course of the implementation we'll replace the contents of the CommandFactory.AttackForward function as well.
 
 
+## When not to use
 
+This approach may only work well for specific types of games. The article is about grid-based games for a reason: typically, grid games are totally predictable or can be made to be deterministic. These are the general requirements I imaging a game must have in order to fit into this test harness:
 
+- Deterministic
+  - The game must run the exact same way every time from the same starting conditions
+  - If randomness is used it must be based on a random seed such that supplying the same seed results in the same sequence of events
+- Grid-aligned
+  - Everything under test must align to 2D or 3D grid positions, at creation time and at assertion time
+  - This is a looser requirement. we can always round positions to the nearest grid position, but could make our tests flaky.
 
+Consider how we could make Chess fit into this framework. It is an ideal candidate! Every game piece occupies a grid square. Every change to the game state is a movement of one piece from one grid square to the next grid square. The chess community has already started using a standard format for commands, too: [Algebraic notation (chess)](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)) (For example, `Be5` bishop moves to e5). We could start writing tests representing the whole board and a series of moves to test a chess rules engine right away!
+
+What if we wanted to test something like Minecraft? Minecraft's blocks are all necessarily Grid-aligned but the player character is allowed to walk around freely! The zombies and item pickups are also allowed to float free from the grid. We could easily test the blocks' interactions but would have trouble testing the players or mobs in the same way. Of course we could use our method on only the blocks if we would like to ignore the edge cases! We must consider if the test harness will save us enough time to make up for the exceptions to the rule.
+
+For a game like Overwatch this testing approach is completely untenable. Every movement is both tiny in distance -and- potentially relevant, there's no grid, and everything is highly reliant on potentially unpredictable physics. It may be possible to build a harness that uses the command pattern to represent player moves at best.
+
+# Conclusion
+
+In the future, I hope to build a shareable library around these concepts! I'll make another blog post at that point. Hopefully after I've battle-tested it in a few more game jams. Thanks for reading, if you have any feedback I'd love to hear it!

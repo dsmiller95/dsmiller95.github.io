@@ -9,7 +9,7 @@
 sudo apt-get install nvm
 sudo apt-get install build-essential
 nvm install Gallium
-npm i
+npm i --force
 npm run start
 ```
 
