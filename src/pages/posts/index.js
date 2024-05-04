@@ -38,6 +38,7 @@ export const query = graphql`
             title
             tags
             excerpt
+            hidden
             cover {
               childImageSharp {
                 fluid(maxWidth: 600) {

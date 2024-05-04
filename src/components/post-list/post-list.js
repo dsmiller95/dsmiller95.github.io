@@ -11,7 +11,10 @@ import Utils from '../../utils'
 const PostList = ({ posts }) => (
   <div className={style.container}>
     {posts.map((post, index) => {
-      const { title, date, path, tags, cover, excerpt } = post.node.frontmatter
+      const { title, date, path, tags, cover, excerpt, hidden } = post.node.frontmatter
+      if (hidden) {
+        return null
+      }
       return (
         <div key={title} className={style.post}>
           <div className={style.cover}>
@@ -33,7 +36,7 @@ const PostList = ({ posts }) => (
           </div>
         </div>
       )
-    })}
+    }).filter(x => x != null)}
   </div>
 )
 
@@ -51,6 +54,7 @@ PostList.propTypes = {
               fluid: PropTypes.object.isRequired,
             }).isRequired,
           }).isRequired,
+          hidden: PropTypes.bool,
         }),
       }),
     })

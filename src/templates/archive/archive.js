@@ -55,6 +55,7 @@ export const query = graphql`
             tags
             date(formatString: "MMMM DD, YYYY")
             excerpt
+            hidden
             cover {
               childImageSharp {
                 fluid(maxWidth: 600) {
