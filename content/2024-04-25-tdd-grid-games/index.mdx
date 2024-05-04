@@ -397,21 +397,76 @@ So, this is what we get by combining all these techniques together. In my opinio
 - Highly maintainable because the test has no direct dependencies on implementation details 
 - Easy to read thanks to the map layout strings
 
-In the future, I hope to build a shareable library around these concepts! I'll make another blog post at that point. Hopefully after I've battle-tested it in a few more game jams. Thanks for reading!
-
 ## The TDD Workflow
 
+Lets walk through what a typical update to the application logic would look like, from a TDD perspective.
 
+First, we write the test:
 
-TODO
+```csharp
 
+[Test]
+public void WhenPlayerAttacks_KillsEnemy()
+{
+    // arrange
+    var map = @"
+XXX -E-
+XXX -P-
+";
+    CreateWorld(map);
+    EntityId playerId = GetSingle<Player>();
+    var mv = new MovementCommands(playerId);
+    
+    // act + assert
+    World = World
+        .ApplyCommandsAndTick(mv.attackForward);
+    AssertWorldMatches(@"
+XXX ---
+XXX -P-
+");
+}
 
+[Test]
+public void WhenPlayerIsHit_Dies()
+{
+    // arrange
+    var map = @"
+XXX -E-
+XXX -P-
+";
+    CreateWorld(map);
+    EntityId playerId = GetSingle<Player>();
+    var mv = new MovementCommands(playerId);
+    
+    // act + assert
+    World = World
+        .ApplyCommandsAndTick(mv.noop);
+    AssertWorldMatches(@"
+XXX -E-
+XXX ---
+");
+}
+```
 
+We're adding attacking! And assuming enemies exist, and the enemy kills usif we don't kill it. We'll need to add the interface into the Attacking command too.
 
+```csharp
+public static class CommandFactory {
+  /* ... */
+  public static ICommand AttackForward(EntityId id) {
+    return NoopCommand();
+  }
+  /* ... */
+}
+public class MovementCommands {
+  public ICommand attackForward;
+  public MovementCommands(EntityId entityId){
+    attackForward = CommandFactory.AttackForward(entityId);
+  }
+}
+```
 
-
-
-
+At this point, our test is complete. The implementation work will involve creating the AttackForwardCommand implementation, and implementing enemies attacking adjacent players. In the future, I hope to build a shareable library around these concepts! I'll make another blog post at that point. Hopefully after I've battle-tested it in a few more game jams. Thanks for reading!
 
 
 
