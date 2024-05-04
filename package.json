@@ -51,7 +51,9 @@
     "serve": "gatsby serve",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gatsby clean && gatsby build && cp CNAME public && gh-pages -d public -b master"
+    "deploy": "npm run deploy-build && npm run deploy-files",
+    "deploy-files": "gh-pages -d public -b master",
+    "deploy-build": "gatsby clean && gatsby build && cp CNAME public"
   },
   "devDependencies": {
     "gh-pages": "^3.0.0",
