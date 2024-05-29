@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 24 May 2024 20:46:05 GMT</lastBuildDate><item><title><![CDATA[A General approach to testing grid-based games]]></title><description><![CDATA[An approach to writing tests in a highly adaptable way for grid-based games]]></description><link>https://www.fraculation.com/blog/tdd-grid-games</link><guid isPermaLink="false">https://www.fraculation.comblog/tdd-grid-gamesA General approach to testing grid-based games</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Thu, 25 Apr 2024 00:00:00 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 29 May 2024 02:42:37 GMT</lastBuildDate><item><title><![CDATA[Testing grid-based games]]></title><description><![CDATA[A general approach to writing highly adaptable tests for grid-based games]]></description><link>https://www.fraculation.com/blog/tdd-grid-games</link><guid isPermaLink="false">https://www.fraculation.comblog/tdd-grid-gamesTesting grid-based games</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Thu, 25 Apr 2024 00:00:00 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i &lt; sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -6,12 +6,12 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 /* @jsx mdx */
 var _frontmatter = {
-  &quot;title&quot;: &quot;A General approach to testing grid-based games&quot;,
+  &quot;title&quot;: &quot;Testing grid-based games&quot;,
   &quot;tags&quot;: [&quot;tooling&quot;, &quot;unity&quot;, &quot;tdd&quot;],
   &quot;date&quot;: &quot;2024-04-25T00:00:00.000Z&quot;,
   &quot;path&quot;: &quot;blog/tdd-grid-games&quot;,
   &quot;cover&quot;: &quot;./preview.png&quot;,
-  &quot;excerpt&quot;: &quot;An approach to writing tests in a highly adaptable way for grid-based games&quot;,
+  &quot;excerpt&quot;: &quot;A general approach to writing highly adaptable tests for grid-based games&quot;,
   &quot;author&quot;: &quot;Dan Miller&quot;,
   &quot;hidden&quot;: true
 };
@@ -72,7 +72,7 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, {
     &quot;href&quot;: &quot;#map-layout-string&quot;
-  }), &quot;Map Layout string&quot;), mdx(&quot;ul&quot;, {
+  }), &quot;Map Layout&quot;), mdx(&quot;ul&quot;, {
     parentName: &quot;li&quot;
   }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
@@ -105,8 +105,8 @@ return function MDXContent(_ref) {
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;li&quot;
   }, {
-    &quot;href&quot;: &quot;#lookup-table&quot;
-  }), &quot;Lookup table&quot;)))))), mdx(&quot;li&quot;, {
+    &quot;href&quot;: &quot;#world-building&quot;
+  }), &quot;World building&quot;)))))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;li&quot;
@@ -120,13 +120,13 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, {
     &quot;href&quot;: &quot;#command-goal&quot;
-  }), &quot;Command Goal&quot;)), mdx(&quot;li&quot;, {
+  }), &quot;Goal&quot;)), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;li&quot;
   }, {
     &quot;href&quot;: &quot;#command-implementation&quot;
-  }), &quot;Command Implementation&quot;), mdx(&quot;ul&quot;, {
+  }), &quot;Implementation&quot;), mdx(&quot;ul&quot;, {
     parentName: &quot;li&quot;
   }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
@@ -139,8 +139,8 @@ return function MDXContent(_ref) {
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;li&quot;
   }, {
-    &quot;href&quot;: &quot;#the-implementation&quot;
-  }), &quot;The Implementation&quot;)), mdx(&quot;li&quot;, {
+    &quot;href&quot;: &quot;#the-code&quot;
+  }), &quot;The Code&quot;)), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;li&quot;
@@ -152,7 +152,7 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, {
     &quot;href&quot;: &quot;#tying-it-all-together&quot;
-  }), &quot;Tying it all together&quot;), mdx(&quot;ul&quot;, {
+  }), &quot;Tying it all together (Real world Example)&quot;), mdx(&quot;ul&quot;, {
     parentName: &quot;li&quot;
   }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
@@ -165,8 +165,8 @@ return function MDXContent(_ref) {
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;li&quot;
   }, {
-    &quot;href&quot;: &quot;#when-not-to-use&quot;
-  }), &quot;When not to use&quot;)))), mdx(&quot;li&quot;, {
+    &quot;href&quot;: &quot;#when-to-avoid&quot;
+  }), &quot;When to avoid&quot;)))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;li&quot;
@@ -197,7 +197,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Overview&quot;), mdx(&quot;p&quot;, null, &quot;I want to share a game development technique I&apos;ve repeated across two game jams (so far!), and I hope you find it useful too! Specifically, we will be driving game logic by writing tests first. In general this approach is specialized for \&quot;grid-based\&quot; games. For example, these are all \&quot;grid-based\&quot; games: Chess, Connect 4, Tetris, Sokoban, &quot;, mdx(&quot;a&quot;, _extends({
+  })))), &quot;Overview&quot;), mdx(&quot;p&quot;, null, &quot;I want to share a game development technique I&apos;ve repeated across two game jams (so far), and I hope you find it useful too! Specifically, we will be driving game logic by writing tests first. This approach is specialized for \&quot;grid-based\&quot; games, for example: Chess, Connect 4, Tetris, Sokoban, &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://store.steampowered.com/app/736260/Baba_Is_You/&quot;
@@ -217,7 +217,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://limeblossomjams.itch.io/gobbies-stole-my-ruins&quot;
-  }), &quot;Gobbies Stole my Ruins, a puzzle dungeon crawler&quot;), &quot; .&quot;), mdx(&quot;p&quot;, null, &quot;The logic of grid-based games is a delight to work with due to the simplicity of the domain. Every object has an exact location and interactions between objects can be precisely defined. Most importantly, the state of the game is easily represented in a 2D or 3D array. With a concise way to create an array, we can build and assert the entire world.&quot;), mdx(&quot;p&quot;, null, &quot;The purpose of this blog post is to keep track of my own thoughts and share them with you. I&apos;d like to turn this approach into a more reusable package and potentially release it as FOSS, so I welcome any feedback on potential footguns I could be walking into here.&quot;), mdx(&quot;p&quot;, null, &quot;First, we&apos;ll walk through the two greatest components of this testing paradigm: a highly readable layout string, and a command pattern to interact with the game state. Then I&apos;ll close out with a real-world test case from \&quot;Gobbies Stole my Ruins\&quot; and guidlines for games which will benefit the most from this approach.&quot;), mdx(&quot;h1&quot;, {
+  }), &quot;Gobbies Stole my Ruins, a puzzle dungeon crawler&quot;), &quot; .&quot;), mdx(&quot;p&quot;, null, &quot;The logic of grid-based games is a delight to work with because every object has an exact location and interactions between objects can be precisely defined. Most importantly, the state of the game is easily represented in a 2D or 3D array. With a concise way to create an array, we can build and/or assert against the entire world.&quot;), mdx(&quot;p&quot;, null, &quot;First, we&apos;ll walk through the two components of this testing paradigm: a highly readable layout string and a command pattern to interact with the game state. Then I&apos;ll close out with a real-world test case from \&quot;Gobbies Stole my Ruins\&quot; along with guidlines for games which will benefit the most from this approach.&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;map-layout-string&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -242,7 +242,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Map Layout String&quot;), mdx(&quot;p&quot;, null, &quot;The map layout string is designed to be a readable representation of a whole game map in one string. Ideally this makes our tests easy to read and simple to maintain.&quot;), mdx(&quot;h2&quot;, {
+  })))), &quot;Map Layout String&quot;), mdx(&quot;p&quot;, null, &quot;The map layout string should be a readable representation of a whole game map in one string. Our goal will be to look at one of these strings and very quickly understand what the 2D or 3D map would look like. Ideally this makes our tests easy to read and simple to maintain.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;map-goal&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -267,7 +267,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Map Goal&quot;), mdx(&quot;p&quot;, null, &quot;We need to map every character of a string into a single tile in the 3D grid. I chose to lay them out in horizontal slices and stack up the horizontal slices to get a full 3D world: imagine MRI data or the a 3D printing slicer to visualize this. The left-most rectangular slice is the bottom slice and the right-most is the top slice. &quot;, mdx(&quot;code&quot;, _extends({
+  })))), &quot;Map Goal&quot;), mdx(&quot;p&quot;, null, &quot;We&apos;ll map every character of a string into a single tile in the 3D grid. I chose to lay them out in horizontal slices and stack up the horizontal slices to get a full 3D world: imagine MRI data or a 3D printing slicer to visualize this. The left-most rectangular slice is the bottom slice and the right-most is the top slice. &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -279,7 +279,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;P&quot;), &quot; is the player character. Here&apos;s an example of a string layout. The video is an attempt to visualize the transformation the string will go through to become a 3D world.&quot;), mdx(&quot;div&quot;, {
+  }), &quot;P&quot;), &quot; is the player character. Here&apos;s an example of a string layout and the transformation it takes to become a 3D world.&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;text&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -294,15 +294,15 @@ return function MDXContent(_ref) {
     src: &quot;/033f397211613c1dc07db9958d21ad72/level_layout_anim.mp4&quot;,
     caption: &quot;Transforming a layered string into 3D space&quot;,
     mdxType: &quot;Video&quot;
-  }), mdx(&quot;p&quot;, null, &quot;We need two utility functions to use this format in our tests. First, a &quot;, mdx(&quot;code&quot;, _extends({
+  }), mdx(&quot;p&quot;, null, &quot;To use this format in our tests we&apos;ll whip up two utility functions . &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;CreateWorld&quot;), &quot; function builds a game world from the layout string. Second, an &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;CreateWorld&quot;), &quot; builds a game world from the layout string. &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;AssertWorldMatches&quot;), &quot; function asserts the world against a given layout string. For many of the movement-related tests this is the only assertion we need! As a demonstration of value, compare the following examples. Which do you find easier to reason about?&quot;), mdx(&quot;div&quot;, {
+  }), &quot;AssertWorldMatches&quot;), &quot; asserts the world against a given layout string. For many of the movement-related tests this is the only assertion we need!\nAs a demonstration of how the functions are used, and how useful they could be, compare the following examples. Which do you find easier to reason about?&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -864,7 +864,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Map Implementation&quot;), mdx(&quot;p&quot;, null, &quot;The map layout string can be built from a few components strung together. First we must parse the string into a 3D array with some knowne axis alignment. Then, we transform the axises of this 3D array to match the axis system of the world we are generating. Finally we need a way to turn a single character into something at a given position inside the game world: we&apos;ll use a lookup dictionary of game entity factories, keyed by &quot;, mdx(&quot;code&quot;, _extends({
+  })))), &quot;Map Implementation&quot;), mdx(&quot;p&quot;, null, &quot;The map layout string can be built from a few components strung together. First we must parse the string into a 3D array. From there we transform the axises of this 3D array to match the axis system of the world we are generating. To abuild the world, we need a way to turn a single character into something at a given position inside the game world. To this end we&apos;ll use a lookup dictionary of game entity factories keyed by &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -1255,7 +1255,11 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;charArray[0][2][1] == &apos;i&apos;&quot;), &quot;. This definitely isn&apos;t in x, y, z order. Ideally we&apos;d access it at the (x, y, z) position of (1, 2, 2).&quot;), mdx(&quot;h3&quot;, {
+  }), &quot;charArray[0][2][1] == &apos;i&apos;&quot;), &quot;. This definitely isn&apos;t in x, y, z order. Ideally we&apos;d access &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;i&quot;), &quot; at the (x, y, z) position of (1, 2, 2).&quot;), mdx(&quot;h3&quot;, {
     &quot;id&quot;: &quot;axis-transformer&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -1280,7 +1284,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Axis transformer&quot;), mdx(&quot;p&quot;, null, &quot;So we&apos;d like to get an array we can access with Unity&apos;s axis layout, in (x, y, z) order. We could use unity&apos;s Matrix4x4 to do this, but I decided to home bake a utility specifically for re-ordering and flipping axises. Either way will work. This is roughly how we&apos;ll get the layout we need:&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;Axis transformer&quot;), mdx(&quot;p&quot;, null, &quot;So we&apos;d like to get our characters arranged in Unity&apos;s axis layout, in (x, y, z) order. We could use unity&apos;s Matrix4x4 to do this, but I decided to home bake a utility specifically for re-ordering and flipping axises. Either way will work. This is roughly how we&apos;ll get the layout we need:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -1479,7 +1483,7 @@ return function MDXContent(_ref) {
     parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token keyword&quot;
-  }), &quot;var&quot;)), &quot; outputCoordinate &quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;var&quot;)), &quot; inputCoordinate &quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token keyword&quot;
@@ -1491,7 +1495,23 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), &quot;newLayoutSize&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;(&quot;), &quot;input&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetSize&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -1504,38 +1524,6 @@ return function MDXContent(_ref) {
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
   }), &quot;{&quot;), &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token class-name&quot;
-  }), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;span&quot;
-  }, {
-    &quot;className&quot;: &quot;token keyword&quot;
-  }), &quot;var&quot;)), &quot; inputCoordinate &quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token operator&quot;
-  }), &quot;=&quot;), &quot; transformation&quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token function&quot;
-  }), &quot;InverseTransform&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;(&quot;), &quot;outputCoordinate&quot;, mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
-    parentName: &quot;code&quot;
-  }, {
-    &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;;&quot;), &quot;\n\n    &quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token class-name&quot;
@@ -1556,6 +1544,38 @@ return function MDXContent(_ref) {
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
   }), &quot;]&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;;&quot;), &quot;\n\n    &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token class-name&quot;
+  }), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;span&quot;
+  }, {
+    &quot;className&quot;: &quot;token keyword&quot;
+  }), &quot;var&quot;)), &quot; outputCoordinate &quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token operator&quot;
+  }), &quot;=&quot;), &quot; transformation&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;Transform&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), &quot;inputCoordinate&quot;, mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -1591,15 +1611,19 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;For this specific layout we want our DimensionalityTransform to look something like this: &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;For this layout we want this DimensionalityTransform: &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
   }), &quot;[-Z][+Y][+X]&quot;), &quot; . This will end up with a layout where:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;Z points up (lines are ordered from top down, so we need to invert)&quot;), mdx(&quot;li&quot;, {
+  }, &quot;Z points up&quot;, mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;X points left (char arrays are already ordered left to right)&quot;), mdx(&quot;li&quot;, {
+  }, &quot;the first index selects Lines, so lines are mapped to the Z axis&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;because lines are ordered from top down, so we need to invert to make sure Z increases up the page&quot;))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Y points right across the layers (Layer &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;li&quot;
@@ -1609,7 +1633,21 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;Y&quot;), &quot;)&quot;)), mdx(&quot;p&quot;, null, &quot;Laid out on a 2x2x2 grid, these are the Z, X, and Y coordinate values at every point:&quot;), mdx(&quot;div&quot;, {
+  }), &quot;Y&quot;), &quot;)&quot;, mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;the second index selects divisions between layers, so separate layers are mapped to the Y axis&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;the layers are ordered left-to-right, and we want Y to increase to the right, so we do not need to invert&quot;))), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;X points left&quot;, mdx(&quot;ul&quot;, {
+    parentName: &quot;li&quot;
+  }, mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;the third index selects an individual character inside a line + layer, so the character index maps to the x axis&quot;), mdx(&quot;li&quot;, {
+    parentName: &quot;ul&quot;
+  }, &quot;char arrays are already ordered left to right, and we want X to increase to the right, so we do not need to invert&quot;)))), mdx(&quot;p&quot;, null, &quot;Laid out on a 2x2x2 grid, these are the Z, X, and Y coordinate values at every point:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;text&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -1621,15 +1659,15 @@ return function MDXContent(_ref) {
   }, {
     &quot;className&quot;: &quot;language-text&quot;
   }), &quot;Z\n11 11\n00 00\n\nX\n01 01\n01 01\n\nY\n00 11\n00 11&quot;))), mdx(&quot;h3&quot;, {
-    &quot;id&quot;: &quot;lookup-table&quot;,
+    &quot;id&quot;: &quot;world-building&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
     }
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;h3&quot;
   }, {
-    &quot;href&quot;: &quot;#lookup-table&quot;,
-    &quot;aria-label&quot;: &quot;lookup table permalink&quot;,
+    &quot;href&quot;: &quot;#world-building&quot;,
+    &quot;aria-label&quot;: &quot;world building permalink&quot;,
     &quot;className&quot;: &quot;anchor before&quot;
   }), mdx(&quot;svg&quot;, _extends({
     parentName: &quot;a&quot;
@@ -1645,15 +1683,15 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Lookup table&quot;), mdx(&quot;p&quot;, null, &quot;From here, we need to take a single character and then create one or more entities at that character&apos;s location. In C#, we use the &quot;, mdx(&quot;code&quot;, _extends({
+  })))), &quot;World Building&quot;), mdx(&quot;p&quot;, null, &quot;From here, we need to take a single character and create one entity at that character&apos;s location in the world. In C#, we use a simple &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;Func&lt;&gt;&quot;), &quot; type to wrap up a factory type for us, and bake in the assumption that every tile will have at most one entity in it. So we&apos;ll build a &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;Func&lt;&gt;&quot;), &quot; as our factory function, and bake in the assumption that every tile will have at most one entity in it. So we&apos;ll build a &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;Dictionary&lt;char, Func&lt;Vector3Int, IEntity&gt;&gt;&quot;), &quot; , and invoke the Factory &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;Dictionary&lt;char, Func&lt;Vector3Int, IEntity&gt;&gt;&quot;), &quot; to map each character to a factory function, and invoke the factory &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -1764,7 +1802,19 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;.&quot;), &quot;Size&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetSize&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -1800,7 +1850,19 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;.&quot;), &quot;Size&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;.&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token function&quot;
+  }), &quot;GetSize&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;(&quot;), mdx(&quot;span&quot;, _extends({
+    parentName: &quot;code&quot;
+  }, {
+    &quot;className&quot;: &quot;token punctuation&quot;
+  }), &quot;)&quot;), mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
@@ -2140,7 +2202,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;We can chain these 3 components together to create our world builder! Then to create the world assertion function we can supplement the factory functions. For my purposes I use a hard type-check: a &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;We can chain these 3 components together to create our world builder. To create the world assertion function we can supplement the factory functions. For my purposes I use a hard type-check for EX: a &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -2148,13 +2210,27 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;Player&quot;), &quot;. The assertion function is similar to the world building function, but in reverse. Instead of building the world from a string I build a string from the world based on type-checking entities at each position. Then I assert the built string is equal to the expected string. This isn&apos;t the only way to build the assertion function, but it does help to get us the easy to read test assertion failure messages mentioned earlier.&quot;), mdx(&quot;p&quot;, null, &quot;As the implementation changes we can attach more complex assertions to those characters, in the same way that we attach factory functions to them. For example asserting based on a string tag match or the presence of a specific interface implementation. In Gobbies Stole My Ruins, Pickup items are represented by the same parent class, but the parent class contains the item to be picked up. So when we see a Pickup type in a cell, we actually assert against the type of the item &quot;, mdx(&quot;em&quot;, {
+  }), &quot;Player&quot;), &quot;. The assertion function is similar to the world building function, but in reverse. Instead of building the world from a string I build a string from the world based on type-checking entities at each position. Then I assert the built string is equal to the expected string. This isn&apos;t the only way to build the assertion function, but its advantage is easy to read test assertion failure messages.&quot;), mdx(&quot;p&quot;, null, &quot;As the implementation changes we can attach more complex assertions to those characters in the same way that we attach factory functions to them. For example asserting based on a string tag or the presence of a specific interface implementation. In Gobbies Stole My Ruins, Pickup items are represented by the same &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
-  }, &quot;inside&quot;), &quot; the pickup. In the future we could change this implementation detail again without modifying the tests themselves, only the test harness assertions.&quot;), mdx(&quot;p&quot;, null, &quot;This gives us all the tools we need to build our world from a layout string and assert against it. To adapat this approach into any grid-based game we need access to a couple functions on our game world:&quot;), mdx(&quot;ol&quot;, null, mdx(&quot;li&quot;, {
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Pickup&quot;), &quot; class and the &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Pickup&quot;), &quot; class contains the item to be picked up. So when we see a &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Pickup&quot;), &quot; type in a cell, we actually assert against the type of &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;Pickup.containedItem&quot;), &quot;. In the future we could change this implementation detail again without modifying the tests themselves, only the test harness assertions.&quot;), mdx(&quot;p&quot;, null, &quot;This gives us all the tools we need to build our world from a layout string and assert against it using the same format. To adapat this approach into any grid-based game we need access to a couple functions on our game world:&quot;), mdx(&quot;ol&quot;, null, mdx(&quot;li&quot;, {
     parentName: &quot;ol&quot;
   }, &quot;Create an entity at a specific grid location, when building the world&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ol&quot;
-  }, &quot;Get entities at a specific grid location, when asserting agains the world.&quot;)), mdx(&quot;p&quot;, null, &quot;Any implementation of a game world which supports those functions will work. In theory we could even use this with GameObjects as long as they were kept at grid-aligned positions!&quot;), mdx(&quot;h1&quot;, {
+  }, &quot;Get entities at a specific grid location, when asserting against the world.&quot;)), mdx(&quot;p&quot;, null, &quot;Any implementation of a game which supports those functions will work. In theory we could even use this with GameObjects as long as they were kept at grid-aligned positions!&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;command-pattern&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -2179,7 +2255,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Command Pattern&quot;), mdx(&quot;p&quot;, null, &quot;Another useful component of these tests is the command pattern with immutable objects. To some degree this is optional, but I believe that these approaches fit together very well in practice. The command pattern helps manage the entry-points into the system; games with smaller interfaces wouldn&apos;t need to go this far. The story is similar for usage of immutability. There is significant developement and performance overhead to implementing immutable data structures. But immutability forces many good practices which pay off when building something complex.&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ll demonstrate some of these advantages via examples as best I can. We&apos;ll focus on the command pattern since immutability is less relevant to the tests themselves and more about how the code under test is arranged.&quot;), mdx(&quot;h2&quot;, {
+  })))), &quot;Command Pattern&quot;), mdx(&quot;p&quot;, null, &quot;Another useful component of these tests is the command pattern with immutable objects. To some degree this is optional but I believe that these approaches fit together very well in practice. The command pattern manages the entry-points into the system; games with smaller interfaces wouldn&apos;t need to go this far. The story is similar for usage of immutability. There is significant developement and performance overhead to implementing and using immutable data structures. But immutability forces many good practices which pay off when building something complex.&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ll demonstrate some of these advantages via examples as best I can. We&apos;ll focus on the command pattern since immutability is less relevant to the tests themselves and more about how the code under test is arranged.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;command-goal&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -2623,7 +2699,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;CommandFactory&quot;), &quot;. The command-based tests is isolated from the game implementation which indicates that this test case is more maintainable.&quot;), mdx(&quot;h2&quot;, {
+  }), &quot;CommandFactory&quot;), &quot;. The command-based test is isolated from the game implementation, indicating that this test case is more maintainable and less likely to require changes when the implementation changes.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;command-implementation&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -2673,7 +2749,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;The Interfaces&quot;), mdx(&quot;p&quot;, null, &quot;The interfaces describe how the command&apos;s implementation interacts with the world and how the world will execute any command:&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;The Interfaces&quot;), mdx(&quot;p&quot;, null, &quot;The interfaces describe how the command&apos;s implementation interacts with the world and how to execute any command on a world:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -2961,15 +3037,15 @@ return function MDXContent(_ref) {
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
   }), &quot;}&quot;)))), mdx(&quot;h3&quot;, {
-    &quot;id&quot;: &quot;the-implementation&quot;,
+    &quot;id&quot;: &quot;the-code&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
     }
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;h3&quot;
   }, {
-    &quot;href&quot;: &quot;#the-implementation&quot;,
-    &quot;aria-label&quot;: &quot;the implementation permalink&quot;,
+    &quot;href&quot;: &quot;#the-code&quot;,
+    &quot;aria-label&quot;: &quot;the code permalink&quot;,
     &quot;className&quot;: &quot;anchor before&quot;
   }), mdx(&quot;svg&quot;, _extends({
     parentName: &quot;a&quot;
@@ -2985,7 +3061,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;The Implementation&quot;), mdx(&quot;p&quot;, null, &quot;Now we can implement our command. The &quot;, mdx(&quot;code&quot;, _extends({
+  })))), &quot;The Code&quot;), mdx(&quot;p&quot;, null, &quot;Now we can implement our command. The &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -3401,7 +3477,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Aside - benefits of Commands in the game&quot;), mdx(&quot;p&quot;, null, &quot;Lets have a brief look at what commands do for the game outside of tests. In this example we use commands to represent user input rather than making method calls inside the input manager itself! This allowed us to trivially implement input queuing by queuing the commands and waiting for the previous command to complete before executing the next command.&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;Aside - benefits of Commands in the game&quot;), mdx(&quot;p&quot;, null, &quot;Lets have a brief look at what commands do for the game outside of tests. In this example we use commands to represent user input rather than making method calls inside the input manager itself. This allowed us to trivially implement input queuing! By queuing the commands and waiting for the previous command to complete before executing the next command, the game never misses an input from the player.&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -3968,7 +4044,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Many features are unlocked by serializable commands, including:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Many features are unlocked by serialing commands, including:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Input queueing&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
@@ -4328,7 +4404,7 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;GetSingle&lt;Player&gt;&quot;), &quot; function call. This is allowed for convenience, and is isolated well enough that it could be replaced en-masse via a regex replacement action.&quot;))), mdx(&quot;li&quot;, {
+  }), &quot;GetSingle&lt;Player&gt;&quot;), &quot; function call. This is allowed for convenience, and is isolated well enough that it could be replaced en-masse via a regex replacement.&quot;))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Easy to read thanks to the map layout strings&quot;)), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;the-tdd-workflow&quot;,
@@ -4355,7 +4431,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;The TDD Workflow&quot;), mdx(&quot;p&quot;, null, &quot;Lets walk through what a typical update to the application logic would look like, from a TDD perspective. We will be adding combat to the game! The player can attack, and when they do they kill the enemy directly in front of them. If the player doesn&apos;t attack then the enemey will instead attack them, killing the player.&quot;), mdx(&quot;p&quot;, null, &quot;First, we write the test:&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;The TDD Workflow&quot;), mdx(&quot;p&quot;, null, &quot;Lets walk through what a typical update to the application logic would look like from a TDD perspective. We will be adding combat to the game! The player can attack to kill the enemy directly in front of them. If the player doesn&apos;t attack, then the enemey will instead attack and kill the player.&quot;), mdx(&quot;p&quot;, null, &quot;First, we write the test:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -4790,11 +4866,11 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;This test will not compile right away &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;This test will not compile right away SINCE &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;mv.attackForward&quot;), &quot; is a new field and not implemented yet. So first we need to add an Attacking command factory:&quot;), mdx(&quot;div&quot;, {
+  }), &quot;mv.attackForward&quot;), &quot; is not implemented yet. So we add an Attacking command factory:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -4996,16 +5072,16 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token comment&quot;
-  }), &quot;// [Test] TODO Ignored: Until dash off ledge&quot;)))), mdx(&quot;p&quot;, null, &quot;Now I know I have that feature documented and can switch back to working on what I was before. Later on, I will look through all the ignored test cases, and pick one to uncomment and begin implementing. Sometimes this is linked to our github issues board, sometimes not.&quot;), mdx(&quot;p&quot;, null, &quot;The important part is that I can document the feature request in a well-defined way pretty much immediately and without too much interruption in flow. And implementing features is entirely contained in the code editor with rigidly defined requirements. I find this makes it very easy to stay focused.&quot;), mdx(&quot;h2&quot;, {
-    &quot;id&quot;: &quot;when-not-to-use&quot;,
+  }), &quot;// [Test] TODO Ignored: Until dash off ledge&quot;)))), mdx(&quot;p&quot;, null, &quot;Now I have that feature documented and can switch back to working on what I was before. Later on, I will look through all the ignored test cases, and pick one to uncomment and begin implementing. Sometimes this is linked to our issues board, sometimes not.&quot;), mdx(&quot;p&quot;, null, &quot;The important part is that I can document the feature request in a well-defined way pretty much immediately and without much interruption in flow. And implementing features is entirely contained in the code editor with rigidly defined requirements already set up. I find this makes it very easy to stay focused.&quot;), mdx(&quot;h2&quot;, {
+    &quot;id&quot;: &quot;when-to-avoid&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
     }
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;h2&quot;
   }, {
-    &quot;href&quot;: &quot;#when-not-to-use&quot;,
-    &quot;aria-label&quot;: &quot;when not to use permalink&quot;,
+    &quot;href&quot;: &quot;#when-to-avoid&quot;,
+    &quot;aria-label&quot;: &quot;when to avoid permalink&quot;,
     &quot;className&quot;: &quot;anchor before&quot;
   }), mdx(&quot;svg&quot;, _extends({
     parentName: &quot;a&quot;
@@ -5021,7 +5097,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;When not to use&quot;), mdx(&quot;p&quot;, null, &quot;This approach may only work well for specific types of games. The article is about grid-based games for a reason: typically, grid games are totally predictable or can be made to be entirely deterministic. These are the general requirements I imagine a game must have in order to fit into this test harness:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+  })))), &quot;When to avoid&quot;), mdx(&quot;p&quot;, null, &quot;This approach may only work well for specific types of games. The article is about grid-based games for a reason: typically, grid games are totally predictable or can be made to be entirely deterministic. These are the general requirements I imagine a game must have in order to fit into this test harness:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Deterministic&quot;, mdx(&quot;ul&quot;, {
     parentName: &quot;li&quot;
@@ -5037,7 +5113,7 @@ return function MDXContent(_ref) {
     parentName: &quot;ul&quot;
   }, &quot;Everything under test must align to 2D or 3D grid positions, at creation time and at assertion time&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;This is a looser requirement. We can always round positions to the nearest grid position but this could make our tests flaky.&quot;)))), mdx(&quot;p&quot;, null, &quot;Consider how we could make Chess fit into this framework. It is an ideal candidate since every game piece occupies a grid square. Every change to the game state is a movement of one piece from one grid square to another grid square. The chess community has already started using a standard format for commands, too: &quot;, mdx(&quot;a&quot;, _extends({
+  }, &quot;This is a looser requirement. We can always round positions to the nearest grid position but this could make our tests flaky.&quot;)))), mdx(&quot;p&quot;, null, &quot;Consider how we could make Chess fit into this framework. It is an ideal candidate since every game piece occupies a grid square. Every change to the game state is a movement of one piece from one grid square to another grid square. The chess community uses a standard format for commands, too: &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://en.wikipedia.org/wiki/Algebraic_notation_(chess)&quot;
@@ -5045,7 +5121,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;Be5&quot;), &quot; bishop moves to e5). We could start writing tests using this command format before we implemented any part of the chess engine at all!&quot;), mdx(&quot;p&quot;, null, &quot;What if we wanted to test something like Minecraft? Minecraft&apos;s blocks are all Grid-aligned but the player character is allowed to walk around freely! The zombies and item pickups are also allowed to float free from the grid. Certainly we can say that the player and items are \&quot;inside\&quot; a certain cube coordinate, but the game will play differently depending on where exactly they are inside that cube. Therefore could easily test the blocks&apos; interactions but would have trouble testing the players or mobs in the same way. Of course we could use our method the blocks&apos; logic alone, but there are edge cases!&quot;), mdx(&quot;p&quot;, null, &quot;For example, minecraft sand will turn into a free-falling entity when falling. While falling a TNT blast will send it flying on a new trajectory. How would we test that? It would be possible with this method but would depend on precise timing and implementation details of the physics engine. We must consider if the test harness will save us enough time to make up for exceptions to the rule like this.&quot;), mdx(&quot;p&quot;, null, &quot;For a game like Overwatch this testing approach is completely untenable. Every timestep movement is both tiny in distance &quot;, mdx(&quot;strong&quot;, {
+  }), &quot;Be5&quot;), &quot; bishop moves to e5). We could start writing tests using this command format before we implemented any part of the chess engine at all!&quot;), mdx(&quot;p&quot;, null, &quot;What if we wanted to test something like Minecraft? Minecraft&apos;s blocks are all Grid-aligned but the player character is allowed to walk around freely. The zombies and item pickups are also allowed to float free from the grid. Certainly we can say that the player and items are \&quot;inside\&quot; a certain cube coordinate, but the game will play differently depending on where exactly they are inside that cube. Therefore we could easily test the blocks&apos; interactions but would have trouble testing the players or mobs in the same way. Of course we could use our method to test the blocks&apos; logic alone, but there are edge cases!&quot;), mdx(&quot;p&quot;, null, &quot;For example, Minecraft sand will turn into a free-falling entity when the block underneath it is removed. While falling a TNT blast will send it flying on a new trajectory. How would we test that? It would be possible with this method but would depend on precise timing and implementation details of the physics engine. We must consider if the test harness will save us enough time to make up for exceptions to the rule like this.&quot;), mdx(&quot;p&quot;, null, &quot;For a game like Overwatch this testing approach is completely untenable. Movement at every timestep is both tiny in distance &quot;, mdx(&quot;strong&quot;, {
     parentName: &quot;p&quot;
   }, &quot;and&quot;), &quot; gameplay relevant, there&apos;s no grid, and everything is highly reliant on implementation details of the physics engine. It may be possible to build a harness that uses the command pattern to represent player moves at best. But any attempt to constrain movement and actions to a grid will be so far from typical gameplay that it would be nearly useless.&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;conclusion&quot;,
@@ -5072,7 +5148,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Conclusion&quot;), mdx(&quot;p&quot;, null, &quot;Thanks for reading, if you have any feedback I&apos;d love to hear it! I am building a shareable library around these concepts, please have a look if you&apos;d like to dig deeper. Or contribute to the project if you find it useful! See the open-source project here: &quot;, mdx(&quot;a&quot;, _extends({
+  })))), &quot;Conclusion&quot;), mdx(&quot;p&quot;, null, &quot;Thanks for reading, if you have any feedback I&apos;d love to hear it, contact me in the upper right or open an issue on github! I am building a shareable library around these concepts, please have a look if you&apos;d like to dig deeper. Or contribute to the project if you find it useful! See the open-source project here: &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://github.com/dsmiller95/GridGameTools/blob/main/Assets/Packages/com.dman.grid-game-tools/README.md&quot;
