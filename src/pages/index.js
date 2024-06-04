@@ -52,7 +52,8 @@ class About extends React.Component {
                   src={titleAnimation.publicURL}
                 />
               </div>
-              <h4>Seeb Defender</h4>
+              {/* TODO: add a link to a projects listing page */}
+              {/* <h4>Seeb Defender</h4>
               <p>
                   Check out our upcoming game on steam: <a
                   href="https://store.steampowered.com/app/2362660/Seeb_Defender/"
@@ -66,22 +67,12 @@ class About extends React.Component {
                    Discord
                 </a> to keep up to date with development and try out alpha builds.</p>
                 
-                <iframe src="https://store.steampowered.com/widget/2362660/" frameborder="0" width="100%" height="190"></iframe>
+                <iframe src="https://store.steampowered.com/widget/2362660/" frameborder="0" width="100%" height="190"></iframe> */}
               <h4>Fraculation LLC</h4>
-              <p>Fraculation LLC is currently offering part-time consulting services as a 
-                specialist in the Unity game engine. For business inquiries, contact <Obfuscate
-                  email={Config.social.email}
-                  className={style.inlineLink}
-                  headers={{
-                    subject: 'Business Inquiry',
-                  }}
-                >
-                  Dan Miller
-                </Obfuscate>
-              </p>
-              <p>Fraculation is a single-person independent game development studio located at Milwaukee, Wisconsin.
-                Our goal is to build highly replayable games and push the limits of what can be generated in real-time game engines.
-                To achieve this, we specialize in <Link 
+              <p>Fraculation LLC is a games and consulting studio located in Milwaukee, Wisconsin.
+                Our goal is to build highly replayable games and push the limits of 
+                both making games fast and making frames fast. To achieve this, we specialize in 
+                <Link 
                   to={"/tag/procGen"}
                   className={style.inlineLink}
                   key={"procGen"}>
@@ -91,12 +82,26 @@ class About extends React.Component {
                   className={style.inlineLink}
                   key={"graphics"}>
                   graphical programming
-                </Link>, and <Link 
+                </Link>, <Link 
                   to={"/tag/tooling"}
                   className={style.inlineLink}
                   key={"tooling"}>
                   editor tooling
-                </Link> in the Unity game engine.
+                </Link> in the Unity game engine, and <Link 
+                  to={"/tag/tdd"}
+                  className={style.inlineLink}
+                  key={"tdd"}>
+                  test driven develpment
+                </Link>
+                . For business inquiries, contact <Obfuscate
+                  email={Config.social.email}
+                  className={style.inlineLink}
+                  headers={{
+                    subject: 'Business Inquiry',
+                  }}
+                >
+                  Dan Miller
+                </Obfuscate>
               </p>
             </div>
             <h2>Dan Miller</h2>
@@ -107,14 +112,18 @@ class About extends React.Component {
               <div className={style.memberDesc}>
                 <p>
                   I started out in web development working primarily with Angular,
-                  C# backends, and cloud infrastructure for 4 years professionally. 
-                  The past couple years I have been designing and developing games in 
-                  Unity, carrying through my lifelong passion for games into creating them
+                  C# backends, and cloud infrastructure for 4 years. 
+                  The past few years I have been designing and developing games in 
+                  Unity and Godot, directing my lifelong passion for games into creating games.
+                  
+                  In all, I have 7+ years of professional software development experience 
+                  with C# consistently and many other technologies along the way.
+                  <br />
                   
                   Optimizing real-time software and automating workloads have been
                   long time passions of mine, and I find much overlap with game
-                  programming. In Unity specifically, utilizing the DOTS and Jobs 
-                  systems to automate generation of new content and simulation fills
+                  development. In Unity specifically, utilizing the DOTS and Jobs 
+                  systems to automate generation of new content and perform simulations fills
                   these niches fabulously. As well as building in-editor tooling to
                   speed up design workflows inside Unity.
                 </p>

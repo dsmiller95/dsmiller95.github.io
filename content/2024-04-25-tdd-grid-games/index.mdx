@@ -21,8 +21,8 @@ hidden: true
 - [Command pattern](#command-pattern)
   - [Goal](#command-goal)
   - [Implementation](#command-implementation)
-    - [The Interfaces](#the-interfaces)
-    - [The Code](#the-interface-implementation)
+    - [Interfaces](#interfaces)
+    - [Interface Implementation](#interface-implementation)
     - [Aside - benefits of Commands in the game](#aside---benefits-of-commands-in-the-game)
 - [Tying it all together (Real world Example)](#tying-it-all-together)
   - [The TDD Workflow](#the-tdd-workflow)
@@ -293,7 +293,7 @@ Note that the tests which rely on Commands have no references to `Player` or eve
 
 To set up our command pattern we will start with a foundation of various interfaces. The implementation itself becomes much clearer after we define the interfaces we're working with.
 
-### The Interfaces
+### Interfaces
 
 The interfaces describe how the command's implementation interacts with the world and how to execute any command on a world:
 
@@ -322,7 +322,7 @@ interface ICommand {
 }
 ```
 
-### The Interface Implementation
+### Interface Implementation
 
 Now we can implement our command. The `MoveForwardCommand` holds all the logic related to moving and being blocked by walls.
 
