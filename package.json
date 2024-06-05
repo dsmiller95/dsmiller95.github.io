@@ -24,6 +24,7 @@
     "gatsby-remark-prismjs": "^3.13.0",
     "gatsby-remark-unwrap-images": "^1.0.2",
     "gatsby-source-filesystem": "^2.1.29",
+    "gatsby-transformer-json": "2.2.26",
     "gatsby-transformer-sharp": "^2.2.20",
     "less": "^3.10.3",
     "nonogram-grid": "^1.0.13",

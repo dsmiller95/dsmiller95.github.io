@@ -4,6 +4,7 @@ const feedPlugin = require('./gatsby-config.plugins.feed')
 module.exports = [
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-sharp',
+    'gatsby-transformer-json',
     'gatsby-plugin-sharp',
     'gatsby-plugin-less',
     {
@@ -11,6 +12,13 @@ module.exports = [
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `projects`,
+        path: `${__dirname}/content/projects`,
       },
     },
     {
