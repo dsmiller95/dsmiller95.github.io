@@ -140,7 +140,7 @@ class About extends React.Component {
         </div>
         
         <h2>My Work</h2>
-        <WorkShowcaseList edges={workShowcase.edges} />
+        <WorkShowcaseList nodes={workShowcase.nodes} />
       </Layout>
     )
   }
@@ -219,9 +219,8 @@ class ImageList extends React.Component {
 }
 
 export const workShowcasePropTypes = {
-  edges: PropTypes.arrayOf(
+  nodes: PropTypes.arrayOf(
     PropTypes.shape({
-      node: PropTypes.shape({
         frontmatter: PropTypes.shape({
           title: PropTypes.string.isRequired,
           path: PropTypes.string.isRequired,
@@ -243,7 +242,6 @@ export const workShowcasePropTypes = {
           )
         }),
       }).isRequired,
-    })
   ).isRequired,
 }
 
@@ -251,16 +249,17 @@ class WorkShowcaseList extends React.Component {
   static propTypes = workShowcasePropTypes
 
   render = () => {
-    var allImages = this.props.edges
-      .filter(edge => (edge.node.frontmatter.projectImages?.length ?? 0) > 0)
-      .sort((edgeA, edgeB) =>
-        edgeA.node.frontmatter.title.toLowerCase() > edgeB.node.frontmatter.title.toLowerCase() ? 1 : -1
+    console.log(this.props);
+    var allImages = this.props.nodes
+      .filter(node => (node.frontmatter.projectImages?.length ?? 0) > 0)
+      .sort((nodeA, nodeB) =>
+        nodeA.frontmatter.title.toLowerCase() > nodeB.frontmatter.title.toLowerCase() ? 1 : -1
       )
-      .flatMap(edge => 
-        edge.node.frontmatter.projectImages.map(projectImg => ({
-          title: edge.node.frontmatter.title,
-          path: edge.node.frontmatter.path,
-          tags: edge.node.frontmatter.tags,
+      .flatMap(node => 
+        node.frontmatter.projectImages.map(projectImg => ({
+          title: node.frontmatter.title,
+          path: node.frontmatter.path,
+          tags: node.frontmatter.tags,
           ...projectImg
         }))
       );
@@ -350,8 +349,7 @@ export const query = graphql`
       }
     }
     workShowcase: allMdx{
-      edges {
-        node {
+        nodes {
           frontmatter {
             title
             tags
@@ -373,7 +371,6 @@ export const query = graphql`
             }
           }
         }
-      }
     }
     
   }

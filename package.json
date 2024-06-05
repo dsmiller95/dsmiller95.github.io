@@ -46,7 +46,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby develop",
+    "dev": "export CHOKIDAR_USEPOLLING=1 && gatsby develop",
     "start": "gatsby clean && npm run dev",
     "clean": "gatsby clean",
     "serve": "gatsby serve",
