@@ -36,7 +36,7 @@ class About extends React.Component {
 
   render() {
     let { profilePhoto, titleAnimation, skillIcons, toolIcons, resumes, workShowcase } = this.props.data
-    return (
+        return (
       <Layout>
         <SEO
           title="About"
@@ -249,7 +249,6 @@ class WorkShowcaseList extends React.Component {
   static propTypes = workShowcasePropTypes
 
   render = () => {
-    console.log(this.props);
     var allImages = this.props.nodes
       .filter(node => (node.frontmatter.projectImages?.length ?? 0) > 0)
       .sort((nodeA, nodeB) =>
