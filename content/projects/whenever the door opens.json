@@ -1,0 +1,18 @@
+{
+  "title": "Whenever; The Door Opens",
+  "date": "February 2024",
+  "post": null,
+  "preview": "./projects/whenever_the_door_opens.png",
+  "links": [
+    {
+      "type": "Github",
+      "hidden": true,
+      "comment": "repository is private, do not display",
+      "url": "https://github.com/dsmiller95/BrackeysJam2024"
+    },
+    {
+      "type": "Game",
+      "url": "https://limeblossomjams.itch.io/whenever-the-door-opens"
+    }
+  ]
+}

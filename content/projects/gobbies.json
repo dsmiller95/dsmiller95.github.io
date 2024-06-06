@@ -1,0 +1,18 @@
+{
+  "title": "Gobbies",
+  "date": "April 2024",
+  "post": null,
+  "preview": "./projects/gobbies_stole_my_ruins.png",
+  "links": [
+    {
+      "type": "Github",
+      "hidden": true,
+      "comment": "repository is private, do not display",
+      "url": "https://github.com/dsmiller95/DungeonCrawl2024"
+    },
+    {
+      "type": "Game",
+      "url": "https://limeblossomjams.itch.io/gobbies-stole-my-ruins"
+    }
+  ]
+}

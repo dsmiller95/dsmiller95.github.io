@@ -1,0 +1,18 @@
+{
+  "title": "Mosh Pint",
+  "date": "October 2023",
+  "post": null,
+  "preview": "./projects/mosh_pint.png",
+  "links": [
+    {
+      "type": "Github",
+      "hidden": false,
+      "comment": "repository is public",
+      "url": "https://github.com/dsmiller95/ludum-dare-54"
+    },
+    {
+      "type": "Game",
+      "url": "https://ldjam.com/events/ludum-dare/54/mosh-pint"
+    }
+  ]
+}

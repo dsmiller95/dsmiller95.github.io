@@ -1,0 +1,18 @@
+{
+  "title": "Gobbies",
+  "date": "July 2023",
+  "post": null,
+  "preview": "./projects/disconnet.png",
+  "links": [
+    {
+      "type": "Github",
+      "hidden": true,
+      "comment": "repository is private, do not display",
+      "url": "https://github.com/spike-develops/gmtk-jam-2023"
+    },
+    {
+      "type": "Game",
+      "url": "https://spikedevelops.itch.io/disconnect"
+    }
+  ]
+}

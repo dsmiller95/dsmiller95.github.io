@@ -1,0 +1,12 @@
+{
+  "title": "L-System",
+  "date": "2020-2022",
+  "post": "blog/lindenmayer-implementation",
+  "preview": "./examples/field-flower.mp4",
+  "links": [
+    {
+      "type": "GitHub",
+      "url": "https://github.com/dsmiller95/LindenmayerPlantSimulation/tree/master/Packages/com.dman.l-system"
+    }
+  ]
+}
