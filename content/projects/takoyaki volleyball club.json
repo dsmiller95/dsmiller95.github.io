@@ -2,7 +2,9 @@
   "title": "Takoyaki Volleball Club",
   "date": "May 2024",
   "post": null,
-  "preview": "./projects/takoyaki_volleyball_club.png",
+  "preview": {
+    "src": "./projects/takoyaki_volleyball_club.png"
+  },
   "links": [
     {
       "type": "Github",

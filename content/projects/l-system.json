@@ -2,7 +2,9 @@
   "title": "L-System",
   "date": "2020-2022",
   "post": "blog/lindenmayer-implementation",
-  "preview": "./examples/field-flower.mp4",
+  "preview": {
+    "src": "./projects/field-flower.mp4"
+  },
   "links": [
     {
       "type": "GitHub",

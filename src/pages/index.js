@@ -13,6 +13,45 @@ import GifVideo from '../templates/gif-video'
 import Obfuscate from 'react-obfuscate'
 import Config from '../../config'
 
+
+
+
+
+
+///////////////// utils
+
+
+
+const VidOrImageProps = PropTypes.shape({
+  extension: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  publicURL: PropTypes.string.isRequired,
+  childImageSharp: PropTypes.shape({
+    fluid: PropTypes.object.isRequired,
+  }),
+});
+
+function vidOrImage(src, classNameInput, title) {
+  return src.extension === 'mp4' 
+  ?
+    <video 
+      className={classNameInput}
+      autoPlay playsInline muted loop={true}
+      src={src.publicURL}
+    />
+  : <Img
+      className={classNameInput}
+      fluid={src.childImageSharp.fluid}
+      alt={src.name}
+      title={title}
+    />
+};
+
+
+/////////////////
+
+
+
 export const aboutPropTypes = {
   data: PropTypes.shape({
     profilePhoto: PropTypes.shape({
@@ -28,6 +67,7 @@ export const aboutPropTypes = {
     skillIcons: PropTypes.object.isRequired,
     toolIcons: PropTypes.object.isRequired,
     workShowcase: PropTypes.object.isRequired,
+    projects: PropTypes.object.isRequired,
   }),
 }
 
@@ -35,7 +75,7 @@ class About extends React.Component {
   static propTypes = aboutPropTypes
 
   render() {
-    let { profilePhoto, titleAnimation, skillIcons, toolIcons, resumes, workShowcase } = this.props.data
+    let { profilePhoto, titleAnimation, skillIcons, toolIcons, resumes, workShowcase, projects } = this.props.data
         return (
       <Layout>
         <SEO
@@ -139,6 +179,8 @@ class About extends React.Component {
           
         </div>
         
+        <h2>Projects</h2>
+        <ProjectShowcaseList nodes={projects.nodes} />
         <h2>My Work</h2>
         <WorkShowcaseList nodes={workShowcase.nodes} />
       </Layout>
@@ -230,14 +272,7 @@ export const workShowcasePropTypes = {
           projectImages: PropTypes.arrayOf(
             PropTypes.shape({
               description: PropTypes.string.isRequired,
-              src: PropTypes.shape({
-                extension: PropTypes.string.isRequired,
-                name: PropTypes.string.isRequired,
-                publicURL: PropTypes.string.isRequired,
-                childImageSharp: PropTypes.shape({
-                  fluid: PropTypes.object.isRequired,
-                }),
-              })
+              src: VidOrImageProps.isRequired,
             })
           )
         }),
@@ -271,25 +306,13 @@ class WorkShowcaseList extends React.Component {
     return (
     <div className={style.imageShowcaseContainer}>
       {allImages
-        .map(({ src: {extension, name, childImageSharp, publicURL}, description, path, align  }) => (
+        .map(({ src, description, path, align  }) => (
           <Link 
             to={path}
             className={style.imageShowcaseWrapper}
-            key={name + description}>
+            key={src.name + description}>
             <div className={style.imageShowcaseWrapperTwo}>
-              {extension === 'mp4' 
-              ?
-                <video 
-                  className={mediaClassname(align)}
-                  autoPlay playsInline muted loop={true}
-                  src={publicURL}
-                />
-              : <Img
-                  className={mediaClassname(align)}
-                  fluid={childImageSharp.fluid}
-                  alt={name}
-                  title={description}
-                />}
+              {vidOrImage(src, mediaClassname(align), description)}
               <label>
                 {Utils.capitalize(description)}
               </label>
@@ -300,6 +323,59 @@ class WorkShowcaseList extends React.Component {
   );
         }
 }
+
+
+
+export const projectShowcasePropTypes = {
+  nodes: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      post: PropTypes.string,
+      links: PropTypes.arrayOf(PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+        comment: PropTypes.string,
+        hidden: PropTypes.bool,
+      })).isRequired,
+      preview: PropTypes.shape({
+        src: VidOrImageProps.isRequired,
+      }).isRequired,
+    }).isRequired,
+  ).isRequired,
+}
+
+class ProjectShowcaseList extends React.Component {
+  static propTypes = projectShowcasePropTypes
+
+  render = () => {
+    var mediaClassname = (align) => {
+      if(align == null || style[align] == null) return style.imageShowcaseMedia;
+      return style.imageShowcaseMedia + " " + style[align];
+    }
+    
+    return (
+    <div className={style.imageShowcaseContainer}>
+      {this.props.nodes
+        .map(({ preview: {src}, links, title, post }) => (
+          <Link 
+            to={post}
+            className={style.imageShowcaseWrapper}
+            key={src.name + title}>
+            <div className={style.imageShowcaseWrapperTwo}>
+              {vidOrImage(src, mediaClassname(null), title)}
+              <label>
+                {Utils.capitalize(title)}
+              </label>
+            </div>
+          </Link>
+        ))}
+    </div>
+  );
+        }
+}
+
+
+
 
 export const query = graphql`
   {
@@ -371,7 +447,31 @@ export const query = graphql`
           }
         }
     }
-    
+    projects: allProjectsJson {
+      nodes {
+        title
+        post
+        links {
+          comment
+          hidden
+          type
+          url
+        }
+        preview {
+          src {
+            extension
+            name
+            publicURL
+            childImageSharp {
+              fluid(maxWidth: 1920, maxHeight: 1080) {
+                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluidLimitPresentationSize
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `
 

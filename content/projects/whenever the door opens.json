@@ -2,7 +2,9 @@
   "title": "Whenever; The Door Opens",
   "date": "February 2024",
   "post": null,
-  "preview": "./projects/whenever_the_door_opens.png",
+  "preview": {
+    "src": "./projects/whenever_the_door_opens.png"
+  },
   "links": [
     {
       "type": "Github",

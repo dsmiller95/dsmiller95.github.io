@@ -2,7 +2,9 @@
   "title": "Mosh Pint",
   "date": "October 2023",
   "post": null,
-  "preview": "./projects/mosh_pint.png",
+  "preview": {
+    "src": "./projects/mosh_pint.png"
+  },
   "links": [
     {
       "type": "Github",

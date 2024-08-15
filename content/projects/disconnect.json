@@ -1,8 +1,10 @@
 {
-  "title": "Gobbies",
+  "title": "Disconnect",
   "date": "July 2023",
   "post": null,
-  "preview": "./projects/disconnet.png",
+  "preview": {
+    "src": "./projects/disconnect.png"
+  },
   "links": [
     {
       "type": "Github",
