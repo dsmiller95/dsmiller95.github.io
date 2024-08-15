@@ -27,24 +27,39 @@ const VidOrImageProps = PropTypes.shape({
   name: PropTypes.string.isRequired,
   publicURL: PropTypes.string.isRequired,
   childImageSharp: PropTypes.shape({
-    fluid: PropTypes.object.isRequired,
+    fluid: PropTypes.object,
+    fixed: PropTypes.object,
   }),
 });
 
 function vidOrImage(src, classNameInput, title) {
-  return src.extension === 'mp4' 
-  ?
-    <video 
+  if(src.extension === 'mp4') {
+    return <div
       className={classNameInput}
-      autoPlay playsInline muted loop={true}
-      src={src.publicURL}
-    />
-  : <Img
+    >
+      <video 
+        autoPlay playsInline muted loop={true}
+        src={src.publicURL}
+      />
+    </div>
+  }
+  if(src.childImageSharp.fluid) {
+    return <Img
       className={classNameInput}
       fluid={src.childImageSharp.fluid}
       alt={src.name}
       title={title}
     />
+  }
+  if(src.childImageSharp.fixed) {
+    return <Img
+      className={classNameInput}
+      fixed={src.childImageSharp.fixed}
+      alt={src.name}
+      title={title}
+    />
+  }
+  throw new Error("Invalid src object: " + src);
 };
 
 
@@ -176,11 +191,12 @@ class About extends React.Component {
             <h2>Tools</h2>
             <ImageList edges={toolIcons.edges} />
           </div>
-          
-          <h2>Projects</h2>
-          <ProjectShowcaseList nodes={projects.nodes} />
-          <h2>My Work</h2>
-          <WorkShowcaseList nodes={workShowcase.nodes} />
+          <div className={style.projectsContainerPanel}>
+            <h2>My Projects</h2>
+            <ProjectShowcaseList nodes={projects.nodes} />
+            <h2>My Systems</h2>
+            <WorkShowcaseList nodes={workShowcase.nodes} />
+          </div>
         </div>
         
       </Layout>
@@ -354,10 +370,39 @@ class ProjectShowcaseList extends React.Component {
       return style.imageShowcaseMedia + " " + style[align];
     }
 
+    var externalLink = (url, content, classname = null) => {
+      return <a 
+          href={url}
+          className={classname ?? style.subLink}
+        >{content}</a>
+    }
+
+    var internalLink = (path, content, classname = null) => {
+      return <Link 
+        to={Utils.resolvePageUrl(path)}
+        className={classname ?? style.subLink}
+        >{content}</Link>
+    }
+
     var linkType = (links, linkType) => {
       var foundLink = links.find(link => link.type === linkType && !link.hidden);
-      if(foundLink == null) return null;
-      return <a href={foundLink.url}>{foundLink.title}</a>
+      if(!foundLink) return null;
+      return externalLink(foundLink.url, foundLink.title);
+    }
+
+    var postLink = (post) => {
+      if(!post) return null;
+      return internalLink(post, "Read More");
+    }
+
+    var bestLink = (post, links, classname, content) => {
+      var gameLink = links.find(link => link.type === "Game" && !link.hidden);
+      var githubLink = links.find(link => link.type === "Github" && !link.hidden);
+      var foundExternalLink = gameLink?.url ?? githubLink?.url;
+      if(foundExternalLink){
+        return externalLink(foundExternalLink, content, classname);
+      }
+      return internalLink(post, content, classname);
     }
 
     return (
@@ -368,28 +413,23 @@ class ProjectShowcaseList extends React.Component {
             className={style.imageShowcaseWrapper}
             key={src.name + title}
           >
-            <Link 
-              to={post ? Utils.resolvePageUrl(post) : "/"}
-              >
-              <div className={style.imageShowcaseWrapperTwo}>
-                {vidOrImage(src, mediaClassname(null), title)}
-                <label>
-                  {Utils.capitalize(title)}
-                </label>
-              </div>
-            </Link>
-            {linkType(links, "Github")}
-            {linkType(links, "Game")}
+            <div className={style.imageShowcaseWrapperTwo}>
+              {bestLink(post, links, style.imageLink,
+                vidOrImage(src, mediaClassname(null), title)
+                )}
+              <span className={style.subTitle}>
+                {Utils.capitalize(title)}
+              </span>
+              {linkType(links, "Game")}
+              {linkType(links, "Github")}
+              {postLink(post)}
+            </div>
           </div>
         ))}
     </div>
   );
         }
 }
-
-
-
-
 
 
 export const query = graphql`
@@ -479,7 +519,7 @@ export const query = graphql`
             name
             publicURL
             childImageSharp {
-              fluid(maxWidth: 624, maxHeight: 500) {
+              fluid(maxWidth: 312, maxHeight: 250) {
                 ...GatsbyImageSharpFluid_noBase64
                 ...GatsbyImageSharpFluidLimitPresentationSize
               }

@@ -28,8 +28,9 @@ const Utils = {
   resolvePageUrl: (...path) => {
     let resolvedUrl = Utils.resolveUrl(...path);
     if(!resolvedUrl.endsWith('/')){
-      return resolvedUrl + '/';
+      resolvedUrl = resolvedUrl + '/';
     }
+    console.log(resolvedUrl);
     return resolvedUrl;
   },
   /**
