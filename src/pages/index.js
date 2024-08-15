@@ -168,19 +168,18 @@ class About extends React.Component {
                 <p>
                   I started out in web development working primarily with Angular,
                   C# backends, and cloud infrastructure for 4 years. 
-                  The past few years I have been designing and developing games in 
+                  In recent years I have been designing and developing games in 
                   Unity and Godot, directing my lifelong passion for games into creating games.
                   
                   In all, I have 7+ years of professional software development experience 
-                  with C# consistently and many other technologies along the way.
+                  with C# and many other technologies encountered along the way.
                   <br />
                   
-                  Optimizing real-time software and automating workloads have been
+                  Optimizing real-time software and automating workloads are
                   long time passions of mine, and I find much overlap with game
-                  development. In Unity specifically, utilizing the DOTS and Jobs 
-                  systems to automate generation of new content and perform simulations fills
-                  these niches fabulously. As well as building in-editor tooling to
-                  speed up design workflows inside Unity.
+                  development. In Unity, I use the DOTS and Jobs systems to
+                  automate generation of new content and perform simulations in real-time.
+                  I also build in-editor tooling for both myself and less technical teammates to use.
                 </p>
                 <ResumeList edges={resumes.edges} />
               </div>
