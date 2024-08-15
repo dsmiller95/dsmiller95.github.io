@@ -7,13 +7,17 @@ const Utils = {
    * @return {string} Resolved url without trailing slash.
    */
   resolveUrl: (...paths) => {
-    return paths.reduce((resolvedUrl, path) => {
-      let urlPath = path.toString().trim()
-      if (urlPath)
-        resolvedUrl +=
-          (resolvedUrl === '' ? '' : '/') + urlPath.replace(/^\/|\/$/g, '')
-      return resolvedUrl
-    }, '')
+    var result = paths.reduce((resolvedUrl, path) => {
+      let urlPath = path.toString().trim();
+      if (urlPath){
+        resolvedUrl += urlPath.replace(/^\/|\/$/g, '');
+      }
+      return resolvedUrl;
+    }, "");
+    if(!result.startsWith('/') && !result.startsWith('http')){
+      result = '/' + result;
+    }
+    return result;
   },
   /**
    * Resolve a page url adding a trailing slash.
@@ -22,8 +26,11 @@ const Utils = {
    * @return {string} Resolved url with trailing slash.
    */
   resolvePageUrl: (...path) => {
-    let resolvedUrl = Utils.resolveUrl(...path)
-    return resolvedUrl + '/'
+    let resolvedUrl = Utils.resolveUrl(...path);
+    if(!resolvedUrl.endsWith('/')){
+      return resolvedUrl + '/';
+    }
+    return resolvedUrl;
   },
   /**
    * Get an ordered list of suggested posts for a single post.

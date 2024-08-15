@@ -8,6 +8,7 @@
   "links": [
     {
       "type": "GitHub",
+      "title": "View code on github",
       "url": "https://github.com/dsmiller95/LindenmayerPlantSimulation/tree/master/Packages/com.dman.l-system"
     }
   ]

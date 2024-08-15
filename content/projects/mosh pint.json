@@ -10,9 +10,11 @@
       "type": "Github",
       "hidden": false,
       "comment": "repository is public",
+      "title": "View Code on Github",
       "url": "https://github.com/dsmiller95/ludum-dare-54"
     },
     {
+      "title": "Play on Itch.io",
       "type": "Game",
       "url": "https://ldjam.com/events/ludum-dare/54/mosh-pint"
     }

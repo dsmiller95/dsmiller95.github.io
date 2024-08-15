@@ -177,12 +177,12 @@ class About extends React.Component {
             <ImageList edges={toolIcons.edges} />
           </div>
           
+          <h2>Projects</h2>
+          <ProjectShowcaseList nodes={projects.nodes} />
+          <h2>My Work</h2>
+          <WorkShowcaseList nodes={workShowcase.nodes} />
         </div>
         
-        <h2>Projects</h2>
-        <ProjectShowcaseList nodes={projects.nodes} />
-        <h2>My Work</h2>
-        <WorkShowcaseList nodes={workShowcase.nodes} />
       </Layout>
     )
   }
@@ -308,7 +308,7 @@ class WorkShowcaseList extends React.Component {
       {allImages
         .map(({ src, description, path, align  }) => (
           <Link 
-            to={path}
+            to={Utils.resolvePageUrl(path)}
             className={style.imageShowcaseWrapper}
             key={src.name + description}>
             <div className={style.imageShowcaseWrapperTwo}>
@@ -334,6 +334,7 @@ export const projectShowcasePropTypes = {
       links: PropTypes.arrayOf(PropTypes.shape({
         type: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired,
+        title: PropTypes.string,
         comment: PropTypes.string,
         hidden: PropTypes.bool,
       })).isRequired,
@@ -352,27 +353,41 @@ class ProjectShowcaseList extends React.Component {
       if(align == null || style[align] == null) return style.imageShowcaseMedia;
       return style.imageShowcaseMedia + " " + style[align];
     }
-    
+
+    var linkType = (links, linkType) => {
+      var foundLink = links.find(link => link.type === linkType && !link.hidden);
+      if(foundLink == null) return null;
+      return <a href={foundLink.url}>{foundLink.title}</a>
+    }
+
     return (
     <div className={style.imageShowcaseContainer}>
       {this.props.nodes
         .map(({ preview: {src}, links, title, post }) => (
-          <Link 
-            to={post}
+          <div
             className={style.imageShowcaseWrapper}
-            key={src.name + title}>
-            <div className={style.imageShowcaseWrapperTwo}>
-              {vidOrImage(src, mediaClassname(null), title)}
-              <label>
-                {Utils.capitalize(title)}
-              </label>
-            </div>
-          </Link>
+            key={src.name + title}
+          >
+            <Link 
+              to={post ? Utils.resolvePageUrl(post) : "/"}
+              >
+              <div className={style.imageShowcaseWrapperTwo}>
+                {vidOrImage(src, mediaClassname(null), title)}
+                <label>
+                  {Utils.capitalize(title)}
+                </label>
+              </div>
+            </Link>
+            {linkType(links, "Github")}
+            {linkType(links, "Game")}
+          </div>
         ))}
     </div>
   );
         }
 }
+
+
 
 
 
@@ -456,6 +471,7 @@ export const query = graphql`
           hidden
           type
           url
+          title
         }
         preview {
           src {
@@ -463,7 +479,7 @@ export const query = graphql`
             name
             publicURL
             childImageSharp {
-              fluid(maxWidth: 1920, maxHeight: 1080) {
+              fluid(maxWidth: 624, maxHeight: 500) {
                 ...GatsbyImageSharpFluid_noBase64
                 ...GatsbyImageSharpFluidLimitPresentationSize
               }

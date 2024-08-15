@@ -133,29 +133,40 @@
     }
 }
 
+
+// variables
+
+@grid-square-size: 20rem;
+// width / height
+@grid-square-aspect-ratio: 1.248;
 .imageShowcaseContainer {
     display: grid;
-    @media @mobile {
-        grid-template-columns: 1fr;
-    }
-    @media @tablet {
-        grid-template-columns: 1fr 1fr;
-    }
-    @media @desktop {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-    grid-auto-rows: auto;
-    
-    grid-auto-flow: row;
+    // @media @mobile {
+    //     grid-template-columns: 1fr;
+    // }
+    // @media @tablet {
+    //     grid-template-columns: 1fr 1fr;
+    // }
+    // @media @desktop {
+    //     grid-template-columns: 1fr 1fr 1fr;
+    // }
+
+    grid-template-rows: @grid-square-size;
+    grid-auto-rows: @grid-square-size / @grid-square-aspect-ratio;
+    grid-template-columns: repeat(auto-fit, minmax(@grid-square-size, 1fr));
+    gap: 1rem 1rem;
+
+    // grid-auto-rows: auto;
+    // grid-auto-flow: row;
 
     justify-items: center;
     align-items: center;
 
-    width:100%;
+    
+    max-width: @scroll-panel-large;
     align-content: stretch;
     justify-content: stretch;
 
-    gap: 1rem 1rem;
 }
 
 .imageShowcaseWrapper{
@@ -165,7 +176,7 @@
     &::after{
         content: "";
         display: block;
-        padding-bottom: 100%;
+        padding-bottom: 80%;
     }
 }
 
