@@ -1,21 +1,21 @@
 {
-  "title": "Gobbies",
-  "date": "April 2024",
+  "title": "Disconnect",
+  "date": "2023-06-09",
   "post": null,
   "preview": {
-    "src": "./projects/gobbies_stole_my_ruins.png"
+    "src": "./projects/disconnect.png"
   },
   "links": [
     {
       "type": "Github",
       "hidden": true,
       "comment": "repository is private, do not display",
-      "url": "https://github.com/dsmiller95/DungeonCrawl2024"
+      "url": "https://github.com/spike-develops/gmtk-jam-2023"
     },
     {
       "type": "Game",
       "title": "Play on Itch.io",
-      "url": "https://limeblossomjams.itch.io/gobbies-stole-my-ruins"
+      "url": "https://spikedevelops.itch.io/disconnect"
     }
   ]
 }

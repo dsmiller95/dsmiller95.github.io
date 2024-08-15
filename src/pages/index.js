@@ -346,6 +346,7 @@ export const projectShowcasePropTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       post: PropTypes.string,
+      post: PropTypes.string.isRequired,
       links: PropTypes.arrayOf(PropTypes.shape({
         type: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired,
@@ -404,10 +405,22 @@ class ProjectShowcaseList extends React.Component {
       return internalLink(post, content, classname);
     }
 
+    let sortedNodes = this.props.nodes.toSorted((a, b) => a.date < b.date);
+
+
+    var formatter = new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+  month: "long",
+    })
+    var formatDate = (dateString) => {
+      var date = new Date(dateString);
+      return formatter.format(date); 
+    }
+
     return (
     <div className={style.imageShowcaseContainer}>
-      {this.props.nodes
-        .map(({ preview: {src}, links, title, post }) => (
+      {sortedNodes
+        .map(({ preview: {src}, links, title, post, date }) => (
           <div
             className={style.imageShowcaseWrapper}
             key={src.name + title}
@@ -418,6 +431,9 @@ class ProjectShowcaseList extends React.Component {
                 )}
               <span className={style.subTitle}>
                 {Utils.capitalize(title)}
+              </span>
+              <span className={style.subInfo}>
+                {formatDate(date)}
               </span>
               {linkType(links, "Game")}
               {linkType(links, "Github")}
@@ -505,6 +521,7 @@ export const query = graphql`
       nodes {
         title
         post
+        date
         links {
           comment
           hidden
