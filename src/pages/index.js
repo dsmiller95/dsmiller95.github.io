@@ -346,7 +346,7 @@ export const projectShowcasePropTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       post: PropTypes.string,
-      post: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
       links: PropTypes.arrayOf(PropTypes.shape({
         type: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired,
@@ -405,7 +405,8 @@ class ProjectShowcaseList extends React.Component {
       return internalLink(post, content, classname);
     }
 
-    let sortedNodes = this.props.nodes.toSorted((a, b) => a.date < b.date);
+    var nodes = this.props.nodes;
+    nodes.sort((a, b) => a.date < b.date);
 
 
     var formatter = new Intl.DateTimeFormat('en-US', {
@@ -419,7 +420,7 @@ class ProjectShowcaseList extends React.Component {
 
     return (
     <div className={style.imageShowcaseContainer}>
-      {sortedNodes
+      {nodes
         .map(({ preview: {src}, links, title, post, date }) => (
           <div
             className={style.imageShowcaseWrapper}
