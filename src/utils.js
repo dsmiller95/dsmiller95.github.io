@@ -30,7 +30,6 @@ const Utils = {
     if(!resolvedUrl.endsWith('/')){
       resolvedUrl = resolvedUrl + '/';
     }
-    console.log(resolvedUrl);
     return resolvedUrl;
   },
   /**
