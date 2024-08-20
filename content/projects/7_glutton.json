@@ -1,0 +1,21 @@
+{
+  "title": "Glutton",
+  "date": "2024-08-20",
+  "post": null,
+  "preview": {
+    "src": "./projects/glutton.png"
+  },
+  "links": [
+    {
+      "type": "Github",
+      "hidden": true,
+      "comment": "repository is private, do not display",
+      "url": "https://github.com/dsmiller95/GMTK-jam-2024"
+    },
+    {
+      "type": "Game",
+      "title": "Play on Itch.io",
+      "url": "https://dsmiller95.itch.io/glutton"
+    }
+  ]
+}
