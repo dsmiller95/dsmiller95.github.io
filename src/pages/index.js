@@ -406,7 +406,7 @@ class ProjectShowcaseList extends React.Component {
     }
 
     var nodes = this.props.nodes;
-    nodes.sort((a, b) => a.date < b.date);
+    //nodes.sort((a, b) => a.date < b.date);
 
 
     var formatter = new Intl.DateTimeFormat('en-US', {
@@ -518,7 +518,7 @@ export const query = graphql`
           }
         }
     }
-    projects: allProjectsJson {
+    projects: allProjectsJson(sort: {fields: date, order: DESC}) {
       nodes {
         title
         post
