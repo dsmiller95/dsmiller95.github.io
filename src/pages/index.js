@@ -347,6 +347,9 @@ export const projectShowcasePropTypes = {
       title: PropTypes.string.isRequired,
       post: PropTypes.string,
       date: PropTypes.string.isRequired,
+      developmentTime: PropTypes.string.isRequired,
+      rank: PropTypes.number,
+      totalEntries: PropTypes.number,
       links: PropTypes.arrayOf(PropTypes.shape({
         type: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired,
@@ -384,6 +387,10 @@ class ProjectShowcaseList extends React.Component {
         >{content}</Link>
     }
 
+    var descriptiveText = (text) => {
+
+    };
+
     var linkType = (links, linkType) => {
       var foundLink = links.find(link => link.type === linkType && !link.hidden);
       if(!foundLink) return null;
@@ -409,19 +416,31 @@ class ProjectShowcaseList extends React.Component {
     //nodes.sort((a, b) => a.date < b.date);
 
 
-    var formatter = new Intl.DateTimeFormat('en-US', {
+    var dateFormat = new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
-  month: "long",
+      month: "long",
     })
     var formatDate = (dateString) => {
       var date = new Date(dateString);
-      return formatter.format(date); 
+      return dateFormat.format(date); 
+    }
+
+    var percentileFormat = new Intl.NumberFormat('en-US', {
+      style: 'percent'
+    });
+
+    var rankingDescription = (rank, totalEntries) => {
+      if(rank == null || totalEntries == null) return null;
+      var percentile = rank / totalEntries;
+      var percentileString = percentileFormat.format(percentile);
+    
+      return `, Top ${percentileString}`;
     }
 
     return (
     <div className={style.imageShowcaseContainer}>
       {nodes
-        .map(({ preview: {src}, links, title, post, date }) => (
+        .map(({ preview: {src}, links, title, post, date, developmentTime, rank, totalEntries }) => (
           <div
             className={style.imageShowcaseWrapper}
             key={src.name + title}
@@ -435,6 +454,9 @@ class ProjectShowcaseList extends React.Component {
               </span>
               <span className={style.subInfo}>
                 {formatDate(date)}
+              </span>
+              <span className={style.subInfo}>
+                {developmentTime + rankingDescription(rank, totalEntries)}
               </span>
               {linkType(links, "Game")}
               {linkType(links, "Github")}
@@ -523,6 +545,9 @@ export const query = graphql`
         title
         post
         date
+        developmentTime
+        rank
+        totalEntries
         links {
           comment
           hidden

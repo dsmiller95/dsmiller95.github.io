@@ -2,6 +2,9 @@
   "title": "L-System",
   "date": "2022-08-10",
   "post": "blog/lindenmayer-implementation",
+  "developmentTime": "1 year",
+  "engine": "unity",
+  "teamSize": 1,
   "preview": {
     "src": "./projects/field-flower.mp4"
   },

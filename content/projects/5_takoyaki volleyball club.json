@@ -2,6 +2,11 @@
   "title": "Takoyaki Volleball Club",
   "date": "2024-05-20",
   "post": null,
+  "developmentTime": "8 days",
+  "rank": 42,
+  "totalEntries": 706,
+  "engine": "unity",
+  "teamSize": 3,
   "preview": {
     "src": "./projects/takoyaki_volleyball_club.png"
   },

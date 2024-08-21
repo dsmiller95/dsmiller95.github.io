@@ -2,6 +2,11 @@
   "title": "Gobbies",
   "date": "2024-03-31",
   "post": null,
+  "developmentTime": "9 days",
+  "rank": 16,
+  "totalEntries": 167,
+  "engine": "unity",
+  "teamSize": 2,
   "preview": {
     "src": "./projects/gobbies_stole_my_ruins.png"
   },

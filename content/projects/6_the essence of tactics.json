@@ -2,6 +2,10 @@
   "title": "The Essence of Tactics",
   "date": "2024-07-31",
   "post": null,
+  "developmentTime": "14 days",
+  "totalEntries": 2392,
+  "engine": "unity",
+  "teamSize": 3,
   "preview": {
     "src": "./projects/the_essence_of_tactics.mp4"
   },

@@ -2,6 +2,11 @@
   "title": "Disconnect",
   "date": "2023-06-09",
   "post": null,
+  "developmentTime": "2 days",
+  "rank": 209,
+  "totalEntries": 6752,
+  "engine": "unity",
+  "teamSize": 4,
   "preview": {
     "src": "./projects/disconnect.png"
   },

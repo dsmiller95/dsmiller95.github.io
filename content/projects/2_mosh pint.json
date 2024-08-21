@@ -2,6 +2,11 @@
   "title": "Mosh Pint",
   "date": "2023-10-02",
   "post": null,
+  "developmentTime": "4 days",
+  "rank": 279,
+  "totalEntries": 2166,
+  "engine": "godot",
+  "teamSize": 6,
   "preview": {
     "src": "./projects/mosh_pint.png"
   },
