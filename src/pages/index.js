@@ -434,36 +434,41 @@ class ProjectShowcaseList extends React.Component {
       var percentile = rank / totalEntries;
       var percentileString = percentileFormat.format(percentile);
     
-      return `, Top ${percentileString}`;
+      return `Top ${percentileString}`;
     }
 
     return (
     <div className={style.imageShowcaseContainer}>
       {nodes
-        .map(({ preview: {src}, links, title, post, date, developmentTime, rank, totalEntries }) => (
-          <div
-            className={style.imageShowcaseWrapper}
-            key={src.name + title}
-          >
-            <div className={style.imageShowcaseWrapperTwo}>
-              {bestLink(post, links, style.imageLink,
-                vidOrImage(src, mediaClassname(null), title)
+        .map(({ preview: {src}, links, title, post, date, developmentTime, rank, totalEntries }) => {
+          var rankDesc = rankingDescription(rank, totalEntries);
+          return (
+            <div
+              className={style.imageShowcaseWrapper}
+              key={src.name + title}
+            >
+              <div className={style.imageShowcaseWrapperTwo}>
+                {bestLink(post, links, style.imageLink,
+                  vidOrImage(src, mediaClassname(null), title)
                 )}
-              <span className={style.subTitle}>
-                {Utils.capitalize(title)}
-              </span>
-              <span className={style.subInfo}>
-                {formatDate(date)}
-              </span>
-              <span className={style.subInfo}>
-                {developmentTime + rankingDescription(rank, totalEntries)}
-              </span>
-              {linkType(links, "Game")}
-              {linkType(links, "Github")}
-              {postLink(post)}
+                <span className={style.subTitle}>
+                  {Utils.capitalize(title)}
+                </span>
+                <span className={style.subInfo}>
+                  {formatDate(date) + ", " + developmentTime}
+                </span>
+                {rankDesc ?? 
+                  <span className={style.subInfo}>
+                    {rankDesc}
+                  </span>
+                }
+                {linkType(links, "Game")}
+                {linkType(links, "Github")}
+                {postLink(post)}
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
     </div>
   );
         }
