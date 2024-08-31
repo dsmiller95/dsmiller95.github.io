@@ -128,22 +128,22 @@ class About extends React.Component {
                 Our goal is to build highly replayable games and push the limits of 
                 both making games fast and making frames fast. To achieve this, we specialize in 
                 <Link 
-                  to={"/tag/procGen"}
+                  to={"/tagprocGen"}
                   className={style.inlineLink}
                   key={"procGen"}>
                   procedural generation
                 </Link>, <Link 
-                  to={"/tag/graphics"}
+                  to={"/taggraphics"}
                   className={style.inlineLink}
                   key={"graphics"}>
                   graphical programming
                 </Link>, <Link 
-                  to={"/tag/tooling"}
+                  to={"/tagtooling"}
                   className={style.inlineLink}
                   key={"tooling"}>
                   editor tooling
                 </Link> in the Unity game engine, and <Link 
-                  to={"/tag/tdd"}
+                  to={"/tagtdd"}
                   className={style.inlineLink}
                   key={"tdd"}>
                   test driven develpment
