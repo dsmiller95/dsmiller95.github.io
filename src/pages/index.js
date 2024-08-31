@@ -126,8 +126,7 @@ class About extends React.Component {
               <h4>Fraculation LLC</h4>
               <p>Fraculation LLC is a games and consulting studio located in Milwaukee, Wisconsin.
                 Our goal is to build highly replayable games and push the limits of 
-                both making games fast and making frames fast. To achieve this, we specialize in 
-                <Link 
+                both making games fast and making frames fast. To achieve this, we specialize in <Link 
                   to={"/tagprocGen"}
                   className={style.inlineLink}
                   key={"procGen"}>
