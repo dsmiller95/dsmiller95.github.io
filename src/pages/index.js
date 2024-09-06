@@ -185,9 +185,9 @@ class About extends React.Component {
             <ImageList edges={toolIcons.edges} />
           </div>
           <div className={style.projectsContainerPanel}>
-            <h2>My Projects</h2>
+            <h2>Projects</h2>
             <ProjectShowcaseList nodes={projects.nodes} />
-            <h2>My Systems</h2>
+            <h2>Systems</h2>
             <WorkShowcaseList nodes={workShowcase.nodes} />
           </div>
         </div>
