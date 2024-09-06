@@ -124,9 +124,9 @@ class About extends React.Component {
                 
                 <iframe src="https://store.steampowered.com/widget/2362660/" frameborder="0" width="100%" height="190"></iframe> */}
               <h4>Fraculation LLC</h4>
-              <p>Fraculation LLC is a games and consulting studio located in Milwaukee, Wisconsin.
-                Our goal is to build highly replayable games and push the limits of 
-                both making games fast and making frames fast. To achieve this, we specialize in <Link 
+              <p>Fraculation LLC is a software development freelancer located in Milwaukee, Wisconsin.
+                My goal is to and push the limits of making both software and frames fast.
+                To achieve this, I specialize in <Link 
                   to={"/tagprocGen"}
                   className={style.inlineLink}
                   key={"procGen"}>
@@ -165,20 +165,15 @@ class About extends React.Component {
               </div>
               <div className={style.memberDesc}>
                 <p>
-                  I started out in web development working primarily with Angular,
-                  C# backends, and cloud infrastructure for 4 years. 
-                  In recent years I have been designing and developing games in 
-                  Unity and Godot, directing my lifelong passion for games into creating games.
-                  
-                  In all, I have 7+ years of professional software development experience 
-                  with C# and many other technologies encountered along the way.
-                  <br />
-                  
-                  Optimizing real-time software and automating workloads are
-                  long time passions of mine, and I find much overlap with game
-                  development. In Unity, I use the DOTS and Jobs systems to
-                  automate generation of new content and perform simulations in real-time.
-                  I also build in-editor tooling for both myself and less technical teammates to use.
+                  Senior software engineer at financial startup Dispute and founder of Fraculation LLC.
+                  I have 9 years of professional experience and have been writing code since 2010. My most recent experience
+                  is leading development of a real-time financial dispute resolution platform built with C# and dotnet.
+                  Before that, I tought myself real-time application development in C# and Rust, and even ealier I was
+                  a full stack developer in C# and Angular across both AWS and Azure.
+                </p><p>
+                  Expert in C#, Unity, Terraform, Dotnet, and Typscript. Currently learning Vim, Rust, and Game Development. 
+                  Looking to solve complex and meaninful problems with a team who values autonomy and creativity.
+                  Ideally working with Rust or C# on a cloud-native platform or games-adjacent industry on the Individual Contributor track.
                 </p>
                 <ResumeList edges={resumes.edges} />
               </div>
