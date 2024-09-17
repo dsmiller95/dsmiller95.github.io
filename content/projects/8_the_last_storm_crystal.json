@@ -1,0 +1,26 @@
+{
+  "title": "The Last Storm Crystal",
+  "date": "2024-09-17",
+  "post": null,
+  "developmentTime": "7 days",
+  "rank": null,
+  "totalEntries": 1520,
+  "engine": "unity",
+  "teamSize": 2,
+  "preview": {
+    "src": "./projects/the_last_storm_crystal.mp4"
+  },
+  "links": [
+    {
+      "type": "Github",
+      "hidden": true,
+      "comment": "repository is private, do not display",
+      "url": "https://github.com/dsmiller95/BrackeysJam2024.2"
+    },
+    {
+      "type": "Game",
+      "title": "Play on Itch.io",
+      "url": "https://limeblossomjams.itch.io/the-last-storm-crystal"
+    }
+  ]
+}
