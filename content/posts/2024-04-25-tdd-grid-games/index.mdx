@@ -31,19 +31,19 @@ hidden: false
 
 # Overview
 
-I want to share a game development technique I've repeated across two game jams (so far), and have found very useful when working on complex game logic. This technique drivings game logic by writing tests first in a way specialized for "grid-based" games. "grid-based" games include for example: Chess, Connect 4, Tetris, Sokoban, [Baba Is You](https://store.steampowered.com/app/736260/Baba_Is_You/), [Into the Breach](https://store.steampowered.com/app/590380/Into_the_Breach/), [Tiny Epic Tactics](https://boardgamegeek.com/boardgame/272409/tiny-epic-tactics), or the two games I've made with this approach: [Disconnect, a riff on connect 4](https://spikedevelops.itch.io/disconnect) and [Gobbies Stole my Ruins, a puzzle dungeon crawler](https://limeblossomjams.itch.io/gobbies-stole-my-ruins) .
+I want to share a game development technique I've repeated across two game jams (so far) and have found very useful when working on complex game logic. This technique drivings game logic by writing tests first in a way specialized for "grid-based" games. "grid-based" games include for example Chess, Connect 4, Tetris, Sokoban, [Baba Is You](https://store.steampowered.com/app/736260/Baba_Is_You/), [Into the Breach](https://store.steampowered.com/app/590380/Into_the_Breach/), [Tiny Epic Tactics](https://boardgamegeek.com/boardgame/272409/tiny-epic-tactics), or the two games I've made with this approach: [Disconnect, a riff on connect 4](https://spikedevelops.itch.io/disconnect) and [Gobbies Stole my Ruins, a puzzle dungeon crawler](https://limeblossomjams.itch.io/gobbies-stole-my-ruins).
 
-The logic of grid-based games is a perfect candiate for Test Driven Development: every entity has an exact location and interactions between entities are precisely defined. Most importantly, the state of the game is easily represented in a 2D or 3D array. With a concise way to create an array from a layout string we can build and assert against the entire world in every test.
+The logic of grid-based games is a perfect candidate for Test Driven Development: every entity has an exact location and interactions between entities are precisely defined. Most importantly, the state of the game is easily represented in a 2D or 3D array. With a concise way to create an array from a layout string, we can build and assert against the entire world in every test.
 
-First, we'll walk through the two components of this testing paradigm: a highly readable layout string and a command pattern to interact with the game state. Then I'll close out with a real-world test case from "Gobbies Stole my Ruins" along with guidlines for games which will benefit the most from this approach.
+First, we'll walk through the two components of this testing paradigm: a highly readable layout string and a command pattern to interact with the game state. Then I'll close out with a real-world test case from "Gobbies Stole My Ruins" along with guidelines for games that will benefit the most from this approach.
 
 # Map Layout String
 
-The map layout string should be a readable representation of a whole game map in one string. Our goal will be to look at one of these strings and very quickly understand what the 2D or 3D map would look like. Ideally this makes our tests easy to read and simple to maintain.
+The map layout string should be a readable representation of a whole game map in one string. Our goal will be to look at one of these strings and very quickly understand what the 2D or 3D map would look like. Ideally, this makes our tests easy to read and simple to maintain.
 
 ## Map Goal
 
-We will map every character of a string into a single tile in the 3D grid. I chose to lay them out in horizontal slices and stack up the horizontal slices to get a full 3D world: imagine MRI data or a 3D printing slicer to visualize this. The left-most rectangular slice is the bottom slice and the right-most is the top slice. `X` is a block, `-` is empty space, and `P` is the player character. Here's an example of a string layout and the transformation it takes to become a 3D world.
+We will map every character of a string into a single tile in the 3D grid. I chose to lay them out in horizontal slices and stack up the horizontal slices to get a full 3D world: imagine MRI data or a 3D printing slicer to visualize this. The left-most rectangular slice is the bottom slice and the right-most is the top slice. `X` is a block, `-` is an empty space, and `P` is the player character. Here's an example of a string layout and the transformation it takes to become a 3D world.
 
 ```
 XXX XXX ---
@@ -55,7 +55,7 @@ import layout_anim from "./level_layout_anim.mp4";
 
 <Video src="./level_layout_anim.mp4" caption="Transforming a layered string into 3D space" ></Video>
 
-To use this format in our tests we'll whip up two utility functions . `CreateWorld` builds a game world from the layout string. `AssertWorldMatches` asserts the world against a given layout string. For many of the movement-related tests this is the only assertion we need!
+To use this format in our tests we'll whip up two utility functions. `CreateWorld` builds a game world from the layout string. `AssertWorldMatches` asserts the world against a given layout string. For many of the movement-related tests this is the only assertion we need!
 As a demonstration of how the functions are used, and how useful they could be, compare the following examples. Which do you find easier to reason about?
 
 ```csharp
@@ -73,7 +73,7 @@ XXX -X-
 XXX -P-
 XXX ---
 ");
-  /* ... move player forward again ... */
+  /* ... move the player forward again ... */
   AssertWorldMatches(world, @"
 XXX -X-
 XXX -P-
@@ -89,7 +89,7 @@ void TestPlayerMovesForward_ThenIsBlocked_WithoutLayout() {
   world.PlacePlayer(new Vector3Int(1, 1, 0));
   /* ... move player forward ... */
   AssertPlayerPosition(world, new Vector3Int(1, 1, 1));
-  /* ... move player forward again ... */
+  /* ... move the player forward again ... */
   AssertPlayerPosition(world, new Vector3Int(1, 1, 1));
 }
 ```
@@ -119,7 +119,7 @@ The difference here isn't extreme but will scale well when multiple moving entit
 
 ## Map Implementation
 
-The map layout string can be built by stringing together a few components. First we must parse the string into a 3D array. From there we transform the axises of this 3D array to match the axis system of the world we are generating. To finish building the world, we need a way to turn a single character into an entity at a given position inside the game world. To this end we'll use a lookup dictionary of game entity factories keyed by `char`. 
+The map layout string can be built by stringing together a few components. First we must parse the string into a 3D array. From there we transform the axes of this 3D array to match the axis system of the world we are generating. To finish building the world, we need a way to turn a single character into an entity at a given position inside the game world. To this end, we'll use a lookup dictionary of game entity factories keyed by `char`. 
 
 ### Parser
 
@@ -158,11 +158,11 @@ stu vwx yz0
     v
 ```
 
-Its indexed by line first, then by each layer in the line, then by the character order inside each segment. Therefore, `charArray[0][2][1] == 'i'`. This definitely isn't in x, y, z order according to the compass in the code block. Ideally we'd access `i` at the (x, y, z) position of (1, 2, 2).
+It's indexed by line first, then by each layer in the line, then by the character order inside each segment. Therefore, `charArray[0][2][1] == 'i'`. This definitely isn't in x, y, z order according to the compass in the code block. Ideally, we'd access `i` at the (x, y, z) position of (1, 2, 2).
 
 ### Axis transformer
 
-So we need to get our characters arranged in Unity's axis layout,in (x, y, z) order. We could use Unity's Matrix4x4 to do this, but I decided to home bake a utility specifically for re-ordering and flipping axises. Either way will work. This is roughly how we'll get the layout we need:
+So we need to get our characters arranged in Unity's axis layout, in (x, y, z) order. We could use Unity's Matrix4x4 to do this, but I decided to home-bake a utility specifically for re-ordering and flipping axes. Either way will work. This is roughly how we'll get the layout we need:
 
 ```csharp
 Array3D<char> TransformLayout(Array3D<char> input) {
@@ -184,13 +184,13 @@ Array3D<char> TransformLayout(Array3D<char> input) {
 
 For this layout we want this DimensionalityTransform: `[-Z][+Y][+X]` . This will end up with a layout where:
 - Z points upwards in the code block
-  - the first index selects Lines, so lines are mapped to the Z axis
+  - the first index selects Lines, so lines are mapped to the Z-axis
   - because lines are ordered from top down in text, so we need to invert to make sure Z increases up the page
 - Y points right across the layers (Layer `Y+1` will be to the right of layer `Y`)
-  - the second index selects divisions between layers, so separate layers are mapped to the Y axis
+  - the second index selects divisions between layers, so separate layers are mapped to the Y-axis
   - the layers are ordered left-to-right, and we want Y to increase to the right, so we do not need to invert
 - X points right inside contiguous character sequences
-  - the third index selects an individual character inside a line + layer, so the character index maps to the x axis
+  - the third index selects an individual character inside a line + layer, so the character index maps to the x-axis
   - char arrays are already ordered left to right, and we want X to increase to the right, so we do not need to invert
 
 Laid out on a 2x2x2 grid, these are the Z, X, and Y coordinate values at every point:
@@ -245,26 +245,26 @@ IEntity CreatePlayer(Vector3Int location) { /* ... */ }
 IEntity CreateWall  (Vector3Int location) { /* ... */ }
 ```
 
-We can chain these 3 components together to create our world builder. To create the world assertion function we can supplement the factory functions. For my purposes I use a hard type-check for EX: a `P` character will verify there is an entity at that position of exact type `Player`. The assertion function is similar to the world building function, but in reverse. Instead of building the world from a string I build a string from the world based on type-checking entities at each position. Then I assert the built string is equal to the expected string. This isn't the only way to build the assertion function, but building up the world string allows us to output that *actual* string as part of the test assertion failure message.
+We can chain these 3 components together to create our world builder. To create the world assertion function we can supplement the factory functions. For my purposes, I use a hard type-check for EX: a `P` character will verify there is an entity at that position of exact type `Player`. The assertion function is similar to the world-building function but in reverse. Instead of building the world from a string I build a string from the world based on type-checking entities at each position. Then I assert the built string is equal to the expected string. This isn't the only way to build the assertion function, but building up the world string allows us to output that *actual* string as part of the test assertion failure message.
 
-As the implementation changes we can attach more complex assertions to those characters in the same way that we attach factory functions to them. It would be trivial to add assertion based on a string tag or the presence of a specific interface implementation. In Gobbies Stole My Ruins, all Pickup items are represented by the same `Pickup` class which contains the actual item to be picked up. So when we see a `Pickup` type in a cell, instead of asserting against the `Pickup` type we actually assert against the type of `Pickup.containedItem`. In the future we could change this implementation detail again without modifying the tests themselves, only the test harness assertions.
+As the implementation changes we can attach more complex assertions to those characters in the same way that we attach factory functions to them. It would be trivial to add assertions based on a string tag or the presence of a specific interface implementation. In Gobbies Stole My Ruins, all Pickup items are represented by the same `Pickup` class which contains the actual item to be picked up. So when we see a `Pickup` type in a cell, instead of asserting against the `Pickup` type we actually assert against the type of `Pickup.containedItem`. In the future we could change this implementation detail again without modifying the tests themselves, only the test harness assertions.
 
 This gives us all the tools we need to build our world from a layout string and assert against it using the same format. To use this approach these are the only functions we need from our game world logic implementation:
 1. Create an entity at a specific grid location, when building the world
 2. Get entities at a specific grid location, when asserting against the world.
 
-Any implementation of a game which supports those functions will attach to these tests. In theory we could even use this with GameObjects as long as they were kept at grid-aligned positions!
+Any implementation of a game that supports those functions will attach to these tests. In theory, we could even use this with GameObjects as long as they were kept at grid-aligned positions!
 
 # Command Pattern
 
-Another useful component of these tests is the command pattern with immutable objects. To some degree this is optional but I believe that these approaches fit together very well in practice. The command pattern manages the entry-points into the system; games with smaller interfaces wouldn't need to go this far. The story is similar for usage of immutability. There is significant developement and performance overhead to implementing and using immutable data structures. But immutability forces many good practices which pay off when building something complex.
+Another useful component of these tests is the command pattern with immutable objects. To some degree this is optional but I believe that these approaches fit together very well in practice. The command pattern manages the entry points into the system; games with smaller interfaces wouldn't need to go this far. The story is similar in the usage of immutability. There is significant development and performance overhead to implementing and using immutable data structures. But immutability forces many good practices which pay off when building something complex.
 
 I'll demonstrate some of these advantages via examples as best I can. I'll focus on the command pattern since immutability is less relevant to the tests themselves and more about the code under test.
 
 
 ## Command Goal
 
-The command pattern will isolate our tests from most changes in our game logic. We would like to reference only a Factory and the ICommand interface in place of references to any part of the game entities. I'll start with a comparitive example:
+The command pattern will isolate our tests from most changes in our game logic. We would like to reference only a Factory and the ICommand interface in place of references to any part of the game entities. I'll start with a comparative example:
 
 ```csharp
 [Test]
@@ -287,7 +287,7 @@ void TestPlayerMovesForward_WithoutCommands() {
 ```
 
 
-Note that the tests which rely on Commands have no references to `Player` or even a `IMove` interface. The test case depends on shared types: `World`, `EntityId`, and `ICommand`. As well as components of the test harness via `CommandFactory`. The command-based test is isolated from the game implementation, indicating that this test case is more maintainable and less likely to require changes when the implementation changes.
+Note that the tests that rely on Commands have no references to `Player` or even a `IMove` interface. The test case depends on shared types: `World`, `EntityId`, and `ICommand`. As well as components of the test harness via `CommandFactory`. The command-based test is isolated from the game implementation, indicating that this test case is more maintainable and less likely to require changes when the implementation changes.
 
 ## Command Implementation
 
@@ -353,7 +353,7 @@ Anything could be inside this command depending on the game's specific implement
 
 ### Aside - benefits of Commands in the game
 
-Lets have a brief look at what commands do for the game outside of tests. In this example we use commands to represent user input rather than making method calls inside the input manager itself. This allowed us to trivially implement input queuing! By queuing the commands and waiting for the previous command to complete before executing the next command, the game never misses an input from the player.
+Let's have a brief look at what commands do for the game outside of tests. In this example, we use commands to represent user input rather than making method calls inside the input manager itself. This allowed us to trivially implement input queuing! By queuing the commands and waiting for the previous command to complete before executing the next command, the game never misses an input from the player.
 
 ```csharp
 class InputManager: MonoBehavior{
@@ -392,11 +392,11 @@ class InputManager: MonoBehavior{
 }
 ```
 
-Many features are unlocked by serialing commands, including:
+Many features are unlocked by serializing commands, including:
 - Input queueing
 - Passing commands over the network
 - Saving commands in a local file
-- Replaying a recorded series of commands to acheive identical world state
+- Replaying a recorded series of commands to achieve identical world state
 - Inspecting commands in other parts of the system with listeners. For example, triggering a sword animation after an AttackCommand listener triggered
 
 # Tying it all together
@@ -441,15 +441,15 @@ XXX --- ---
 }
 ```
 
-So this is what we get by combining all these techniques together. In my opinion this is everything we need it to be:
+So this is what we get by combining all these techniques together. In my opinion, this is everything we need it to be:
 - Highly maintainable. The test has no direct dependencies on implementation details
-  - except for the `GetSingle<Player>` function call. This is allowed for convenience, and is isolated well enough that it could be replaced en masse via a regex replacement.
+  - except for the `GetSingle<Player>` function call. This is allowed for convenience and is isolated well enough that it could be replaced en masse via a regex replacement.
 - Easy to read thanks to the map layout strings
 
 
 ## The TDD Workflow
 
-Lets walk through what a typical update to the application logic would look like from a TDD perspective. We will be adding combat to the game! The player can attack to kill the enemy directly in front of them. If the player doesn't attack, then the enemy will instead attack and kill the player.
+Let's walk through what a typical update to the application logic would look like from a TDD perspective. We will be adding combat to the game! The player can attack to kill the enemy directly in front of them. If the player doesn't attack, then the enemy will instead attack and kill the player.
 
 First, we write the test:
 
@@ -517,15 +517,15 @@ public class MovementCommands {
 }
 ```
 
-At this point, our test is complete: compiling, executing, and failing. The implementation work will involve creating the AttackForwardCommand implementation, and implementing enemies attacking adjacent players. In the course of the implementation we'll replace the contents of the CommandFactory.AttackForward function as well.
+At this point, our test is complete: compiling, executing, and failing. The implementation work will involve creating the AttackForwardCommand implementation and implementing enemies attacking adjacent players. In the course of the implementation, we'll replace the contents of the CommandFactory.AttackForward function as well.
 
-I used this workflow extensively when developing Gobbies Stole My Ruins. My teammate would tell me "wouldn't it be neat if dash allowed you to move over open air, instead of stopping at the first ledge?" . Then I would immediately write the test. If I was working on something already, I would mark the test with a comment, ex:
+I used this workflow extensively when developing Gobbies Stole My Ruins. My teammate would tell me "Wouldn't it be neat if Dash allowed you to move over open air, instead of stopping at the first ledge?". Then I would immediately write the test. If I was working on something already, I would mark the test with a comment, ex:
 ```csharp
 // [Test] TODO Ignored: Until dash off ledge
 ```
-Now I have that feature documented and can switch back to working on what I was before. Later on, I will look through all the ignored test cases, and pick one to uncomment and begin implementing. Sometimes this is linked to our issues board, sometimes not.
+Now I have that feature documented and can switch back to working on what I was before. Later on, I will look through all the ignored test cases, pick one to uncomment, and begin implementing. Sometimes this is linked to our issues board, sometimes not.
 
-The important part is that I can document the feature request in a well-defined way pretty much immediately and without much interruption in flow. And implementing features is entirely contained in the code editor with rigidly defined requirements already set up. I find this makes it very easy to stay focused.
+The important part is that I can document the feature request in a well-defined way pretty much immediately and without much interruption in flow. Implementing features is entirely contained in the code editor with rigidly defined requirements already set up. I find this makes it very easy to stay focused.
 
 ## When to avoid
 
@@ -534,21 +534,21 @@ This approach will only work well for specific types of games. The article is ab
 - Deterministic
   - The game must run the exact same way every time from the same starting conditions
   - If randomness is used it must be based on a random seed such that supplying the same seed results in the same sequence of events
-  - In general this would apply to allowing game logic to be tested *at all*, regardless of the testing framework
+  - In general, this would apply to allowing game logic to be tested *at all*, regardless of the testing framework
 - Grid-aligned
   - Everything under test must align to 2D or 3D grid positions, at creation time and at assertion time
   - All game logic decisions should occur when entities are snapped to their grid positions
-    - Without this requirement, it will eventually become necessary to create or assert against entities which are not grid-aligned.
+    - Without this requirement, it will eventually become necessary to create or assert against entities that are not grid-aligned.
   - This is a looser requirement. We can always round positions to the nearest grid position but this could make our tests flaky.
 
 Consider how we could make Chess fit into this framework. It is an ideal candidate since every game piece occupies a grid square. Every change to the game state is a movement of one piece from one grid square to another grid square. The chess community uses a standard format for commands, too: [Algebraic notation (chess)](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)) (For example, `Be5` bishop moves to e5). We could start writing tests using this command format before we implemented any part of the chess engine at all!
 
-What if we wanted to test something like Minecraft? Minecraft's blocks are all Grid-aligned but the player character is allowed to walk around freely. The zombies and item pickups are also allowed to float free from the grid. Certainly we can say that the player and items are "inside" a certain cube coordinate, but the game will play differently depending on where exactly they are inside that cube. Therefore we could easily test the blocks' interactions but would have trouble testing the players or mobs in the same way. Of course we could use our method to test the blocks' logic alone, but there are edge cases!
+What if we wanted to test something like Minecraft? Minecraft's blocks are all Grid-aligned but the player character is allowed to walk around freely. The zombies and item pickups are also allowed to float free from the grid. Certainly, we can say that the player and items are "inside" a certain cube coordinate, but the game will play differently depending on where exactly they are inside that cube. Therefore we could easily test the blocks' interactions but would have trouble testing the players or mobs in the same way. Of course, we could use our method to test the blocks' logic alone, but there are edge cases!
 
 For example, Minecraft sand will turn into a free-falling entity when the block underneath it is removed. While falling a TNT blast will send it flying on a new trajectory. How would we test that? It would be possible with this method but would depend on precise timing and implementation details of the physics engine. We must consider if the test harness will save us enough time to make up for exceptions to the rule like this.
 
-For a game like Overwatch this testing approach is completely untenable. Movement at every timestep is both tiny in distance **and** gameplay relevant, there's no grid, and everything is highly reliant on implementation details of the physics engine. It may be possible to build a harness that uses the command pattern to represent player moves at best. But any attempt to constrain movement and actions to a grid will be so far from typical gameplay that it would be nearly useless.
+For a game like Overwatch, this testing approach is completely untenable. Movement at every timestep is both tiny in distance **and** gameplay-relevant, there's no grid, and everything is highly reliant on the implementation details of the physics engine. It may be possible to build a harness that uses the command pattern to represent player moves at best. But any attempt to constrain movement and actions to a grid will be so far from typical gameplay that it would be nearly useless.
 
 # Conclusion
 
-Thanks for reading, if you have any feedback I'd love to hear it, contact me in the upper right or open an issue on the github repository for the shared library! I am building a shareable library around these concepts, please have a look if you'd like to dig deeper. Or contribute to the project if you find it useful! See the open-source project here: [link to github](https://github.com/dsmiller95/GridGameTools/blob/main/Assets/Packages/com.dman.grid-game-tools/README.md)
+Thanks for reading, if you have any feedback I'd love to hear it, contact me in the upper right or open an issue on the GitHub repository for the shared library! I am building a shareable library around these concepts, please have a look if you'd like to dig deeper. Or contribute to the project if you find it useful! See the open-source project here: [link to github](https://github.com/dsmiller95/GridGameTools/blob/main/Assets/Packages/com.dman.grid-game-tools/README.md)

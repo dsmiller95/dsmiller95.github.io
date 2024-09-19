@@ -8,7 +8,7 @@ excerpt: A convenient command line tool to cleanup branches with no matching rem
 author: Dan Miller
 ---
 
-If you don't actively clean up old branches in your local git repository, it's very easy for it to get polluted with old branches which have been deleted on the remote repository. In the worst case this will make listing your local branches almost useless! I believe git branch should show a relevant listing of active work that you have checked out, not a list of every branch you've ever checked out locally. Fortunately, there is an easy way around this, if we're willing to put in a little bit of work into automating it.
+If you don't actively clean up old branches in your local git repository, it's very easy for it to get polluted with old branches that been deleted on the remote repository. In the worst case, this will make listing your local branches almost useless! I believe `git branch` should show a relevant listing of active work that you have checked out, not a list of every branch you've ever checked out locally. Fortunately, there is an easy way around this, if we're willing to put in a little bit of work into automating it.
 
 ## TL;DR: Just Give Me the Script
 
@@ -49,7 +49,7 @@ rm branchesToDelete remotes locals
 The process behind identifying dead local branches that we'll use follows a few basic steps:
 
 1. Get lists of remote and local branch names
-2. Compare the lists of branches, and keep only local branches which aren't in the list of remote branches
+2. Compare the lists of branches, and keep only local branches that aren't in the list of remote branches
 3. Since we will be forcing branch deletion, confirm with the user that we have the right branches before deleting
 4. Delete all of the branches resulting from the comparison of the two lists
 
@@ -82,7 +82,7 @@ git branch --format "%(refname:lstrip=2)" > locals
 
 ## Comparing the Lists
 
-The `grep` command is configurable enough to use it for this purpose by using a few command line options. In effect this configuration attempts to exactly match each line in `locals` against every line in remotes, and only output lines from `locals` which do not match.
+The `grep` command is configurable enough to use it for this purpose by using a few command line options. In effect, this configuration attempts to exactly match each line in `locals` against every line in remotes, and only output lines from `locals` which do not match.
 
 ```sh
 cat locals | grep -x -v -f remotes > branchesToDelete
@@ -98,7 +98,7 @@ cat locals | grep -x -v -f remotes > branchesToDelete
 * `-x`
     * Forces grep to only match full lines, instead of the default of partial matches inside of a line
 * `-v`
-    * Inverts the output: typically grep would only output the input lines which match, now it will only output lines which do not match
+    * Inverts the output: typically grep would only output the input lines that match, now it will only output lines that do not match
 * `-f remotes* `
     * Tells grep to attempt to match each input against every line in the `remotes` file
 
@@ -129,7 +129,7 @@ do
 done
 ```
 
-But this has a few problems if we want to start using it more reliably. Most obvious is that it leaves a bunch of files lying around! Let's clean those up by adding a `rm` at the end:
+But this has a few problems if we want to start using it more reliably. The most obvious is that it leaves a bunch of files lying around! Let's clean those up by adding a `rm` at the end:
 
 ```sh
 rm branchesToDelete remotes locals
@@ -186,7 +186,7 @@ To use this script in multiple repositories easily or in any console, it can be 
 
 Copy or create a script to become a git command into your git installation's `/usr/bin/` directory, on Windows it is likely here: `C:\Program Files\Git\usr\bin`.
 
-This can be found on windows by navigating to `/usr/bin/` in a Git bash console, and opening an explorer window at that location with `explorer .`
+This can be found on Windows by navigating to `/usr/bin/` in a Git bash console, and opening an explorer window at that location with `explorer .`
 
 ## Set script name
 
@@ -200,8 +200,8 @@ Now any terminal that has access to regular Git commands will also have access t
 
 # Conclusion
 
-Taking some time to build tools to help yourself or other work a little faster is something that I find can be quite rewarding. I hope that this not only helps clean up your git repos in the future, but also inspires you to look for other ways you can reduce repetitiveness in your workflow with these sorts of tools. Once you start automating things, it's hard to resist continuing to automate.
+Taking some time to build tools to help yourself or others work a little faster is something that I find can be quite rewarding. I hope that this not only helps clean up your git repos in the future but also inspires you to look for other ways you can reduce repetitiveness in your workflow with these sorts of tools. Once you start automating things, it's hard to resist continuing to automate.
 
 # About Me
 
-I started my programming adventure by playing around with development environments such as [Scratch](https://web.archive.org/web/20201128043833/https://scratch.mit.edu/), [Processing](https://web.archive.org/web/20201128043833/https://processing.org/), and [Grobots](https://web.archive.org/web/20201128043833/http://grobots.sourceforge.net/). After making it through college I got started in web development, working with Angular front-ends and NodeJS or C# backends. In my free time I love to play games like Factorio and Noita, or occasionally trying my hand at woodwork.
+I started my programming adventure by playing around with development environments such as [Scratch](https://web.archive.org/web/20201128043833/https://scratch.mit.edu/), [Processing](https://web.archive.org/web/20201128043833/https://processing.org/), and [Grobots](https://web.archive.org/web/20201128043833/http://grobots.sourceforge.net/). After making it through college I got started in web development, working with Angular front-ends and NodeJS or C# backends. In my free time, I love to play games like Factorio and Noita or occasionally try my hand at woodwork.

@@ -74,7 +74,7 @@ Received: 11
 
 # Breaking it up
 
-The next piece we need is something which will control when this function should yield back to the main thread. In order to let all of the JS task queues clear, we have to put our execution onto the bottom of the macro-task queue. We can do that with a setTimeout of a delay of 0: our callback will be called only once everything that was already on the macro-task queue is cleared. We'll use a callback to push the data out to what needs it:
+The next piece we need is something that will control when this function should yield back to the main thread. To let all of the JS task queues clear, we have to put our execution onto the bottom of the macro-task queue. We can do that with a setTimeout of a delay of 0: our callback will be called only once everything that was already on the macro-task queue is cleared. We'll use a callback to push the data out to what needs it:
 
 ```typescript
 function pullFromGenerator<T>(
@@ -162,7 +162,7 @@ function pullFromGenerator<T>(
 
 # Testing it out
 
-Lets make sure this all still works together:
+Let's make sure this all still works together:
 
 ```typescript
 const primeGenerator = pullFromGenerator(getPrimes(3), 100);
@@ -182,7 +182,7 @@ Received: 5
 Created Subscription
 ```
 
-If we change the delay on our function we can see the execution yield back to the main thread. The execution continues on in our script after the first value comes through, then the generator picks back up after yielding.
+If we change the delay on our function we can see the execution yield back to the main thread. The execution continues in our script after the first value comes through, and then the generator picks back up after yielding.
 
 ```typescript
 const primeGenerator = pullFromGenerator(getPrimes(3), 0);
@@ -249,7 +249,7 @@ I used this approach when solving nonograms in my [nonogram designer](https://ds
 
 ## Implementation
 
-To suite the needs of the app, this implementation of the function only emits the very last item in the list. The other items aren't always needed, so to help save time they are not returned. It also adds a second interruptPeriod parameter, which sets the length of time passed into the timeout to allow for a longer period of free time on the UI thread.
+To suit the needs of the app, this implementation of the function only emits the very last item in the list. The other items aren't always needed, so to help save time they are not returned. It also adds a second interruptPeriod parameter, which sets the length of time passed into the timeout to allow for a longer period of free time on the UI thread.
 
 ```typescript
 function getLastItemWithInterrupt<T>(
@@ -284,7 +284,7 @@ function getLastItemWithInterrupt<T>(
 }
 ```
 
-The function is used to switch out different solution computations when new parameters come through. The `keys` observable is updated every time the nonogram design is changed, and the `switchMap` operator will close the the old subscription when a new key comes though. With this setup the solveNonogram function is _always_ working on solving the most recent version of the nonogram design, and it will immediately cancel attempts to solve old versions.
+The function is used to switch out different solution computations when new parameters come through. The `keys` observable is updated every time the nonogram design is changed, and the `switchMap` operator will close the old subscription when a new key comes through. With this setup, the solveNonogram function is _always_ working on solving the most recent version of the nonogram design, and it will immediately cancel attempts to solve old versions.
 
 ```typescript
 function getGridSolutionSummaryObservable(

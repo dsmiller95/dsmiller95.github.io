@@ -110,7 +110,7 @@ class About extends React.Component {
               {/* TODO: add a link to a projects listing page */}
               {/* <h4>Seeb Defender</h4>
               <p>
-                  Check out our upcoming game on steam: <a
+                  Check out our upcoming game on Steam: <a
                   href="https://store.steampowered.com/app/2362660/Seeb_Defender/"
                   className={style.inlineLink}
                   key={"seeb defender steam link"}>Seeb Defender</a>! 
@@ -167,12 +167,12 @@ class About extends React.Component {
                 <p>
                   Senior software engineer at financial startup Dispute and founder of Fraculation LLC.
                   I have 9 years of professional experience and have been writing code since 2010. My most recent experience
-                  is leading development of a real-time financial dispute resolution platform built with C# and dotnet.
-                  Before that, I tought myself real-time application development in C# and Rust, and even ealier I was
-                  a full stack developer in C# and Angular across both AWS and Azure.
+                  is leading the development of a real-time financial dispute resolution platform built with C# and dotnet.
+                  Before that, I taught myself real-time application development in C# and Rust, and even earlier I was
+                  a full-stack developer in C# and Angular across both AWS and Azure.
                 </p><p>
                   Expert in C#, Unity, Terraform, Dotnet, and Typscript. Currently learning Vim, Rust, and Game Development. 
-                  Looking to solve complex and meaninful problems with a team who values autonomy and creativity.
+                  Looking to solve complex and meaningful problems with a team that values autonomy and creativity.
                   Ideally working with Rust or C# on a cloud-native platform or games-adjacent industry on the Individual Contributor track.
                 </p>
                 <ResumeList edges={resumes.edges} />
