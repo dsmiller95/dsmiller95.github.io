@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 19 Sep 2024 16:14:51 GMT</lastBuildDate><item><title><![CDATA[Testing grid-based games]]></title><description><![CDATA[A general approach to writing highly adaptable tests for grid-based games]]></description><link>https://www.fraculation.comblog/tdd-grid-games</link><guid isPermaLink="false">https://www.fraculation.comblog/tdd-grid-gamesTesting grid-based games</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Thu, 25 Apr 2024 00:00:00 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Fraculation's Dev update feed]]></title><description><![CDATA[developers blog]]></description><link>https://www.fraculation.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 19 Sep 2024 17:22:26 GMT</lastBuildDate><item><title><![CDATA[Testing grid-based games]]></title><description><![CDATA[A general approach to writing highly adaptable tests for grid-based games]]></description><link>https://www.fraculation.comblog/tdd-grid-games</link><guid isPermaLink="false">https://www.fraculation.comblog/tdd-grid-gamesTesting grid-based games</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Thu, 25 Apr 2024 00:00:00 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i &lt; sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -197,7 +197,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Overview&quot;), mdx(&quot;p&quot;, null, &quot;I want to share a game development technique I&apos;ve repeated across two game jams (so far), and have found very useful when working on complex game logic. This technique drivings game logic by writing tests first in a way specialized for \&quot;grid-based\&quot; games. \&quot;grid-based\&quot; games include for example: Chess, Connect 4, Tetris, Sokoban, &quot;, mdx(&quot;a&quot;, _extends({
+  })))), &quot;Overview&quot;), mdx(&quot;p&quot;, null, &quot;I want to share a game development technique I&apos;ve repeated across two game jams (so far) and have found very useful when working on complex game logic. This technique drivings game logic by writing tests first in a way specialized for \&quot;grid-based\&quot; games. \&quot;grid-based\&quot; games include for example Chess, Connect 4, Tetris, Sokoban, &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://store.steampowered.com/app/736260/Baba_Is_You/&quot;
@@ -217,7 +217,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://limeblossomjams.itch.io/gobbies-stole-my-ruins&quot;
-  }), &quot;Gobbies Stole my Ruins, a puzzle dungeon crawler&quot;), &quot; .&quot;), mdx(&quot;p&quot;, null, &quot;The logic of grid-based games is a perfect candiate for Test Driven Development: every entity has an exact location and interactions between entities are precisely defined. Most importantly, the state of the game is easily represented in a 2D or 3D array. With a concise way to create an array from a layout string we can build and assert against the entire world in every test.&quot;), mdx(&quot;p&quot;, null, &quot;First, we&apos;ll walk through the two components of this testing paradigm: a highly readable layout string and a command pattern to interact with the game state. Then I&apos;ll close out with a real-world test case from \&quot;Gobbies Stole my Ruins\&quot; along with guidlines for games which will benefit the most from this approach.&quot;), mdx(&quot;h1&quot;, {
+  }), &quot;Gobbies Stole my Ruins, a puzzle dungeon crawler&quot;), &quot;.&quot;), mdx(&quot;p&quot;, null, &quot;The logic of grid-based games is a perfect candidate for Test Driven Development: every entity has an exact location and interactions between entities are precisely defined. Most importantly, the state of the game is easily represented in a 2D or 3D array. With a concise way to create an array from a layout string, we can build and assert against the entire world in every test.&quot;), mdx(&quot;p&quot;, null, &quot;First, we&apos;ll walk through the two components of this testing paradigm: a highly readable layout string and a command pattern to interact with the game state. Then I&apos;ll close out with a real-world test case from \&quot;Gobbies Stole My Ruins\&quot; along with guidelines for games that will benefit the most from this approach.&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;map-layout-string&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -242,7 +242,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Map Layout String&quot;), mdx(&quot;p&quot;, null, &quot;The map layout string should be a readable representation of a whole game map in one string. Our goal will be to look at one of these strings and very quickly understand what the 2D or 3D map would look like. Ideally this makes our tests easy to read and simple to maintain.&quot;), mdx(&quot;h2&quot;, {
+  })))), &quot;Map Layout String&quot;), mdx(&quot;p&quot;, null, &quot;The map layout string should be a readable representation of a whole game map in one string. Our goal will be to look at one of these strings and very quickly understand what the 2D or 3D map would look like. Ideally, this makes our tests easy to read and simple to maintain.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;map-goal&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -275,7 +275,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;-&quot;), &quot; is empty space, and &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;-&quot;), &quot; is an empty space, and &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -294,7 +294,7 @@ return function MDXContent(_ref) {
     src: &quot;/033f397211613c1dc07db9958d21ad72/level_layout_anim.mp4&quot;,
     caption: &quot;Transforming a layered string into 3D space&quot;,
     mdxType: &quot;Video&quot;
-  }), mdx(&quot;p&quot;, null, &quot;To use this format in our tests we&apos;ll whip up two utility functions . &quot;, mdx(&quot;code&quot;, _extends({
+  }), mdx(&quot;p&quot;, null, &quot;To use this format in our tests we&apos;ll whip up two utility functions. &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -429,7 +429,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token comment&quot;
-  }), &quot;/* ... move player forward again ... */&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;/* ... move the player forward again ... */&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token function&quot;
@@ -757,7 +757,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token comment&quot;
-  }), &quot;/* ... move player forward again ... */&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;/* ... move the player forward again ... */&quot;), &quot;\n  &quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token function&quot;
@@ -864,7 +864,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Map Implementation&quot;), mdx(&quot;p&quot;, null, &quot;The map layout string can be built by stringing together a few components. First we must parse the string into a 3D array. From there we transform the axises of this 3D array to match the axis system of the world we are generating. To finish building the world, we need a way to turn a single character into an entity at a given position inside the game world. To this end we&apos;ll use a lookup dictionary of game entity factories keyed by &quot;, mdx(&quot;code&quot;, _extends({
+  })))), &quot;Map Implementation&quot;), mdx(&quot;p&quot;, null, &quot;The map layout string can be built by stringing together a few components. First we must parse the string into a 3D array. From there we transform the axes of this 3D array to match the axis system of the world we are generating. To finish building the world, we need a way to turn a single character into an entity at a given position inside the game world. To this end, we&apos;ll use a lookup dictionary of game entity factories keyed by &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -1255,11 +1255,11 @@ return function MDXContent(_ref) {
     parentName: &quot;pre&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;abc def gih\njkl mno pqr\nstu vwx yz0\n\n    ^\n    N\n&lt; W x E &gt;\n    S\n    v&quot;))), mdx(&quot;p&quot;, null, &quot;Its indexed by line first, then by each layer in the line, then by the character order inside each segment. Therefore, &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;abc def gih\njkl mno pqr\nstu vwx yz0\n\n    ^\n    N\n&lt; W x E &gt;\n    S\n    v&quot;))), mdx(&quot;p&quot;, null, &quot;It&apos;s indexed by line first, then by each layer in the line, then by the character order inside each segment. Therefore, &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;charArray[0][2][1] == &apos;i&apos;&quot;), &quot;. This definitely isn&apos;t in x, y, z order according to the compass in the code block. Ideally we&apos;d access &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;charArray[0][2][1] == &apos;i&apos;&quot;), &quot;. This definitely isn&apos;t in x, y, z order according to the compass in the code block. Ideally, we&apos;d access &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -1288,7 +1288,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Axis transformer&quot;), mdx(&quot;p&quot;, null, &quot;So we need to get our characters arranged in Unity&apos;s axis layout,in (x, y, z) order. We could use Unity&apos;s Matrix4x4 to do this, but I decided to home bake a utility specifically for re-ordering and flipping axises. Either way will work. This is roughly how we&apos;ll get the layout we need:&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;Axis transformer&quot;), mdx(&quot;p&quot;, null, &quot;So we need to get our characters arranged in Unity&apos;s axis layout, in (x, y, z) order. We could use Unity&apos;s Matrix4x4 to do this, but I decided to home-bake a utility specifically for re-ordering and flipping axes. Either way will work. This is roughly how we&apos;ll get the layout we need:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -1625,7 +1625,7 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;the first index selects Lines, so lines are mapped to the Z axis&quot;), mdx(&quot;li&quot;, {
+  }, &quot;the first index selects Lines, so lines are mapped to the Z-axis&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;because lines are ordered from top down in text, so we need to invert to make sure Z increases up the page&quot;))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
@@ -1641,7 +1641,7 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;the second index selects divisions between layers, so separate layers are mapped to the Y axis&quot;), mdx(&quot;li&quot;, {
+  }, &quot;the second index selects divisions between layers, so separate layers are mapped to the Y-axis&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;the layers are ordered left-to-right, and we want Y to increase to the right, so we do not need to invert&quot;))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
@@ -1649,7 +1649,7 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;the third index selects an individual character inside a line + layer, so the character index maps to the x axis&quot;), mdx(&quot;li&quot;, {
+  }, &quot;the third index selects an individual character inside a line + layer, so the character index maps to the x-axis&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;char arrays are already ordered left to right, and we want X to increase to the right, so we do not need to invert&quot;)))), mdx(&quot;p&quot;, null, &quot;Laid out on a 2x2x2 grid, these are the Z, X, and Y coordinate values at every point:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
@@ -2202,7 +2202,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;We can chain these 3 components together to create our world builder. To create the world assertion function we can supplement the factory functions. For my purposes I use a hard type-check for EX: a &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;We can chain these 3 components together to create our world builder. To create the world assertion function we can supplement the factory functions. For my purposes, I use a hard type-check for EX: a &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -2210,9 +2210,9 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;Player&quot;), &quot;. The assertion function is similar to the world building function, but in reverse. Instead of building the world from a string I build a string from the world based on type-checking entities at each position. Then I assert the built string is equal to the expected string. This isn&apos;t the only way to build the assertion function, but building up the world string allows us to output that &quot;, mdx(&quot;em&quot;, {
+  }), &quot;Player&quot;), &quot;. The assertion function is similar to the world-building function but in reverse. Instead of building the world from a string I build a string from the world based on type-checking entities at each position. Then I assert the built string is equal to the expected string. This isn&apos;t the only way to build the assertion function, but building up the world string allows us to output that &quot;, mdx(&quot;em&quot;, {
     parentName: &quot;p&quot;
-  }, &quot;actual&quot;), &quot; string as part of the test assertion failure message.&quot;), mdx(&quot;p&quot;, null, &quot;As the implementation changes we can attach more complex assertions to those characters in the same way that we attach factory functions to them. It would be trivial to add assertion based on a string tag or the presence of a specific interface implementation. In Gobbies Stole My Ruins, all Pickup items are represented by the same &quot;, mdx(&quot;code&quot;, _extends({
+  }, &quot;actual&quot;), &quot; string as part of the test assertion failure message.&quot;), mdx(&quot;p&quot;, null, &quot;As the implementation changes we can attach more complex assertions to those characters in the same way that we attach factory functions to them. It would be trivial to add assertions based on a string tag or the presence of a specific interface implementation. In Gobbies Stole My Ruins, all Pickup items are represented by the same &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -2232,7 +2232,7 @@ return function MDXContent(_ref) {
     parentName: &quot;ol&quot;
   }, &quot;Create an entity at a specific grid location, when building the world&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ol&quot;
-  }, &quot;Get entities at a specific grid location, when asserting against the world.&quot;)), mdx(&quot;p&quot;, null, &quot;Any implementation of a game which supports those functions will attach to these tests. In theory we could even use this with GameObjects as long as they were kept at grid-aligned positions!&quot;), mdx(&quot;h1&quot;, {
+  }, &quot;Get entities at a specific grid location, when asserting against the world.&quot;)), mdx(&quot;p&quot;, null, &quot;Any implementation of a game that supports those functions will attach to these tests. In theory, we could even use this with GameObjects as long as they were kept at grid-aligned positions!&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;command-pattern&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -2257,7 +2257,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Command Pattern&quot;), mdx(&quot;p&quot;, null, &quot;Another useful component of these tests is the command pattern with immutable objects. To some degree this is optional but I believe that these approaches fit together very well in practice. The command pattern manages the entry-points into the system; games with smaller interfaces wouldn&apos;t need to go this far. The story is similar for usage of immutability. There is significant developement and performance overhead to implementing and using immutable data structures. But immutability forces many good practices which pay off when building something complex.&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ll demonstrate some of these advantages via examples as best I can. I&apos;ll focus on the command pattern since immutability is less relevant to the tests themselves and more about the code under test.&quot;), mdx(&quot;h2&quot;, {
+  })))), &quot;Command Pattern&quot;), mdx(&quot;p&quot;, null, &quot;Another useful component of these tests is the command pattern with immutable objects. To some degree this is optional but I believe that these approaches fit together very well in practice. The command pattern manages the entry points into the system; games with smaller interfaces wouldn&apos;t need to go this far. The story is similar in the usage of immutability. There is significant development and performance overhead to implementing and using immutable data structures. But immutability forces many good practices which pay off when building something complex.&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ll demonstrate some of these advantages via examples as best I can. I&apos;ll focus on the command pattern since immutability is less relevant to the tests themselves and more about the code under test.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;command-goal&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -2282,7 +2282,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Command Goal&quot;), mdx(&quot;p&quot;, null, &quot;The command pattern will isolate our tests from most changes in our game logic. We would like to reference only a Factory and the ICommand interface in place of references to any part of the game entities. I&apos;ll start with a comparitive example:&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;Command Goal&quot;), mdx(&quot;p&quot;, null, &quot;The command pattern will isolate our tests from most changes in our game logic. We would like to reference only a Factory and the ICommand interface in place of references to any part of the game entities. I&apos;ll start with a comparative example:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -2677,7 +2677,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Note that the tests which rely on Commands have no references to &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Note that the tests that rely on Commands have no references to &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -3479,7 +3479,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Aside - benefits of Commands in the game&quot;), mdx(&quot;p&quot;, null, &quot;Lets have a brief look at what commands do for the game outside of tests. In this example we use commands to represent user input rather than making method calls inside the input manager itself. This allowed us to trivially implement input queuing! By queuing the commands and waiting for the previous command to complete before executing the next command, the game never misses an input from the player.&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;Aside - benefits of Commands in the game&quot;), mdx(&quot;p&quot;, null, &quot;Let&apos;s have a brief look at what commands do for the game outside of tests. In this example, we use commands to represent user input rather than making method calls inside the input manager itself. This allowed us to trivially implement input queuing! By queuing the commands and waiting for the previous command to complete before executing the next command, the game never misses an input from the player.&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -4046,7 +4046,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Many features are unlocked by serialing commands, including:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Many features are unlocked by serializing commands, including:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Input queueing&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
@@ -4054,7 +4054,7 @@ return function MDXContent(_ref) {
     parentName: &quot;ul&quot;
   }, &quot;Saving commands in a local file&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;Replaying a recorded series of commands to acheive identical world state&quot;), mdx(&quot;li&quot;, {
+  }, &quot;Replaying a recorded series of commands to achieve identical world state&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Inspecting commands in other parts of the system with listeners. For example, triggering a sword animation after an AttackCommand listener triggered&quot;)), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;tying-it-all-together&quot;,
@@ -4396,7 +4396,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;So this is what we get by combining all these techniques together. In my opinion this is everything we need it to be:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;So this is what we get by combining all these techniques together. In my opinion, this is everything we need it to be:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Highly maintainable. The test has no direct dependencies on implementation details&quot;, mdx(&quot;ul&quot;, {
     parentName: &quot;li&quot;
@@ -4406,7 +4406,7 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;GetSingle&lt;Player&gt;&quot;), &quot; function call. This is allowed for convenience, and is isolated well enough that it could be replaced en masse via a regex replacement.&quot;))), mdx(&quot;li&quot;, {
+  }), &quot;GetSingle&lt;Player&gt;&quot;), &quot; function call. This is allowed for convenience and is isolated well enough that it could be replaced en masse via a regex replacement.&quot;))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Easy to read thanks to the map layout strings&quot;)), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;the-tdd-workflow&quot;,
@@ -4433,7 +4433,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;The TDD Workflow&quot;), mdx(&quot;p&quot;, null, &quot;Lets walk through what a typical update to the application logic would look like from a TDD perspective. We will be adding combat to the game! The player can attack to kill the enemy directly in front of them. If the player doesn&apos;t attack, then the enemy will instead attack and kill the player.&quot;), mdx(&quot;p&quot;, null, &quot;First, we write the test:&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;The TDD Workflow&quot;), mdx(&quot;p&quot;, null, &quot;Let&apos;s walk through what a typical update to the application logic would look like from a TDD perspective. We will be adding combat to the game! The player can attack to kill the enemy directly in front of them. If the player doesn&apos;t attack, then the enemy will instead attack and kill the player.&quot;), mdx(&quot;p&quot;, null, &quot;First, we write the test:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -5059,7 +5059,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;At this point, our test is complete: compiling, executing, and failing. The implementation work will involve creating the AttackForwardCommand implementation, and implementing enemies attacking adjacent players. In the course of the implementation we&apos;ll replace the contents of the CommandFactory.AttackForward function as well.&quot;), mdx(&quot;p&quot;, null, &quot;I used this workflow extensively when developing Gobbies Stole My Ruins. My teammate would tell me \&quot;wouldn&apos;t it be neat if dash allowed you to move over open air, instead of stopping at the first ledge?\&quot; . Then I would immediately write the test. If I was working on something already, I would mark the test with a comment, ex:&quot;), mdx(&quot;div&quot;, {
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;At this point, our test is complete: compiling, executing, and failing. The implementation work will involve creating the AttackForwardCommand implementation and implementing enemies attacking adjacent players. In the course of the implementation, we&apos;ll replace the contents of the CommandFactory.AttackForward function as well.&quot;), mdx(&quot;p&quot;, null, &quot;I used this workflow extensively when developing Gobbies Stole My Ruins. My teammate would tell me \&quot;Wouldn&apos;t it be neat if Dash allowed you to move over open air, instead of stopping at the first ledge?\&quot;. Then I would immediately write the test. If I was working on something already, I would mark the test with a comment, ex:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -5074,7 +5074,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token comment&quot;
-  }), &quot;// [Test] TODO Ignored: Until dash off ledge&quot;)))), mdx(&quot;p&quot;, null, &quot;Now I have that feature documented and can switch back to working on what I was before. Later on, I will look through all the ignored test cases, and pick one to uncomment and begin implementing. Sometimes this is linked to our issues board, sometimes not.&quot;), mdx(&quot;p&quot;, null, &quot;The important part is that I can document the feature request in a well-defined way pretty much immediately and without much interruption in flow. And implementing features is entirely contained in the code editor with rigidly defined requirements already set up. I find this makes it very easy to stay focused.&quot;), mdx(&quot;h2&quot;, {
+  }), &quot;// [Test] TODO Ignored: Until dash off ledge&quot;)))), mdx(&quot;p&quot;, null, &quot;Now I have that feature documented and can switch back to working on what I was before. Later on, I will look through all the ignored test cases, pick one to uncomment, and begin implementing. Sometimes this is linked to our issues board, sometimes not.&quot;), mdx(&quot;p&quot;, null, &quot;The important part is that I can document the feature request in a well-defined way pretty much immediately and without much interruption in flow. Implementing features is entirely contained in the code editor with rigidly defined requirements already set up. I find this makes it very easy to stay focused.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;when-to-avoid&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -5109,7 +5109,7 @@ return function MDXContent(_ref) {
     parentName: &quot;ul&quot;
   }, &quot;If randomness is used it must be based on a random seed such that supplying the same seed results in the same sequence of events&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;In general this would apply to allowing game logic to be tested &quot;, mdx(&quot;em&quot;, {
+  }, &quot;In general, this would apply to allowing game logic to be tested &quot;, mdx(&quot;em&quot;, {
     parentName: &quot;li&quot;
   }, &quot;at all&quot;), &quot;, regardless of the testing framework&quot;))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
@@ -5123,7 +5123,7 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;Without this requirement, it will eventually become necessary to create or assert against entities which are not grid-aligned.&quot;))), mdx(&quot;li&quot;, {
+  }, &quot;Without this requirement, it will eventually become necessary to create or assert against entities that are not grid-aligned.&quot;))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;This is a looser requirement. We can always round positions to the nearest grid position but this could make our tests flaky.&quot;)))), mdx(&quot;p&quot;, null, &quot;Consider how we could make Chess fit into this framework. It is an ideal candidate since every game piece occupies a grid square. Every change to the game state is a movement of one piece from one grid square to another grid square. The chess community uses a standard format for commands, too: &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
@@ -5133,9 +5133,9 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;Be5&quot;), &quot; bishop moves to e5). We could start writing tests using this command format before we implemented any part of the chess engine at all!&quot;), mdx(&quot;p&quot;, null, &quot;What if we wanted to test something like Minecraft? Minecraft&apos;s blocks are all Grid-aligned but the player character is allowed to walk around freely. The zombies and item pickups are also allowed to float free from the grid. Certainly we can say that the player and items are \&quot;inside\&quot; a certain cube coordinate, but the game will play differently depending on where exactly they are inside that cube. Therefore we could easily test the blocks&apos; interactions but would have trouble testing the players or mobs in the same way. Of course we could use our method to test the blocks&apos; logic alone, but there are edge cases!&quot;), mdx(&quot;p&quot;, null, &quot;For example, Minecraft sand will turn into a free-falling entity when the block underneath it is removed. While falling a TNT blast will send it flying on a new trajectory. How would we test that? It would be possible with this method but would depend on precise timing and implementation details of the physics engine. We must consider if the test harness will save us enough time to make up for exceptions to the rule like this.&quot;), mdx(&quot;p&quot;, null, &quot;For a game like Overwatch this testing approach is completely untenable. Movement at every timestep is both tiny in distance &quot;, mdx(&quot;strong&quot;, {
+  }), &quot;Be5&quot;), &quot; bishop moves to e5). We could start writing tests using this command format before we implemented any part of the chess engine at all!&quot;), mdx(&quot;p&quot;, null, &quot;What if we wanted to test something like Minecraft? Minecraft&apos;s blocks are all Grid-aligned but the player character is allowed to walk around freely. The zombies and item pickups are also allowed to float free from the grid. Certainly, we can say that the player and items are \&quot;inside\&quot; a certain cube coordinate, but the game will play differently depending on where exactly they are inside that cube. Therefore we could easily test the blocks&apos; interactions but would have trouble testing the players or mobs in the same way. Of course, we could use our method to test the blocks&apos; logic alone, but there are edge cases!&quot;), mdx(&quot;p&quot;, null, &quot;For example, Minecraft sand will turn into a free-falling entity when the block underneath it is removed. While falling a TNT blast will send it flying on a new trajectory. How would we test that? It would be possible with this method but would depend on precise timing and implementation details of the physics engine. We must consider if the test harness will save us enough time to make up for exceptions to the rule like this.&quot;), mdx(&quot;p&quot;, null, &quot;For a game like Overwatch, this testing approach is completely untenable. Movement at every timestep is both tiny in distance &quot;, mdx(&quot;strong&quot;, {
     parentName: &quot;p&quot;
-  }, &quot;and&quot;), &quot; gameplay relevant, there&apos;s no grid, and everything is highly reliant on implementation details of the physics engine. It may be possible to build a harness that uses the command pattern to represent player moves at best. But any attempt to constrain movement and actions to a grid will be so far from typical gameplay that it would be nearly useless.&quot;), mdx(&quot;h1&quot;, {
+  }, &quot;and&quot;), &quot; gameplay-relevant, there&apos;s no grid, and everything is highly reliant on the implementation details of the physics engine. It may be possible to build a harness that uses the command pattern to represent player moves at best. But any attempt to constrain movement and actions to a grid will be so far from typical gameplay that it would be nearly useless.&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;conclusion&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -5160,14 +5160,14 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Conclusion&quot;), mdx(&quot;p&quot;, null, &quot;Thanks for reading, if you have any feedback I&apos;d love to hear it, contact me in the upper right or open an issue on the github repository for the shared library! I am building a shareable library around these concepts, please have a look if you&apos;d like to dig deeper. Or contribute to the project if you find it useful! See the open-source project here: &quot;, mdx(&quot;a&quot;, _extends({
+  })))), &quot;Conclusion&quot;), mdx(&quot;p&quot;, null, &quot;Thanks for reading, if you have any feedback I&apos;d love to hear it, contact me in the upper right or open an issue on the GitHub repository for the shared library! I am building a shareable library around these concepts, please have a look if you&apos;d like to dig deeper. Or contribute to the project if you find it useful! See the open-source project here: &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://github.com/dsmiller95/GridGameTools/blob/main/Assets/Packages/com.dman.grid-game-tools/README.md&quot;
   }), &quot;link to github&quot;)));
 }
 ;
-MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Procedurally generating plant stems]]></title><description><![CDATA[Improving the appearance and performance of runtime-generated branching trees]]></description><link>https://www.fraculation.comblog/trunk-generation</link><guid isPermaLink="false">https://www.fraculation.comblog/trunk-generationProcedurally generating plant stems</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Mon, 05 Sep 2022 12:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Procedurally Generating plant stems]]></title><description><![CDATA[Improving the appearance and performance of runtime-generated branching trees]]></description><link>https://www.fraculation.comblog/trunk-generation</link><guid isPermaLink="false">https://www.fraculation.comblog/trunk-generationProcedurally Generating plant stems</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Mon, 05 Sep 2022 12:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i &lt; sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -5175,7 +5175,7 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 /* @jsx mdx */
 var _frontmatter = {
-  &quot;title&quot;: &quot;Procedurally generating plant stems&quot;,
+  &quot;title&quot;: &quot;Procedurally Generating plant stems&quot;,
   &quot;tags&quot;: [&quot;graphics&quot;, &quot;procGen&quot;],
   &quot;date&quot;: &quot;2022-09-05T12:25:44.226Z&quot;,
   &quot;path&quot;: &quot;blog/trunk-generation&quot;,
@@ -5184,7 +5184,7 @@ var _frontmatter = {
   &quot;author&quot;: &quot;Dan Miller&quot;,
   &quot;projectImages&quot;: [{
     &quot;src&quot;: &quot;./texture-blended-cylinders.mp4&quot;,
-    &quot;description&quot;: &quot;Performant realtime stem generation, with texture mapped uvs blended across multiple seamless texture pages&quot;,
+    &quot;description&quot;: &quot;Performant real-time stem generation, with texture-mapped uvs blended across multiple seamless texture pages&quot;,
     &quot;align&quot;: &quot;left&quot;
   }]
 };
@@ -5234,7 +5234,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Overview&quot;), mdx(&quot;p&quot;, null, &quot;On the road to better looking plants, I finally reached the point where its time to improve the appearance of their trunks. &quot;), mdx(&quot;p&quot;, null, &quot;This system should have very simple inputs, to keep it flexible. The system&apos;s inputs will be a series of points forming a path for each stem, connected to each other in a tree structure. Each point will have an extra dimension attached to them indicating the thickness of the tree at that point. In addition, certain material properties may be passed on such as a pallet index or vertex color. These material properties may or may not be blended by the branch generator system, but they will definitely be passed through to the final mesh&apos;s vertexes. In this way, we are forced to design an algorithm which is highly agnostic and hopefully reusable. For example, when we have a trunk that&apos;s branching into many other stems, we cannot rely on information about which child stem is the \&quot;same\&quot; trunk. All child stems of a branching area are consider equally. This will make it easier to plug into our existing L-system.&quot;), mdx(&quot;h1&quot;, {
+  })))), &quot;Overview&quot;), mdx(&quot;p&quot;, null, &quot;On the road to better-looking plants, I finally reached the point where it was time to improve the appearance of their trunks. &quot;), mdx(&quot;p&quot;, null, &quot;This system should have very simple inputs, to keep it flexible. The system&apos;s inputs will be a series of points forming a path for each stem, connected in a tree structure. Each point will have an extra dimension attached to it indicating the thickness of the tree at that point. In addition, certain material properties may be passed on such as a pallet index or vertex color. These material properties may or may not be blended by the branch generator system, but they will be passed through to the final mesh&apos;s vertexes. In this way, we are forced to design an algorithm that is highly agnostic and hopefully reusable. For example, when we have a trunk that&apos;s branching into many other stems, we cannot rely on information about which child stem is the \&quot;same\&quot; trunk. All child stems of a branching area are considered equally. This will make it easier to plug into our existing L-system.&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;library-setup&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -5259,7 +5259,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Library setup&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ll briefly summarize how extending the L-system library works here. If you just want to get to the generation methods, continue on to the next section!&quot;), mdx(&quot;p&quot;, null, &quot;Since we only care about turning the l-system string into a mesh, we don&apos;t need to worry about extending the l-system update step itself. All we care about is adding a new turtle operation. Unfortunately, in the interest of performance, extending the turtle&apos;s operations requires cracking open the core source code&quot;), mdx(&quot;p&quot;, null, &quot;Luckily the library has some support for this! We just need to write a new TurtleOperationSet scriptable object class, and assign an instance of it to the Turtle. Our first move is to create a new implementation of TurtleOperationSet : this is a base class for any scriptable object used to configure a set of things the turtle can do.&quot;), mdx(&quot;p&quot;, null, &quot;The current workflow to add a new type of turtle operation into the library is a little awkward. Our turtle job indexes all of its operations by a single union struct, indexed by an enum. So to extend the process, we need to add a new type to the enum, and a new union-ed data type into our turtle operation structure representing our stem operation. This diff outlines the changes made to integrate our new operation into the existing turtle system:&quot;), mdx(&quot;details&quot;, null, mdx(&quot;summary&quot;, null, &quot;Turtle execution pattern&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;Library setup&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;ll briefly summarize how extending the L-system library works here. If you just want to get to the generation methods, continue to the next section!&quot;), mdx(&quot;p&quot;, null, &quot;Since we only care about turning the l-system string into a mesh, we don&apos;t need to worry about extending the l-system update step itself. All we care about is adding a new turtle operation. Unfortunately, in the interest of performance, extending the turtle&apos;s operations requires cracking open the core source code.&quot;), mdx(&quot;p&quot;, null, &quot;Luckily the library has some support for this! We just need to write a new TurtleOperationSet scriptable object class and assign an instance of it to the Turtle. Our first move is to create a new implementation of TurtleOperationSet: this is a base class for any scriptable object used to configure a set of things the turtle can do.&quot;), mdx(&quot;p&quot;, null, &quot;The current workflow to add a new type of turtle operation into the library is a little awkward. Our turtle job indexes all of its operations by a single union struct, indexed by an enum. So to extend the process, we need to add a new type to the enum, and a new union-ed data type into our turtle operation structure representing our stem operation. This diff outlines the changes made to integrate our new operation into the existing turtle system:&quot;), mdx(&quot;details&quot;, null, mdx(&quot;summary&quot;, null, &quot;Turtle execution pattern&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;diff&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -7038,7 +7038,7 @@ return function MDXContent(_ref) {
     parentName: &quot;span&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))))), mdx(&quot;p&quot;, null, &quot;With our operation included into the turtle&apos;s lifecycle, now we&apos;re free to start implementing the code and pulling information out of the turtle! If you&apos;d like to dig into the code as it exists in the repository, you can check out all of it on its own branch here: &quot;, mdx(&quot;a&quot;, _extends({
+  }), &quot;}&quot;)))))), mdx(&quot;p&quot;, null, &quot;With our operation included in the turtle&apos;s lifecycle, now we&apos;re free to start implementing the code and pulling information out of the turtle! If you&apos;d like to dig into the code as it exists in the repository, you can check out all of it on its branch here: &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://github.com/dsmiller95/LindenmayerPlantSimulation/tree/custom-stems/Packages/com.dman.l-system/Runtime/UnityObjects/TurtleOperations/TurtleStemTrunkComposite&quot;
@@ -7069,11 +7069,11 @@ return function MDXContent(_ref) {
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
   })))), &quot;Naive approach&quot;), mdx(&quot;p&quot;, null, &quot;This is the current state of the system. To produce the illusion of a single stem, we simply copy the same cylinder mesh multiple times onto the path of the trunk. Ultimately the L-system only outputs a series of oriented points, so this is the natural way to implement stems in that system.&quot;), mdx(&quot;p&quot;, null, &quot;In our example, this looks pretty decent. There are several drawbacks to this approach though:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;Sharp edges when changing scale. At the tree&apos;s base, there are hard edged steps from one trunk diameter to another&quot;), mdx(&quot;li&quot;, {
+  }, &quot;Sharp edges when changing scale. At the tree&apos;s base, there are hard-edged steps from one trunk diameter to another&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Sharp normals when drawing tight curves. The cylinder&apos;s normals have no way to blend with each other, so it becomes very apparent the stem is segmented when the turning radius is tight&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;Breaks in stem at tight curves. When turning tightly there are visible breaks in the stem since this system has no knowledge of corners&quot;), mdx(&quot;li&quot;, {
+  }, &quot;Breaks in the stem at tight curves. When turning tightly there are visible breaks in the stem since this system has no knowledge of corners&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Seamless UV mapping is impossible. As we copy the mesh, we copy the UV coordinates as well. There&apos;s no easy way to use this technique to map a seamless bark texture onto our trunk without significant stretching and warping&quot;)), mdx(Video, {
     src: &quot;/83a8c38a9544ff801f064a7cd5e5a936/basic-mesh-copy.mp4&quot;,
@@ -7104,12 +7104,12 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Welded cylinders&quot;), mdx(&quot;p&quot;, null, &quot;At this point we will abandon the idea of \&quot;copying\&quot; meshes, instead our system will dynamically generate all vertices and triangles for the trunk. Each stem segment will be replaced with only one circle of vertexes, and will draw triangles connecting to the previous stem segment to build the cylinder. The circle&apos;s orientation will come directly from the orientation used to copy the mesh, and triangles will be connected based on angle from the local y-axis. This is how that looks, compared to our previous approach. Note how the corners on the tightly curved fern fronds are much smoother:&quot;), mdx(CompareSlider, {
+  })))), &quot;Welded cylinders&quot;), mdx(&quot;p&quot;, null, &quot;At this point, we will abandon the idea of \&quot;copying\&quot; meshes, instead our system will dynamically generate all vertices and triangles for the trunk. Each stem segment will be replaced with only one circle of vertexes and will draw triangles connecting to the previous stem segment to build the cylinder. The circle&apos;s orientation will come directly from the orientation used to copy the mesh, and triangles will be connected based on the angle from the local y-axis. This is how that looks, compared to our previous approach. Note how the corners on the tightly curved fern fronds are much smoother:&quot;), mdx(CompareSlider, {
     src1: copiedCylinders,
     src2: cylindersScronked,
     loop: false,
     mdxType: &quot;CompareSlider&quot;
-  }), mdx(&quot;p&quot;, null, &quot;This solves some of our problems! We no longer have sharp edges, and the normals blend nicely now that it is all in one connected mesh. No UVs yet. But, there is one problem! We have these weird scronkled regions wherever the tree branches into multiple segments. This is due to the fact that the organs&apos; orientation actually rotate in multiple directions when splitting, this throws off the triangle linking.&quot;), mdx(&quot;h2&quot;, {
+  }), mdx(&quot;p&quot;, null, &quot;This solves some of our problems! We no longer have sharp edges, and the normals blend nicely now that it is all in one connected mesh. No UVs yet. But, there is one problem! We have these weird scronkled regions wherever the tree branches into multiple segments. This is because the organs&apos; orientation rotates in multiple directions when splitting, this throws off the triangle linking.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;descronkling&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -7134,18 +7134,18 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Descronkling&quot;), mdx(&quot;p&quot;, null, &quot;To visualize the base data, I rendered every stem \&quot;point\&quot; orientation as a basic axis visualizer. This comes from using the initial copy-mesh approach, and plugging in an axis indicator mesh. We can see that the orientation rotates nearly 180 degrees wherever the trunk splits:&quot;), mdx(Video, {
+  })))), &quot;Descronkling&quot;), mdx(&quot;p&quot;, null, &quot;To visualize the base data, I rendered every stem \&quot;point\&quot; orientation as a basic axis visualizer. This comes from using the initial copy-mesh approach and plugging in an axis indicator mesh. We can see that the orientation rotates nearly 180 degrees wherever the trunk splits:&quot;), mdx(Video, {
     src: &quot;/0a5638d5caa1d93b1668192547e7c366/orientation-visualization.mp4&quot;,
     caption: &quot;The local orientation of every stem segment in the plant&quot;,
     loop: false,
     mdxType: &quot;Video&quot;
   }), mdx(&quot;p&quot;, null, &quot;We need to find a way to adjust our triangle indexes based on a rotational offset from the previous stem. Unfortunately, this means we must use &quot;, mdx(&quot;em&quot;, {
     parentName: &quot;p&quot;
-  }, &quot;MATH&quot;), &quot; ! Don&apos;t worry though, most of it is handled by Matrix4x4 transformations for us. What we will do is project the y-axis of the next-segment onto the y-z plane of the previous-segment (in our coordinate system, x-axis is forward). Taking the angle between this projected vector and the y-axis vector of the previous-segment plane will give us our offset. Below is the code for this, unfortunately I don&apos;t have a good visualization for this. But I can recommend &quot;, mdx(&quot;a&quot;, _extends({
+  }, &quot;MATH&quot;), &quot; ! Don&apos;t worry though, most of it is handled by Matrix4x4 transformations for us. What we will do is project the y-axis of the next-segment onto the y-z plane of the previous-segment (in our coordinate system, the x-axis is forward). Taking the angle between this projected vector and the y-axis vector of the previous-segment plane will give us our offset. Below is the code for this, unfortunately, I don&apos;t have a good visualization for this. But I can recommend &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://www.falstad.com/dotproduct/&quot;
-  }), &quot;this tool&quot;), &quot; to help build intuition about dot-product&apos;s function.&quot;), mdx(&quot;details&quot;, null, mdx(&quot;summary&quot;, null, &quot;Offset Rotation calculation&quot;), mdx(&quot;div&quot;, {
+  }), &quot;this tool&quot;), &quot; to help build intuition about the dot-product&apos;s function.&quot;), mdx(&quot;details&quot;, null, mdx(&quot;summary&quot;, null, &quot;Offset Rotation calculation&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -7164,7 +7164,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token comment&quot;
-  }), &quot;/// returns a value representing the rotation required to align the y axis of &lt;paramref name=\&quot;next\&quot;/&gt; up as closely as possible to the y axis of &lt;paramref name=\&quot;parent\&quot;/&gt;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;/// returns a value representing the rotation required to align the y-axis of &lt;paramref name=\&quot;next\&quot;/&gt; up as closely as possible to the y-axis of &lt;paramref name=\&quot;parent\&quot;/&gt;&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token comment&quot;
@@ -7759,7 +7759,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token comment&quot;
-  }), &quot;// Add 1 to ensure the value is always positive. overflow will be handled by modulo operator when finding exact index.&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
+  }), &quot;// Add 1 to ensure the value is always positive. Overflow will be handled by the modulo operator when finding the exact index.&quot;), &quot;\n&quot;, mdx(&quot;span&quot;, _extends({
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token class-name&quot;
@@ -7873,7 +7873,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Edge sliding&quot;), mdx(&quot;p&quot;, null, &quot;Much better, we&apos;ve successfully descronkled our fern! There&apos;s one final touch we can improve though. The trunk becomes abruptly narrower when splitting. Currently, the first stem segment after a split is placed directly above the parent stem, so the cylinder downscales and overlaps with itself straight up. This produces the impression that the trunk first gets smaller, then splits in two. Ideally, this downscaling would also be accompanied with a movement in the new forward axis of each child stem segment, to imply that the trunk gets thinner at the same time as it splits off from the main trunk&quot;), mdx(&quot;p&quot;, null, &quot;We can fix this by offsetting all of the vertex circles by 1/2 of their length, effectively sliding the edge loops up along the mesh. Here&apos;s a comparison, it&apos;s a subtle difference but I think it helps. This also bears some benefit to the more tightly curved parts of the stem!&quot;), mdx(CompareSlider, {
+  })))), &quot;Edge sliding&quot;), mdx(&quot;p&quot;, null, &quot;Much better, we&apos;ve successfully descronkled our fern! There&apos;s one final touch we can improve though. The trunk becomes abruptly narrower when splitting. Currently, the first stem segment after a split is placed directly above the parent stem, so the cylinder downscales and overlaps with itself straight up. This produces the impression that the trunk first gets smaller, and then splits in two. Ideally, this downscaling would also be accompanied by a movement in the new forward axis of each child stem segment, to imply that the trunk gets thinner at the same time as it splits off from the main trunk.&quot;), mdx(&quot;p&quot;, null, &quot;We can fix this by offsetting all of the vertex circles by 1/2 of their length, effectively sliding the edge loops up along the mesh. Here&apos;s a comparison, it&apos;s a subtle difference but I think it helps. This also bears some benefit to the more tightly curved parts of the stem!&quot;), mdx(CompareSlider, {
     src1: descronkled,
     src2: circleRingShifted,
     loop: false,
@@ -7903,7 +7903,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;UV Mapping&quot;), mdx(&quot;p&quot;, null, &quot;Another drawback we can now address is seamless texturing! Our goal will be to wrap a seamlessly tiling texture around the trunk, and make sure it blends at least a little reasonably between stem segments and branching. The first approach we can try is wrapping the one axis of the uv map radially around the trunk. Luckily this part is pretty simple, we convert the angle to normalized coordinates in 0..1, and that&apos;s our x-coordinate! Easy... or so I thought. This approach actually requires an extra vertex in our circle mesh. Because UVs interpolate between vertexes, the very last vertex at uv &quot;, mdx(&quot;code&quot;, _extends({
+  })))), &quot;UV Mapping&quot;), mdx(&quot;p&quot;, null, &quot;Another drawback we can now address is seamless texturing! Our goal will be to wrap a seamless tiling texture around the trunk and make sure it blends at least a little reasonably between stem segments and branching. The first approach we can try is wrapping the one axis of the UV map radially around the trunk. Luckily this part is pretty simple, we convert the angle to normalized coordinates in 0..1, and that&apos;s our x-coordinate! Easy... or so I thought. This approach requires an extra vertex in our circle mesh. Because UVs interpolate between vertexes, the very last vertex at uv &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -7911,7 +7911,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;0/5&quot;), &quot; coordinate. So we need to break the mesh at the 0-th vertex, to make sure the uvs interpolate correctly. &quot;), mdx(&quot;p&quot;, null, &quot;This is what we&apos;re missing without our extra vertex. Fixed mesh is on the right, improperly wrapped circle meshes on the left. It might be hard to catch, but sections of the tree on the left are blurrier and stretched due to the UVs interpolating at a higher gradient than they should be. With this issue fixed, the plant is looking pretty decent!&quot;), mdx(CompareSlider, {
+  }), &quot;0/5&quot;), &quot; coordinate. So we need to break the mesh at the 0-th vertex, to make sure the uvs interpolate correctly. &quot;), mdx(&quot;p&quot;, null, &quot;This is what we&apos;re missing without our extra vertex. Fixed mesh is on the right, and improperly wrapped circle meshes are on the left. It might be hard to catch, but sections of the tree on the left are blurrier and stretched due to the UVs interpolating at a higher gradient than they should be. With this issue fixed, the plant is looking pretty decent!&quot;), mdx(CompareSlider, {
     src1: basicMapBrokenWrap,
     src2: basicMapFixedWrap,
     loop: false,
@@ -7941,7 +7941,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Texture Blending&quot;), mdx(&quot;p&quot;, null, &quot;Texture blending between different textures is something we&apos;ll want. The fresh growth tips of a tree never looks the same as the more gnarled, aged bark of the trunk, and we need to represent this smoothly!&quot;), mdx(&quot;p&quot;, null, &quot;To accomplish texture blending, we use the &quot;, mdx(&quot;a&quot;, _extends({
+  })))), &quot;Texture Blending&quot;), mdx(&quot;p&quot;, null, &quot;Texture blending between different textures is something we&apos;ll want. The fresh growth tips of a tree never look the same as the more gnarled, aged bark of the trunk, and we need to represent this smoothly!&quot;), mdx(&quot;p&quot;, null, &quot;To accomplish texture blending, we use the &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://github.com/dsmiller95/LindenmayerPlantSimulation/tree/master/Packages/com.dman.l-system#extra-vertex-data&quot;
@@ -8025,7 +8025,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Performance&quot;), mdx(&quot;p&quot;, null, &quot;Since this is targeting real-time gameplay generation, any change we make must also consider how it affects performance. So, lets pull out the profiler! The meat of the new code we wrote is all inside the jobs threads, so we will compare how long the total mesh-building process takes with a mature tree. Another relevant property is the complexity of the resulting mesh. The previous method&apos;s pentagonal cylinder mesh used a total of 20 vertexes, and 16 triangles: a substantial sum compared to the new method&apos;s 6 vertexes and 10 triangles.&quot;), mdx(&quot;p&quot;, null, &quot;I selected the highest-value time for this process compared across about 10 different samples. This isn&apos;t the best way to gather info, but at least it gives us an idea of any large effects. here are the results:&quot;), mdx(&quot;figure&quot;, {
+  })))), &quot;Performance&quot;), mdx(&quot;p&quot;, null, &quot;Since this is targeting real-time gameplay generation, any change we make must also consider how it affects performance. So, let&apos;s pull out the profiler! The meat of the new code we wrote is all inside the jobs threads, so we will compare how long the total mesh-building process takes with a mature tree. Another relevant property is the complexity of the resulting mesh. The previous method&apos;s pentagonal cylinder mesh used a total of 20 vertexes, and 16 triangles: a substantial sum compared to the new method&apos;s 6 vertexes and 10 triangles.&quot;), mdx(&quot;p&quot;, null, &quot;I selected the highest-value time for this process compared across about 10 different samples. This isn&apos;t the best way to gather info, but at least it gives us an idea of any large effects. Here are the results:&quot;), mdx(&quot;figure&quot;, {
     &quot;className&quot;: &quot;gatsby-resp-image-figure&quot;,
     &quot;style&quot;: {}
   }, &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
@@ -8125,7 +8125,7 @@ return function MDXContent(_ref) {
     parentName: &quot;figure&quot;
   }, {
     &quot;className&quot;: &quot;gatsby-resp-image-figcaption&quot;
-  }), &quot;Final performance&quot;), &quot;\n  &quot;), mdx(&quot;p&quot;, null, &quot;Amazingly, our technique has actually decreased the time to run from 1.2ms to 0.9ms, almost 25% less time! My theory as to why is that even though we do more math per-stem-segment, this is offset by using nearly 1/4 the number of vertexes. The actual writing of data to memory isn&apos;t cheap, and the job generating our mesh bounds scales directly with vertex count. Overall, we see a 62% reduction in vertexes and a 22% reduction in triangles. This will make the resulting mesh much more performant to push onto the GPU, and to copy around in our game if we wish.&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;m very happy this solution does nothing to hamper the game speed, and in fact may speed it up slightly. I should be able to roll this out into Seeb Defender without concerns.&quot;), mdx(&quot;h1&quot;, {
+  }), &quot;Final performance&quot;), &quot;\n  &quot;), mdx(&quot;p&quot;, null, &quot;Amazingly, our technique has decreased the time to run from 1.2ms to 0.9ms, almost 25% less time! My theory as to why is that even though we do more math per stem segment, this is offset by using nearly 1/4 the number of vertexes. The actual writing of data to memory isn&apos;t cheap, and the job generating our mesh bounds scales directly with vertex count. Overall, we see a 62% reduction in vertexes and a 22% reduction in triangles. This will make the resulting mesh much more performant to push onto the GPU and to copy around in our game if we wish.&quot;), mdx(&quot;p&quot;, null, &quot;I&apos;m very happy this solution does nothing to hamper the game speed, and in fact, may speed it up slightly. I should be able to roll this out into Seeb Defender without concerns.&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;wrapping-up&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -8158,13 +8158,13 @@ return function MDXContent(_ref) {
     &quot;href&quot;: &quot;https://docs.speedtree.com/doku.php?id=branchintersections&quot;
   }), &quot;Speed Tree&apos;s&quot;), &quot; branch intersections would be phenomenal, but may not be practical under real-time gameplay constraints.&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ol&quot;
-  }, &quot;Normal blending along with uv mapping could improve smoothing at branch divisions&quot;), mdx(&quot;li&quot;, {
+  }, &quot;Normal blending along with UV mapping could improve smoothing at branch divisions&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ol&quot;
   }, &quot;At the tree&apos;s branching points, the UVs are warped. Since we know an orientation change is happening there, this shifts the UV coordinates along with it. This is trickier to solve than the triangle matching problem, since if we simply remap the UVs for the first rotated circle we will also have to rotate the UVs for the next child circle.&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ol&quot;
   }, &quot;The UVs are stretching out on the especially thin stems. This is because every stem segment wraps the whole texture&apos;s horizontal axis along its circumference, which means as the stems get thinner the texture will necessarily start compressing on itself. We&apos;ll need some way to adaptively tile or wrap textures around the stems to fix this problem.&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ol&quot;
-  }, &quot;Slightly unrelated to the stem generation, but revealed as a problem by this process. It would be ideal if the turtle system and this extension were completely separable. This would make the turtle system open to extension via composition, as opposed to requiring direct modification to the base library to add any new behavior.&quot;)), mdx(&quot;p&quot;, null, &quot;Hopefully at some point in the future, I&apos;ll put up another post looking into at least one of these five improvements. Thanks for reading!&quot;));
+  }, &quot;Slightly unrelated to the stem generation, but revealed as a problem by this process. It would be ideal if the turtle system and this extension were completely separable. This would make the turtle system open to extension via composition, as opposed to requiring direct modification to the base library to add any new behavior.&quot;)), mdx(&quot;p&quot;, null, &quot;Hopefully, in the future, I&apos;ll put up another post looking into at least one of these five improvements. Thanks for reading!&quot;));
 }
 ;
 MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Rendering transparent overlapping meshes only once in URP]]></title><description><![CDATA[Learn how to render overlapping transparent meshes as a single superset polygon, using stencil buffer settings in Unity URP]]></description><link>https://www.fraculation.comblog/overlapping-mesh-render</link><guid isPermaLink="false">https://www.fraculation.comblog/overlapping-mesh-renderRendering transparent overlapping meshes only once in URP</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Sun, 14 Aug 2022 05:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -8208,7 +8208,7 @@ return function MDXContent(_ref) {
   return mdx(MDXLayout, _extends({}, layoutProps, props, {
     components: components,
     mdxType: &quot;MDXLayout&quot;
-  }), mdx(&quot;p&quot;, null, &quot;I found while working on seeb defender that we could use a way to render a bunch of overlapping meshes as if they were one. If these were opaque meshes, this would be no problem: we could just stack them up on top of each other and call it a day. The complication here is that our meshes are transparent. Specifically, we have several flat meshes with a transparent interior and an opaque border. By default the additive transparent interior will stack up until it starts triggering our bloom effect. And the opaque border will overlap with itself and the transparent interior. We would like to only see the border on the edges of the whole overlapping region, and only see a single-layer of the transparent interior otherwise.&quot;), mdx(&quot;h1&quot;, {
+  }), mdx(&quot;p&quot;, null, &quot;I found while working on Seeb Defender that we could use a way to render a bunch of overlapping meshes as if they were one. If these were opaque meshes, this would be no problem: we could just stack them up on top of each other and call it a day. The complication here is that our meshes are transparent. Specifically, we have several flat meshes with a transparent interior and an opaque border. By default, the additive transparent interior will stack up until it starts triggering our bloom effect. The opaque border will overlap with itself and the transparent interior. We would like to only see the border on the edges of the whole overlapping region and only see a single layer of the transparent interior otherwise.&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;initial-setup&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -8308,7 +8308,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Using the Stencil buffer&quot;), mdx(&quot;p&quot;, null, &quot;To only render the infill once, we can use some stencil buffer settings. The stencil buffer is a one byte value stored for every pixel, and can be handy to mask out objects in various ways. In our case we can write a specific value to the stencil buffer when drawing either the infill or the edges material, and only draw to the render output if that specific value is &quot;, mdx(&quot;i&quot;, null, &quot;not&quot;), &quot; already present. In this way, only the first draw in the render queue will actually write to the screen.&quot;), mdx(&quot;p&quot;, null, &quot;For this example we will use URP&apos;s render settings to achieve this without writing any shader code! In other project setups or game engines this may require writing a custom shader to interact with the stencil buffer. But for URP, what we need is all achievable by modifying our Universal Renderer Data asset. This is what the default setup looks like:&quot;), mdx(&quot;figure&quot;, {
+  })))), &quot;Using the Stencil buffer&quot;), mdx(&quot;p&quot;, null, &quot;To only render the infill once, we can use some stencil buffer settings. The stencil buffer is a one-byte value stored for every pixel and can be handy to mask out objects in various ways. In our case, we can write a specific value to the stencil buffer when drawing either the infill or the edges material, and only draw to the render output if that specific value is &quot;, mdx(&quot;i&quot;, null, &quot;not&quot;), &quot; already present. In this way, only the first draw in the render queue will write to the screen.&quot;), mdx(&quot;p&quot;, null, &quot;For this example, we will use URP&apos;s render settings to achieve this without writing any shader code! In other project setups or game engines this may require writing a custom shader to interact with the stencil buffer. But for URP, what we need is all achievable by modifying our Universal Renderer Data asset. This is what the default setup looks like:&quot;), mdx(&quot;figure&quot;, {
     &quot;className&quot;: &quot;gatsby-resp-image-figure&quot;,
     &quot;style&quot;: {}
   }, &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
@@ -8358,15 +8358,15 @@ return function MDXContent(_ref) {
     parentName: &quot;figure&quot;
   }, {
     &quot;className&quot;: &quot;gatsby-resp-image-figcaption&quot;
-  }), &quot;Our window into in-editor rendering config&quot;), &quot;\n  &quot;), mdx(&quot;p&quot;, null, &quot;Lets walk through every change we need to make.&quot;), mdx(&quot;p&quot;, null, &quot;First, we create a new layer \&quot;Transparent Single Layer\&quot; to assign to our ellipses. We remove this from the transparent layer mask of the forward renderer, which prevents anything in this layer from being rendered as normal. After making only this change, none of our meshes should render at all anymore.&quot;), mdx(Video, {
+  }), &quot;Our window into in-editor rendering config&quot;), &quot;\n  &quot;), mdx(&quot;p&quot;, null, &quot;Let&apos;s walk through every change we need to make.&quot;), mdx(&quot;p&quot;, null, &quot;First, we create a new layer \&quot;Transparent Single Layer\&quot; to assign to our ellipses. We remove this from the transparent layer mask of the forward renderer, which prevents anything in this layer from being rendered as normal. After making only this change, none of our meshes should render at all anymore.&quot;), mdx(Video, {
     src: &quot;/0ceb2d364cd4c142a63b242b2b07ab0c/turn_off_mask.mp4&quot;,
     caption: &quot;Excluding the Transparent Single Layer causes it to no longer render&quot;,
     mdxType: &quot;Video&quot;
-  }), mdx(&quot;p&quot;, null, &quot;Next, we add a new render feature (Render Objects) and name it \&quot;Single Layer Transparent\&quot;. We set the layer mask to only our previously excluded \&quot;Single-Layer transparent\&quot; layer, so that this feature will only render our target meshes. In addition, we put it in the Transparent queue and hook it to the BeforeRenderingTransparents event so it renders along with all other transparent objects. At this point our meshes are visible again! Although they look exactly as before, now we will be able to control their render settings directly.&quot;), mdx(Video, {
+  }), mdx(&quot;p&quot;, null, &quot;Next, we add a new render feature (Render Objects) and name it \&quot;Single Layer Transparent\&quot;. We set the layer mask to only our previously excluded \&quot;Single-Layer transparent\&quot; layer so that this feature will only render our target meshes. In addition, we put it in the Transparent queue and hook it to the BeforeRenderingTransparents event so it renders along with all other transparent objects. At this point, our meshes are visible again! Although they look exactly as before, now we will be able to control their render settings directly.&quot;), mdx(Video, {
     src: &quot;/72213d3ca0ec087e1c75e669fd26d61d/add_render_feature.mp4&quot;,
     caption: &quot;By adding a render feature, we control how a specific layer renders&quot;,
     mdxType: &quot;Video&quot;
-  }), mdx(&quot;p&quot;, null, &quot;Finally it&apos;s Stencil time! We can check the stencil checkbox under overrides on our render objects feature. These overrides configure interaction with the stencil buffer. For every pixel, our selected value will be compared against the stencil buffer, determining if the shader will run on this pixel or not. If the compare function is True the shader has passed the stencil test, otherwise it fails. We also specify how to modify the stencil buffer, based on if we have passed or failed the stencil test! In addition, if the stencil test does not pass then no colors will be rendered to the screen. This is similar to how the depth buffer works, but is indented for customization. For more details on how the stencil buffer works, see the &quot;, mdx(&quot;a&quot;, _extends({
+  }), mdx(&quot;p&quot;, null, &quot;Finally, it&apos;s Stencil time! We can check the stencil checkbox under overrides on our render objects feature. These overrides configure interaction with the stencil buffer. For every pixel, our selected value will be compared against the stencil buffer, determining if the shader will run on this pixel or not. If the compare function is True the shader has passed the stencil test, otherwise it fails. We also specify how to modify the stencil buffer, based on if we have passed or failed the stencil test! In addition, if the stencil test does not pass then no colors will be rendered to the screen. This is similar to how the depth buffer works but is indented for customization. For more details on how the stencil buffer works, see the &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://docs.unity3d.com/Manual/SL-Stencil.html&quot;
@@ -8420,7 +8420,7 @@ return function MDXContent(_ref) {
     parentName: &quot;figure&quot;
   }, {
     &quot;className&quot;: &quot;gatsby-resp-image-figcaption&quot;
-  }), &quot;the default stencil overrides&quot;), &quot;\n  &quot;), mdx(&quot;p&quot;, null, &quot;To configure our stencil override, lets pick a value of 1. We could pick any value here, as long as its not 0 (the default value in the stencil buffer). Our pass should write this value to the stencil buffer when it is rendered, and then only render when this value has &quot;, mdx(&quot;i&quot;, null, &quot;not&quot;), &quot; already been written. To achieve this, the compare should be Not Equal, on Pass we Replace the stencil buffer with our value of 1. On Fail we Keep whatever is already in the stencil buffer. Lets leave Z-Fail as-is at Keep, in our case we do want to retain depth-ordering.&quot;), mdx(&quot;figure&quot;, {
+  }), &quot;the default stencil overrides&quot;), &quot;\n  &quot;), mdx(&quot;p&quot;, null, &quot;To configure our stencil override, let&apos;s pick a value of 1. We could pick any value here, as long as it&apos;s not 0 (the default value in the stencil buffer). Our pass should write this value to the stencil buffer when it is rendered, and then only render when this value has &quot;, mdx(&quot;i&quot;, null, &quot;not&quot;), &quot; already been written. To achieve this, the compare should be Not Equal, on Pass we Replace the stencil buffer with our value of 1. On Fail we Keep whatever is already in the stencil buffer. Let&apos;s leave Z-Fail as-is at Keep, in our case we do want to retain depth-ordering.&quot;), mdx(&quot;figure&quot;, {
     &quot;className&quot;: &quot;gatsby-resp-image-figure&quot;,
     &quot;style&quot;: {}
   }, &quot;\n    &quot;, mdx(&quot;span&quot;, _extends({
@@ -8573,15 +8573,15 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;And we&apos;re done! Or are we? With this configuration applied to our overlapping meshes it is true they are only rendering once to the screen. We can tell because we see no bloom effects kicking in anymore. However we still see some of the edges rendering where we want only the infill to render. This comes down to render order: by default, all meshes are ordered based on distance from the camera. We can see camera position affecting our render by moving around in our scene view:&quot;), mdx(Video, {
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;And we&apos;re done! Or are we? With this configuration applied to our overlapping meshes, it is true they are only rendering once to the screen. We can tell because we see no bloom effects kicking in anymore. However, we still see some of the edges rendering where we want only the infill to render. This comes down to render order: by default, all meshes are ordered based on distance from the camera. We can see the camera position affecting our render by moving around in our scene view:&quot;), mdx(Video, {
     src: &quot;/360dbacfe13b0bdbfdbdbea19bfdfd85/moving_overlaps.mp4&quot;,
     caption: &quot;The meshes default rendering causes them to be ordered differently based on how we look at them&quot;,
     mdxType: &quot;Video&quot;
-  }), mdx(&quot;p&quot;, null, &quot;This effect is interesting, but it&apos;s not what we want. Fortunately there is a way to force materials to be rendered in a different order relative to each other. By modifying the Priority on our edges material we can tell the render pipeline to render our edges after rendering the infill, so they will only render on pixels which the infill did not render onto already.&quot;), mdx(Video, {
+  }), mdx(&quot;p&quot;, null, &quot;This effect is interesting, but it&apos;s not what we want. Fortunately, there is a way to force materials to be rendered in a different order relative to each other. By modifying the Priority on our edges material we can tell the render pipeline to render our edges after rendering the infill, so they will only render on pixels that the infill did not render onto already.&quot;), mdx(Video, {
     src: &quot;/e9a18c330ae5891437c8d7e0746cbead/set_material_priority.mp4&quot;,
     caption: &quot;By adjusting the material property of the edge, we can cause it to render and check the stencil buffer after the infill material renders&quot;,
     mdxType: &quot;Video&quot;
-  }), mdx(&quot;p&quot;, null, &quot;with a priority of 1, we complete the effect!&quot;), mdx(&quot;h3&quot;, {
+  }), mdx(&quot;p&quot;, null, &quot;With a priority of 1, we complete the effect!&quot;), mdx(&quot;h3&quot;, {
     &quot;id&quot;: &quot;in-game-example&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -8606,14 +8606,14 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;In Game example&quot;), mdx(&quot;p&quot;, null, &quot;This is an animated example of what this technique was used for in seeb defender. The overlapping meshes are used to indicate the total range of each plant defense tower. Each plant has multiple weapons, each with their own unique range. Rendering all of these ranges on their own can quickly become very visually noisy, rendering them as if they were one range makes the net threat range of the tower much easier to parse.&quot;), mdx(&quot;p&quot;, null, &quot;The left side of this animation is what the ranges looked like before this technique, rendering the whole 3D range of every weapon. These 3D ranges would test the depth buffer, and render as a different color when they are close to another surface. This would help highlight the threat range of the towers, but also can be quite distracting when they overlap with each other significantly.&quot;), mdx(Video, {
+  })))), &quot;In Game example&quot;), mdx(&quot;p&quot;, null, &quot;This is an animated example of what this technique was used for in Seeb Defender. The overlapping meshes are used to indicate the total range of each plant defense tower. Each plant has multiple weapons, each with its unique range. Rendering all of these ranges on their own can quickly become very visually noisy, rendering them as if they were one range makes the net threat range of the tower much easier to parse.&quot;), mdx(&quot;p&quot;, null, &quot;The left side of this animation is what the ranges looked like before this technique, rendering the whole 3D range of every weapon. These 3D ranges would test the depth buffer, and render as a different color when they are close to another surface. This would help highlight the threat range of the towers, but also can be quite distracting when they overlap with each other significantly.&quot;), mdx(Video, {
     src: &quot;/db82fc82504e79ff2c47029a7e199112/range-anim.mp4&quot;,
     caption: &quot;Animation comparing previous results to new improved results&quot;,
     mdxType: &quot;Video&quot;
   }));
 }
 ;
-MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Scene-aware unity Save system]]></title><description><![CDATA[Explore the implementation of a Unity save system which exploits the hierarchy of game objects]]></description><link>https://www.fraculation.comblog/scene-save-system</link><guid isPermaLink="false">https://www.fraculation.comblog/scene-save-systemScene-aware unity Save system</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Thu, 11 Aug 2022 05:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Scene-aware Unity Save system]]></title><description><![CDATA[Explore the implementation of a Unity save system that exploits the hierarchy of game objects]]></description><link>https://www.fraculation.comblog/scene-save-system</link><guid isPermaLink="false">https://www.fraculation.comblog/scene-save-systemScene-aware Unity Save system</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Thu, 11 Aug 2022 05:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i &lt; sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) &gt;= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -8621,12 +8621,12 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 /* @jsx mdx */
 var _frontmatter = {
-  &quot;title&quot;: &quot;Scene-aware unity Save system&quot;,
+  &quot;title&quot;: &quot;Scene-aware Unity Save system&quot;,
   &quot;tags&quot;: [&quot;tooling&quot;, &quot;unity&quot;],
   &quot;date&quot;: &quot;2022-08-11T05:25:44.226Z&quot;,
   &quot;path&quot;: &quot;blog/scene-save-system&quot;,
   &quot;cover&quot;: &quot;./preview.png&quot;,
-  &quot;excerpt&quot;: &quot;Explore the implementation of a Unity save system which exploits the hierarchy of game objects&quot;,
+  &quot;excerpt&quot;: &quot;Explore the implementation of a Unity save system that exploits the hierarchy of game objects&quot;,
   &quot;author&quot;: &quot;Dan Miller&quot;
 };
 
@@ -8648,7 +8648,7 @@ return function MDXContent(_ref) {
   return mdx(MDXLayout, _extends({}, layoutProps, props, {
     components: components,
     mdxType: &quot;MDXLayout&quot;
-  }), mdx(&quot;p&quot;, null, &quot;Saving game state is an important part of any game, and can get messy or cumbersome depending on how it is managed. I&apos;ve designed a custom save system to isolate this difficulty, while remaining lightweight enough to handle whatever I need in the games I&apos;ve been working on. I also decided to make it open source, you can get it on &quot;, mdx(&quot;a&quot;, _extends({
+  }), mdx(&quot;p&quot;, null, &quot;Saving game state is an important part of any game, and can get messy or cumbersome depending on how it is managed. I&apos;ve designed a custom save system to isolate this difficulty while remaining lightweight enough to handle whatever I need in the games I&apos;ve been working on. I also decided to make it open source, you can get it on &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://openupm.com/packages/com.dman.scene-save-system/&quot;
@@ -8798,7 +8798,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;To rehydrate this data, the singleton inventory slots must be custom coded to pull from their unique property. However, to get the inventory bar instantiated, we will need a manager to handle iterating over the individual inventory slots, making sure that there are the correct number of slots instantiated. This gets even more complicated if we decide that we want to save other information alongside the inventory slots, for example, custom text input by the player. With this approach, we would have to change our saved data model every time any new component is added to the inventory slot.&quot;), mdx(&quot;h2&quot;, {
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;To rehydrate this data, the singleton inventory slots must be custom-coded to pull from their unique property. However, to get the inventory bar instantiated, we will need a manager to handle iterating over the individual inventory slots, making sure that there is the correct number of slots instantiated. This gets even more complicated if we decide that we want to save other information alongside the inventory slots, for example, custom text input by the player. With this approach, we would have to change our saved data model every time any new component is added to the inventory slot.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;a-generic-solution&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -8823,7 +8823,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;A Generic Solution&quot;), mdx(&quot;p&quot;, null, &quot;With our problem case illustrated, lets think about what we can do to solve the generic case. From the example, we already have two things we want to support: specific \&quot;singleton\&quot; instances in a scene, and collections of instances nested under specific game objects. And, we would like the component which owns data to be context-agnostic. We shouldn&apos;t make any code changes to a component based on whether it is saved as a singleton instance, or reproduced as part of a collection of instances. The approach I went with was splitting the scene up into scopes, and saving the data in each scope separately.&quot;), mdx(&quot;h3&quot;, {
+  })))), &quot;A Generic Solution&quot;), mdx(&quot;p&quot;, null, &quot;With our problem case illustrated, let&apos;s think about what we can do to solve the generic case. From the example, we already have two things we want to support: specific \&quot;singleton\&quot; instances in a scene, and collections of instances nested under specific game objects. And, we would like the component which owns data to be context-agnostic. We shouldn&apos;t make any code changes to a component based on whether it is saved as a singleton instance, or reproduced as part of a collection of instances. The approach I went with was splitting the scene up into scopes, and saving the data in each scope separately.&quot;), mdx(&quot;h3&quot;, {
     &quot;id&quot;: &quot;scoping&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -8848,7 +8848,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Scoping&quot;), mdx(&quot;p&quot;, null, &quot;Our scopes will be embedded within the game object hierarchy. When saving data, every component in a save scope must have a unique ID to map data back to the component. This would be a problem with only one scope, but when we deal with nested scopes, it becomes pretty easy to work with.&quot;), mdx(&quot;p&quot;, null, &quot;Any game object which is a direct child of the scene will be considered in the &quot;, mdx(&quot;i&quot;, null, &quot;scene scope&quot;), &quot;, and unless otherwise specified all game objects will be in the same scope as their parent. We will create new scopes whenever we have a collection of saved objects, such that every individual item in the collection has its own scope. Since each item will be an instance of a prefab, we will mark their parents as a &quot;, mdx(&quot;i&quot;, null, &quot;prefab parent&quot;), &quot;.&quot;), mdx(&quot;p&quot;, null, &quot;All children of &quot;, mdx(&quot;i&quot;, null, &quot;prefab parents&quot;), &quot; are considered to have their own scope. A prefab parent has a unique ID in its scope, but since each prefab child it has is its own scope, all of their identifiers only need to be unique to that one prefab! This means when designing a prefab such as an inventory slot, we do need to make sure components inside the prefab have unique IDs, but that&apos;s it. No need to check collision with other UI elements in the scene.&quot;), mdx(&quot;p&quot;, null, &quot;Here&apos;s an example of what the game object hierarchy of our example might look like, with all scopes colored uniquely:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+  })))), &quot;Scoping&quot;), mdx(&quot;p&quot;, null, &quot;Our scopes will be embedded within the game object hierarchy. When saving data, every component in a save scope must have a unique ID to map data back to the component. This would be a problem with only one scope, but when we deal with nested scopes, it becomes pretty easy to work with.&quot;), mdx(&quot;p&quot;, null, &quot;Any game object that is a direct child of the scene will be considered in the &quot;, mdx(&quot;i&quot;, null, &quot;scene scope&quot;), &quot;, and unless otherwise specified all game objects will be in the same scope as their parent. We will create new scopes whenever we have a collection of saved objects, such that every individual item in the collection has its own scope. Since each item will be an instance of a prefab, we will mark their parents as a &quot;, mdx(&quot;i&quot;, null, &quot;prefab parent&quot;), &quot;.&quot;), mdx(&quot;p&quot;, null, &quot;All children of &quot;, mdx(&quot;i&quot;, null, &quot;prefab parents&quot;), &quot; are considered to have their own scope. A prefab parent has a unique ID in its scope, but since each prefab child it has is its own scope, all of their identifiers only need to be unique to that one prefab! This means when designing a prefab such as an inventory slot, we do need to make sure components inside the prefab have unique IDs, but that&apos;s it. No need to check collision with other UI elements in the scene.&quot;), mdx(&quot;p&quot;, null, &quot;Here&apos;s an example of what the game object hierarchy of our example might look like, with all scopes colored uniquely:&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, mdx(&quot;span&quot;, {
     style: {
@@ -8925,7 +8925,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Prefab Instancing&quot;), mdx(&quot;p&quot;, null, &quot;We&apos;ve outlined the basics of how scoping slices our scene up into manageable chunks. This is most important part, but there are some details left. How exactly will we know what prefab to instantiate? We can use scriptable objects! We create a special scriptable object which only holds an ID, and associate instances of this with any prefab we want to be saved. When saving the prefab instance we can simply save the ID of that prefab, and to rehydrate we will look up the prefab asset by its ID before instantiating.&quot;), mdx(&quot;h3&quot;, {
+  })))), &quot;Prefab Instancing&quot;), mdx(&quot;p&quot;, null, &quot;We&apos;ve outlined the basics of how scoping slices our scene up into manageable chunks. This is the most important part, but there are some details left. How exactly will we know what prefab to instantiate? We can use scriptable objects! We create a special scriptable object which only holds an ID, and associate instances of this with any prefab we want to be saved. When saving the prefab instance we can simply save the ID of that prefab, and to rehydrate we will look up the prefab asset by its ID before instantiating.&quot;), mdx(&quot;h3&quot;, {
     &quot;id&quot;: &quot;individual-save-components&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -9069,7 +9069,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token punctuation&quot;
-  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Any implementing class must expose a unique identifier, often it suffices to return a constant name of the component&apos;s class. If multiple instances of the component are in the same scope however, a string text field should be exposed in the editor to be manually altered. This would benefit from an editor extension which automatically checks for colliding unique IDs, if collisions end up happening often.&quot;), mdx(&quot;p&quot;, null, &quot;The only GetSaveObject method has the component return a serializable data object to be saved by the save system. This save object will then be passed into the SetupFromSaveObject method when loading save state again. So from the component perspective, all it needs to know is how to serialize its state and how to apply that serialized state to itself again.&quot;), mdx(&quot;h3&quot;, {
+  }), &quot;}&quot;)))), mdx(&quot;p&quot;, null, &quot;Any implementing class must expose a unique identifier, often it suffices to return a constant name of the component&apos;s class. If multiple instances of the component are in the same scope, however, a string text field should be exposed in the editor to be manually altered. This would benefit from an editor extension that automatically checks for colliding unique IDs if collisions end up happening often.&quot;), mdx(&quot;p&quot;, null, &quot;The only GetSaveObject method has the component return a serializable data object to be saved by the save system. This save object will then be passed into the SetupFromSaveObject method when loading the save state again. So from the component perspective, all it needs to know is how to serialize its state and how to apply that serialized state to itself again.&quot;), mdx(&quot;h3&quot;, {
     &quot;id&quot;: &quot;wrapping-it-up&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -9102,7 +9102,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;saveable.SetupFromSaveObject(saveScopeData[saveable.UniqueSaveIdentifier])&quot;), &quot; .&quot;), mdx(&quot;p&quot;, null, &quot;With this new save system setup, the work of saving objects and repeated duplicates of objects is offloaded into the hierarchies in the scene. In addition, it reinforces separation of concerns! Any system in-game can implement this interface, and no special controller/manager is required.&quot;));
+  }), &quot;saveable.SetupFromSaveObject(saveScopeData[saveable.UniqueSaveIdentifier])&quot;), &quot; .&quot;), mdx(&quot;p&quot;, null, &quot;With this new save system setup, the work of saving objects and repeated duplicates of objects is offloaded into the hierarchies in the scene. In addition, it reinforces the separation of concerns! Any system in-game can implement this interface, and no special controller/manager is required.&quot;));
 }
 ;
 MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Implementing Efficient Lindenmayer Systems in unity]]></title><description><![CDATA[Overview of an optimized l-system implementation allowing for rapid updates]]></description><link>https://www.fraculation.comblog/lindenmayer-implementation</link><guid isPermaLink="false">https://www.fraculation.comblog/lindenmayer-implementationImplementing Efficient Lindenmayer Systems in unity</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Wed, 10 Aug 2022 05:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -9126,11 +9126,11 @@ var _frontmatter = {
     &quot;align&quot;: &quot;center&quot;
   }, {
     &quot;src&quot;: &quot;./examples/light-seeker.mp4&quot;,
-    &quot;description&quot;: &quot;Sunlight-seeking behavior enabled by high resolution sunlight simulation&quot;,
+    &quot;description&quot;: &quot;Sunlight-seeking behavior enabled by high-resolution sunlight simulation&quot;,
     &quot;align&quot;: &quot;center&quot;
   }, {
     &quot;src&quot;: &quot;./examples/tree-video.mp4&quot;,
-    &quot;description&quot;: &quot;A bush emitting pollen from its flowers. The L-system can integrate with DOTS to spawn ingame objects with high efficiency&quot;,
+    &quot;description&quot;: &quot;A bush emitting pollen from its flowers. The L-system can integrate with DOTS to spawn in-game objects with high efficiency&quot;,
     &quot;align&quot;: &quot;center&quot;
   }]
 };
@@ -9163,7 +9163,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;src&quot;: &quot;https://badgen.net/badge/icon/github?icon=github&amp;label&quot;,
     &quot;alt&quot;: &quot;GitHub&quot;
-  })))), mdx(&quot;p&quot;, null, &quot;In my work on Seeb Defender I needed to find a way to simulate the growth of plants, especially plants who&apos;s behavior can be reconfigured during runtime. After doing some research I reached for L-Systems, and what follows is an overview of how I started and then optimized my implementation.&quot;), mdx(&quot;h2&quot;, {
+  })))), mdx(&quot;p&quot;, null, &quot;In my work on Seeb Defender, I needed to find a way to simulate the growth of plants, especially plants whose behavior can be reconfigured during runtime. After doing some research, I reached for L-Systems, and what follows is an overview of how I started and then optimized my implementation.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;examples&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -9188,7 +9188,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Examples&quot;), mdx(&quot;p&quot;, null, &quot;Some examples of what is possible with an optimized L-system, these are all recorded in real-time.&quot;), mdx(SlickCarousel, {
+  })))), &quot;Examples&quot;), mdx(&quot;p&quot;, null, &quot;Some examples of what is possible with an optimized L-system, these are all recorded in real time.&quot;), mdx(SlickCarousel, {
     settings: {
       infinite: true,
       slidesToShow: 1,
@@ -9199,13 +9199,13 @@ return function MDXContent(_ref) {
     },
     images: [{
       src: fieldFlower,
-      alt: &quot;a fractal plant can grow large in only a handful of steps&quot;
+      alt: &quot;A fractal plant can grow large in only a handful of steps&quot;
     }, {
       src: treeVid,
       alt: &quot;A bush grows more aggressively in areas facing the sun&quot;
     }, {
       src: lightSeeker,
-      alt: &quot;vines grow towards a moving light source&quot;
+      alt: &quot;Vines grow towards a moving light source&quot;
     }, {
       src: fractal,
       alt: &quot;Unique coloration is possible by assigning color parameters from inside the L-system, interpreted by a pallet shader&quot;
@@ -9239,7 +9239,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;What is an L-system?&quot;), mdx(&quot;p&quot;, null, &quot;An L-system is defined as a set of replacement rules which will replace specific characters in a string with their replacement string, producing a new combined output string.&quot;), mdx(&quot;p&quot;, null, &quot;A basic example is a model of algal growth. In this example there are 2 symbols: A and B, representing a mature algae cell and an immature cell respectively. By configuring the rules of the l-system, we can simulate exponential growth:&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;What is an L-system?&quot;), mdx(&quot;p&quot;, null, &quot;An L-system is a set of replacement rules that will replace specific characters in a string with their replacement string, producing a new combined output string.&quot;), mdx(&quot;p&quot;, null, &quot;A basic example is a model of algal growth. In this example, there are 2 symbols: A and B, representing a mature algae cell and an immature cell respectively. By configuring the rules of the l-system, we can simulate exponential growth:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;text&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -9293,9 +9293,9 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;parametric l-systems attach numeric parameters to the symbols of its state&quot;), mdx(&quot;li&quot;, {
+  }, &quot;parametric l-systems attach numeric parameters to the symbols of their state&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;these parameters can be \&quot;captured\&quot; when replacing a symbol, and used to determine the parametric state of the next symbols&quot;))), mdx(&quot;li&quot;, {
+  }, &quot;these parameters can be \&quot;captured\&quot; when replacing a symbol and used to determine the parametric state of the next symbols&quot;))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, mdx(&quot;a&quot;, _extends({
     parentName: &quot;li&quot;
@@ -9305,7 +9305,7 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;context sensitive rules inspect the symbols adjacent to the one being replaced&quot;), mdx(&quot;li&quot;, {
+  }, &quot;context-sensitive rules inspect the symbols adjacent to the one being replaced&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;advanced usage will allow matching whole branching structures&quot;)))), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;implementation-overview&quot;,
@@ -9332,11 +9332,11 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Implementation overview&quot;), mdx(&quot;p&quot;, null, &quot;The full system is composed of three parts: the rule parsing system, the symbolic update engine, and the turtle rendering system. &quot;), mdx(&quot;p&quot;, null, &quot;The rule parsing system translates all the replacement data into NativeArrays after parsing. Since it only runs once per l-system, optimization of this system has a lower priority and won&apos;t be discussed in depth here. Suffice to say the output is a set of native data structures accessible from Burst-compiled jobs. For more details on rule syntax, see &quot;, mdx(&quot;a&quot;, _extends({
+  })))), &quot;Implementation overview&quot;), mdx(&quot;p&quot;, null, &quot;The full system is composed of three parts: the rule parsing system, the symbolic update engine, and the turtle rendering system. &quot;), mdx(&quot;p&quot;, null, &quot;The rule parsing system translates all the replacement data into NativeArrays after parsing. Since it only runs once per l-system, optimization of this system has a lower priority and won&apos;t be discussed in depth here. Suffice it to say the output is a set of native data structures accessible from Burst-compiled jobs. For more details on rule syntax, see &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://github.com/dsmiller95/LindenmayerPlantSimulation/tree/master/Packages/com.dman.l-system#l-system-language&quot;
-  }), &quot;the documentation&quot;), &quot;.&quot;), mdx(&quot;p&quot;, null, &quot;The symbolic update engine will generate next-states from input-states. A naive implementation of this engine iterates over every character in the input state, adding its replacement to the end of the output state string builder. Our implementation will take advantage of the fact that all of the replacements happen independently of each other, lending itself to parallelization.&quot;), mdx(&quot;p&quot;, null, &quot;The turtle rendering system will actually render the l-system states. Its name comes from \&quot;Turtle graphics\&quot; in which a single \&quot;turtle\&quot; will walk through a space following a series of commands such as &quot;, mdx(&quot;i&quot;, null, &quot;move forward 1 unit&quot;), &quot;, &quot;, mdx(&quot;i&quot;, null, &quot;turn right&quot;), &quot;, or &quot;, mdx(&quot;i&quot;, null, &quot;decrease scale&quot;), &quot;. In order to render branches, the symbols &apos;&quot;, &quot;[&apos; and &apos;]&quot;, &quot;&apos; are used to tell the turtle to push its current position and orientation onto a stack, or return to a previous state. By arranging movement commands interspersed with commands placing a mesh in 3D space, a turtle can trace out a whole plant from one string of characters.&quot;), mdx(&quot;h2&quot;, {
+  }), &quot;the documentation&quot;), &quot;.&quot;), mdx(&quot;p&quot;, null, &quot;The symbolic update engine will generate next-states from input-states. A naive implementation of this engine iterates over every character in the input state, adding its replacement to the end of the output state string builder. Our implementation will take advantage of the fact that all of the replacements happen independently of each other, lending itself to parallelization.&quot;), mdx(&quot;p&quot;, null, &quot;The turtle rendering system will render the l-system states. Its name comes from \&quot;Turtle graphics\&quot; in which a single \&quot;turtle\&quot; will walk through space following a series of commands such as &quot;, mdx(&quot;i&quot;, null, &quot;move forward 1 unit&quot;), &quot;, &quot;, mdx(&quot;i&quot;, null, &quot;turn right&quot;), &quot;, or &quot;, mdx(&quot;i&quot;, null, &quot;decrease scale&quot;), &quot;. To render branches, the symbols &apos;&quot;, &quot;[&apos; and &apos;]&quot;, &quot;&apos; are used to tell the turtle to push its current position and orientation onto a stack, or return to a previous state. By arranging movement commands interspersed with commands and placing a mesh in 3D space, a turtle can trace out a whole plant from one string of characters.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;symbolic-update-engine&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -9361,7 +9361,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Symbolic Update Engine&quot;), mdx(&quot;p&quot;, null, &quot;Before digging in too deep, first lets describe what data we&apos;re dealing with here.&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
+  })))), &quot;Symbolic Update Engine&quot;), mdx(&quot;p&quot;, null, &quot;Before digging in too deep, first let&apos;s describe what data we&apos;re dealing with here.&quot;), mdx(&quot;ul&quot;, null, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, &quot;Input String&quot;, mdx(&quot;ul&quot;, {
     parentName: &quot;li&quot;
@@ -9387,7 +9387,7 @@ return function MDXContent(_ref) {
     parentName: &quot;ul&quot;
   }, &quot;a matching character, which this rule will replace&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;a string of characters which will replace the matching character in the output string&quot;)))))), mdx(&quot;p&quot;, null, &quot;To optimize the update engine, we can follow two strategies. First, we will parallelize the process as much as possible. Second, we will adapt the process to run closer to the metal of the processer by converting all work into Unity&apos;s Burst-compiled Jobs. However, designing burstable jobs is not too complex for basic L-systems, the real complexity there is encountered when supporting contextual and parametric grammars. We won&apos;t discuss many details of Burst, instead focusing on what it takes to run in parallel Jobs.&quot;), mdx(&quot;p&quot;, null, &quot;Parallelizing the basic L-System seems almost trivial. Every character in the input string can determine its own replacement independent of all the other characters&apos; replacements. Even in all of the L-system variant extensions, replacing each character will only require inspecting adjacent characters in the &quot;, mdx(&quot;i&quot;, null, &quot;input&quot;), &quot; string.&quot;), mdx(&quot;p&quot;, null, &quot;However, there is one complication we will run into. Some characters can be replaced with nothing, others can be replaced with more than one characters. Thus, we do not know how long the output string will be, and where each individual character&apos;s replacement will be copied into the output string. We can resolve this by seperating the process into three jobs, and returning once to the main thread to perform an allocation.&quot;), mdx(&quot;p&quot;, null, &quot;In the first job, we match every character against all of the replacement rules and cache the ID of the matching rule, if any. Since we are storing an ID, we only need a NativeArray parallel to the input string to store this information. The process runs once per character in the input string, and the output space is well-defined, so this job can run as a IJobParallelFor!&quot;), mdx(&quot;p&quot;, null, &quot;Second, we iterate over the matched IDs and add up the replacement rule&apos;s lengths, effectively determining how to pack all of the replacement data into the output NativeArray. This isn&apos;t parallelized, but it is a very quick iteration. Once we have packed the replacements into the output NativeArray, then back on the main thread we can allocate memory which will fit our replacements exactly. And we can run another parallel job to just copy the data over into the newly allocated output string.&quot;), mdx(&quot;p&quot;, null, &quot;The whole process can be represented as psuedocode:&quot;), mdx(&quot;details&quot;, null, mdx(&quot;summary&quot;, null, &quot;Symbol Update Engine code&quot;), mdx(&quot;div&quot;, {
+  }, &quot;a string of characters which will replace the matching character in the output string&quot;)))))), mdx(&quot;p&quot;, null, &quot;To optimize the update engine, we can follow two strategies. First, we will parallelize the process as much as possible. Second, we will adapt the process to run closer to the metal of the processor by converting all work into Unity&apos;s Burst-compiled Jobs. However, designing burstable jobs is not too complex for basic L-systems, the real complexity there is encountered when supporting contextual and parametric grammars. We won&apos;t discuss many details of Burst, instead focusing on what it takes to run in parallel Jobs.&quot;), mdx(&quot;p&quot;, null, &quot;Parallelizing the basic L-System seems almost trivial. Every character in the input string can determine its own replacement independent of all the other characters&apos; replacements. Even in all of the L-system variant extensions, replacing each character will only require inspecting adjacent characters in the &quot;, mdx(&quot;i&quot;, null, &quot;input&quot;), &quot; string.&quot;), mdx(&quot;p&quot;, null, &quot;However, there is one complication we will run into. Some characters can be replaced with nothing, others can be replaced with more than one character. Thus, we do not know how long the output string will be, and where each individual character&apos;s replacement will be copied into the output string. We can resolve this by separating the process into three jobs and returning once to the main thread to perform an allocation.&quot;), mdx(&quot;p&quot;, null, &quot;In the first job, we match every character against all of the replacement rules and cache the ID of the matching rule, if any. Since we are storing an ID, we only need a NativeArray parallel to the input string to store this information. The process runs once per character in the input string, and the output space is well-defined, so this job can run as an IJobParallelFor!&quot;), mdx(&quot;p&quot;, null, &quot;Second, we iterate over the matched IDs and add up the replacement rule&apos;s lengths, effectively determining how to pack all of the replacement data into the output NativeArray. This isn&apos;t parallelized, but it is a very quick iteration. Once we have packed the replacements into the output NativeArray, then back on the main thread we can allocate memory which will fit our replacements exactly. And we can run another parallel job to just copy the data over into the newly allocated output string.&quot;), mdx(&quot;p&quot;, null, &quot;The whole process can be represented as pseudocode:&quot;), mdx(&quot;details&quot;, null, mdx(&quot;summary&quot;, null, &quot;Symbol Update Engine code&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;csharp&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -10795,7 +10795,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Turtle Rendering System&quot;), mdx(&quot;p&quot;, null, &quot;At a high level, the turtle system will be responsible for placing component Organs into a final resulting mesh. These following animations illustrate how the turtle walks along a path, leaving behind a trail. In our implementation, the trail will in fact be copies of 3D meshes.&quot;), mdx(SlickCarousel, {
+  })))), &quot;Turtle Rendering System&quot;), mdx(&quot;p&quot;, null, &quot;At a high level, the turtle system will be responsible for placing component Organs into a final resulting mesh. The following animations illustrate how the turtle walks along a path, leaving behind a trail. In our implementation, the trail will in fact be copies of 3D meshes.&quot;), mdx(SlickCarousel, {
     settings: {
       infinite: true,
       slidesToShow: 1,
@@ -10805,13 +10805,13 @@ return function MDXContent(_ref) {
     },
     images: [{
       src: turtle,
-      alt: &quot;a turtle follows simple commands to trace out a trail&quot;
+      alt: &quot;A turtle follows simple commands to trace out a trail&quot;
     }, {
       src: turtleStar,
-      alt: &quot;with clever instruction use, the turtle can trace more complex objects&quot;
+      alt: &quot;With clever instruction use, the turtle can trace more complex objects&quot;
     }],
     mdxType: &quot;SlickCarousel&quot;
-  }), mdx(&quot;p&quot;, null, &quot;Its less clear how to parallelize the turtle system. Its nature is inherently single-threaded: the turtle \&quot;walks\&quot; along the input string, modifying its own state as it goes. This part of the system should be single-threaded. Our goal here is to offload as much work as possible into a more parallelizable form, so that the only work that occurs on the first job is that which cannot be done in parallel.&quot;), mdx(&quot;p&quot;, null, &quot;The biggest piece of work we can offload is the building of the 3D mesh out of component organ instances. If we configure the first turtle job to output a list of positions of each mesh type to copy, we can employ the same technique used in the symbolic update engine to pack the vertexes into the output mesh! Once we know which meshes need to be copied into the output mesh and how to position them, we allocate all the mesh space and copy the component organ meshes into the output mesh in parallel.&quot;), mdx(&quot;h2&quot;, {
+  }), mdx(&quot;p&quot;, null, &quot;It&apos;s less clear how to parallelize the turtle system. Its nature is inherently single-threaded: the turtle \&quot;walks\&quot; along the input string, modifying its own state as it goes. This part of the system should be single-threaded. Our goal here is to offload as much work as possible into a more parallelizable form so that the only work that occurs on the first job is that which cannot be done in parallel.&quot;), mdx(&quot;p&quot;, null, &quot;The biggest piece of work we can offload is the building of the 3D mesh out of component organ instances. If we configure the first turtle job to output a list of positions of each mesh type to copy, we can employ the same technique used in the symbolic update engine to pack the vertexes into the output mesh! Once we know which meshes need to be copied into the output mesh and how to position them, we allocate all the mesh space and copy the component organ meshes into the output mesh in parallel.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;future-improvements&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -10836,7 +10836,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Future improvements&quot;), mdx(&quot;p&quot;, null, &quot;After converting most of the processing into parallelized jobs, most of the further optimizations from here out involve moving work into hardware which specializes in highly parallel jobs: the GPU! An obvious target for this would be the last step of the turtle job. Instead of uploading a whole mesh into the GPU, we could upload data about the component organs as a sort of point cloud. A particle shader in the GPU could do the same work that&apos;s being done on the CPU, turning those points into triangles to render.&quot;), mdx(&quot;p&quot;, null, &quot;In theory parts of the Symbolic Update Engine could also be run on the GPU. All of the heavy lifting is done in parallel jobs, which could be translated into compute shaders, with the re-allocation happening between frames as it currently does. One of the main difficulties with this will be the complexity of the system, due to supporting context-sensitive and parametric grammars in the replacement rules.&quot;));
+  })))), &quot;Future improvements&quot;), mdx(&quot;p&quot;, null, &quot;After converting most of the processing into parallelized jobs, most of the further optimizations from here out involve moving work into hardware that specializes in highly parallel jobs: the GPU! An obvious target for this would be the last step of the turtle job. Instead of uploading a whole mesh into the GPU, we could upload data about the component organs as a point cloud. A particle shader in the GPU could do the same work that&apos;s being done on the CPU, turning those points into triangles to render.&quot;), mdx(&quot;p&quot;, null, &quot;In theory, parts of the Symbolic Update Engine could also be run on the GPU. All of the heavy lifting is done in parallel jobs, which could be translated into compute shaders, with the re-allocation happening between frames as it currently does. One of the main difficulties with this will be the complexity of the system, due to supporting context-sensitive and parametric grammars in the replacement rules.&quot;));
 }
 ;
 MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Seeb Defender]]></title><description><![CDATA[Overview of Seeb Defender]]></description><link>https://www.fraculation.comblog/seeb-defender-project</link><guid isPermaLink="false">https://www.fraculation.comblog/seeb-defender-projectSeeb Defender</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Tue, 09 Aug 2022 05:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -10864,7 +10864,7 @@ var _frontmatter = {
     &quot;align&quot;: &quot;center&quot;
   }, {
     &quot;src&quot;: &quot;./07 research-tree-zoomed-out.png&quot;,
-    &quot;description&quot;: &quot;A deep research tree, populated with runtime generated plant examples&quot;,
+    &quot;description&quot;: &quot;A deep research tree, populated with runtime-generated plant examples&quot;,
     &quot;align&quot;: &quot;left&quot;
   }]
 };
@@ -10901,32 +10901,32 @@ return function MDXContent(_ref) {
       alt: &quot;growing a few plants in the greenhouse&quot;
     }, {
       src: mov01,
-      alt: &quot;the plant&apos;s morphology is highly diverse&quot;
+      alt: &quot;The plant&apos;s morphology is highly diverse&quot;
     }, {
       src: pic02,
-      alt: &quot;a modest defense against invaders&quot;
+      alt: &quot;A modest defense against invaders&quot;
     }, {
       src: pic03,
       alt: &quot;a portion of the research tree&quot;
     }, {
       src: pic04,
-      alt: &quot;a bomber turret firing on invaders&quot;
+      alt: &quot;A bomber turret firing on invaders&quot;
     }, {
       src: pic05,
-      alt: &quot;a bomber turret firing on invaders&quot;
+      alt: &quot;A bomber turret firing on invaders&quot;
     }, {
       src: pic06,
-      alt: &quot;an epic defense mounted by a large bush&quot;
+      alt: &quot;An epic defense mounted by a large bush&quot;
     }, {
       src: pic07,
-      alt: &quot;an epic defense mounted by a large bush&quot;
+      alt: &quot;An epic defense mounted by a large bush&quot;
     }],
     mdxType: &quot;SlickCarousel&quot;
   }), mdx(&quot;p&quot;, null, &quot;Join the &quot;, mdx(&quot;a&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://discord.gg/a78gs33vk5&quot;
-  }), &quot;Discord&quot;), &quot; for access to alpha builds!&quot;), mdx(&quot;p&quot;, null, &quot;Play a tower defense game with unique plants you have bred to the task. Seeb defender features fully simulated plant genetics and growth, where the player chooses how to crossbreed plants and bring out increasingly useful genes.&quot;), mdx(&quot;p&quot;, null, &quot;Using ingenuity and a discerning eye, learn what tower combinations are the most powerful, and what type of plant is best suited to support each type of weapon. Breed a plant with thorns to become long and snaking to ensnare the enemies. Or carefully select the siblings of a peashooter plant for longer range and more leaves to collect sunlight.&quot;), mdx(&quot;p&quot;, null, &quot;Find a plant with a high chlorophyll content, and interbreed it with other plants to improve their damage output. Slowly grow your bank of genes you have bred, and eventually unlock the ability to directly modify your plants genes!&quot;));
+  }), &quot;Discord&quot;), &quot; for access to alpha builds!&quot;), mdx(&quot;p&quot;, null, &quot;Play a tower defense game with unique plants you have bred to the task. Seeb Defender features fully simulated plant genetics and growth, where the player chooses how to crossbreed plants and bring out increasingly useful genes.&quot;), mdx(&quot;p&quot;, null, &quot;Using ingenuity and a discerning eye, learn what tower combinations are the most powerful, and what type of plant is best suited to support each type of weapon. Breed a plant with thorns to become long and snaking to ensnare the enemies. Or carefully select the siblings of a peashooter plant for a longer range and more leaves to collect sunlight.&quot;), mdx(&quot;p&quot;, null, &quot;Find a plant with a high chlorophyll content, and interbreed it with other plants to improve their damage output. Slowly grow your bank of genes you have bred, and eventually unlock the ability to directly modify your plant&apos;s genes!&quot;));
 }
 ;
 MDXContent.isMDXComponent = true;</content:encoded></item><item><title><![CDATA[Emulating multi-threading in javascript using generators]]></title><description><![CDATA[Learn a handy hack to run expensive code on the UI thread.]]></description><link>https://www.fraculation.comblog/javascript-multi-threading</link><guid isPermaLink="false">https://www.fraculation.comblog/javascript-multi-threadingEmulating multi-threading in javascript using generators</guid><dc:creator><![CDATA[Dan Miller]]></dc:creator><pubDate>Sun, 31 May 2020 05:25:44 GMT</pubDate><content:encoded>function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i &lt; arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -11786,7 +11786,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Breaking it up&quot;), mdx(&quot;p&quot;, null, &quot;The next piece we need is something which will control when this function should yield back to the main thread. In order to let all of the JS task queues clear, we have to put our execution onto the bottom of the macro-task queue. We can do that with a setTimeout of a delay of 0: our callback will be called only once everything that was already on the macro-task queue is cleared. We&apos;ll use a callback to push the data out to what needs it:&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;Breaking it up&quot;), mdx(&quot;p&quot;, null, &quot;The next piece we need is something that will control when this function should yield back to the main thread. To let all of the JS task queues clear, we have to put our execution onto the bottom of the macro-task queue. We can do that with a setTimeout of a delay of 0: our callback will be called only once everything that was already on the macro-task queue is cleared. We&apos;ll use a callback to push the data out to what needs it:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;typescript&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -13067,7 +13067,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Testing it out&quot;), mdx(&quot;p&quot;, null, &quot;Lets make sure this all still works together:&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;Testing it out&quot;), mdx(&quot;p&quot;, null, &quot;Let&apos;s make sure this all still works together:&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;typescript&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -13273,7 +13273,7 @@ return function MDXContent(_ref) {
     parentName: &quot;pre&quot;
   }, {
     &quot;className&quot;: &quot;language-none&quot;
-  }), &quot;Created generator\nGenerated: 2\nReceived: 2\nGenerated: 3\nReceived: 3\nGenerated: 5\nReceived: 5\nCreated Subscription&quot;))), mdx(&quot;p&quot;, null, &quot;If we change the delay on our function we can see the execution yield back to the main thread. The execution continues on in our script after the first value comes through, then the generator picks back up after yielding.&quot;), mdx(&quot;div&quot;, {
+  }), &quot;Created generator\nGenerated: 2\nReceived: 2\nGenerated: 3\nReceived: 3\nGenerated: 5\nReceived: 5\nCreated Subscription&quot;))), mdx(&quot;p&quot;, null, &quot;If we change the delay on our function we can see the execution yield back to the main thread. The execution continues in our script after the first value comes through, and then the generator picks back up after yielding.&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;typescript&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -14003,7 +14003,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Implementation&quot;), mdx(&quot;p&quot;, null, &quot;To suite the needs of the app, this implementation of the function only emits the very last item in the list. The other items aren&apos;t always needed, so to help save time they are not returned. It also adds a second interruptPeriod parameter, which sets the length of time passed into the timeout to allow for a longer period of free time on the UI thread.&quot;), mdx(&quot;div&quot;, {
+  })))), &quot;Implementation&quot;), mdx(&quot;p&quot;, null, &quot;To suit the needs of the app, this implementation of the function only emits the very last item in the list. The other items aren&apos;t always needed, so to help save time they are not returned. It also adds a second interruptPeriod parameter, which sets the length of time passed into the timeout to allow for a longer period of free time on the UI thread.&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
     &quot;data-language&quot;: &quot;typescript&quot;
   }, mdx(&quot;pre&quot;, _extends({
@@ -14586,7 +14586,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;switchMap&quot;), &quot; operator will close the the old subscription when a new key comes though. With this setup the solveNonogram function is &quot;, mdx(&quot;em&quot;, {
+  }), &quot;switchMap&quot;), &quot; operator will close the old subscription when a new key comes through. With this setup, the solveNonogram function is &quot;, mdx(&quot;em&quot;, {
     parentName: &quot;p&quot;
   }, &quot;always&quot;), &quot; working on solving the most recent version of the nonogram design, and it will immediately cancel attempts to solve old versions.&quot;), mdx(&quot;div&quot;, {
     &quot;className&quot;: &quot;gatsby-highlight&quot;,
@@ -14789,7 +14789,11 @@ return function MDXContent(_ref) {
   return mdx(MDXLayout, _extends({}, layoutProps, props, {
     components: components,
     mdxType: &quot;MDXLayout&quot;
-  }), mdx(&quot;p&quot;, null, &quot;If you don&apos;t actively clean up old branches in your local git repository, it&apos;s very easy for it to get polluted with old branches which have been deleted on the remote repository. In the worst case this will make listing your local branches almost useless! I believe git branch should show a relevant listing of active work that you have checked out, not a list of every branch you&apos;ve ever checked out locally. Fortunately, there is an easy way around this, if we&apos;re willing to put in a little bit of work into automating it.&quot;), mdx(&quot;h2&quot;, {
+  }), mdx(&quot;p&quot;, null, &quot;If you don&apos;t actively clean up old branches in your local git repository, it&apos;s very easy for it to get polluted with old branches that been deleted on the remote repository. In the worst case, this will make listing your local branches almost useless! I believe &quot;, mdx(&quot;code&quot;, _extends({
+    parentName: &quot;p&quot;
+  }, {
+    &quot;className&quot;: &quot;language-text&quot;
+  }), &quot;git branch&quot;), &quot; should show a relevant listing of active work that you have checked out, not a list of every branch you&apos;ve ever checked out locally. Fortunately, there is an easy way around this, if we&apos;re willing to put in a little bit of work into automating it.&quot;), mdx(&quot;h2&quot;, {
     &quot;id&quot;: &quot;tldr-just-give-me-the-script&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -15142,7 +15146,7 @@ return function MDXContent(_ref) {
     parentName: &quot;ol&quot;
   }, &quot;Get lists of remote and local branch names&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ol&quot;
-  }, &quot;Compare the lists of branches, and keep only local branches which aren&apos;t in the list of remote branches&quot;), mdx(&quot;li&quot;, {
+  }, &quot;Compare the lists of branches, and keep only local branches that aren&apos;t in the list of remote branches&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ol&quot;
   }, &quot;Since we will be forcing branch deletion, confirm with the user that we have the right branches before deleting&quot;), mdx(&quot;li&quot;, {
     parentName: &quot;ol&quot;
@@ -15321,7 +15325,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;grep&quot;), &quot; command is configurable enough to use it for this purpose by using a few command line options. In effect this configuration attempts to exactly match each line in &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;grep&quot;), &quot; command is configurable enough to use it for this purpose by using a few command line options. In effect, this configuration attempts to exactly match each line in &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -15416,7 +15420,7 @@ return function MDXContent(_ref) {
     parentName: &quot;li&quot;
   }, mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
-  }, &quot;Inverts the output: typically grep would only output the input lines which match, now it will only output lines which do not match&quot;))), mdx(&quot;li&quot;, {
+  }, &quot;Inverts the output: typically grep would only output the input lines that match, now it will only output lines that do not match&quot;))), mdx(&quot;li&quot;, {
     parentName: &quot;ul&quot;
   }, mdx(&quot;code&quot;, _extends({
     parentName: &quot;li&quot;
@@ -15670,7 +15674,7 @@ return function MDXContent(_ref) {
     parentName: &quot;code&quot;
   }, {
     &quot;className&quot;: &quot;token keyword&quot;
-  }), &quot;done&quot;)))), mdx(&quot;p&quot;, null, &quot;But this has a few problems if we want to start using it more reliably. Most obvious is that it leaves a bunch of files lying around! Let&apos;s clean those up by adding a &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;done&quot;)))), mdx(&quot;p&quot;, null, &quot;But this has a few problems if we want to start using it more reliably. The most obvious is that it leaves a bunch of files lying around! Let&apos;s clean those up by adding a &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -16098,7 +16102,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
-  }), &quot;C:\\Program Files\\Git\\usr\\bin&quot;), &quot;.&quot;), mdx(&quot;p&quot;, null, &quot;This can be found on windows by navigating to &quot;, mdx(&quot;code&quot;, _extends({
+  }), &quot;C:\\Program Files\\Git\\usr\\bin&quot;), &quot;.&quot;), mdx(&quot;p&quot;, null, &quot;This can be found on Windows by navigating to &quot;, mdx(&quot;code&quot;, _extends({
     parentName: &quot;p&quot;
   }, {
     &quot;className&quot;: &quot;language-text&quot;
@@ -16193,7 +16197,7 @@ return function MDXContent(_ref) {
   }, {
     &quot;fillRule&quot;: &quot;evenodd&quot;,
     &quot;d&quot;: &quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;
-  })))), &quot;Conclusion&quot;), mdx(&quot;p&quot;, null, &quot;Taking some time to build tools to help yourself or other work a little faster is something that I find can be quite rewarding. I hope that this not only helps clean up your git repos in the future, but also inspires you to look for other ways you can reduce repetitiveness in your workflow with these sorts of tools. Once you start automating things, it&apos;s hard to resist continuing to automate.&quot;), mdx(&quot;h1&quot;, {
+  })))), &quot;Conclusion&quot;), mdx(&quot;p&quot;, null, &quot;Taking some time to build tools to help yourself or others work a little faster is something that I find can be quite rewarding. I hope that this not only helps clean up your git repos in the future but also inspires you to look for other ways you can reduce repetitiveness in your workflow with these sorts of tools. Once you start automating things, it&apos;s hard to resist continuing to automate.&quot;), mdx(&quot;h1&quot;, {
     &quot;id&quot;: &quot;about-me&quot;,
     &quot;style&quot;: {
       &quot;position&quot;: &quot;relative&quot;
@@ -16230,7 +16234,7 @@ return function MDXContent(_ref) {
     parentName: &quot;p&quot;
   }, {
     &quot;href&quot;: &quot;https://web.archive.org/web/20201128043833/http://grobots.sourceforge.net/&quot;
-  }), &quot;Grobots&quot;), &quot;. After making it through college I got started in web development, working with Angular front-ends and NodeJS or C# backends. In my free time I love to play games like Factorio and Noita, or occasionally trying my hand at woodwork.&quot;));
+  }), &quot;Grobots&quot;), &quot;. After making it through college I got started in web development, working with Angular front-ends and NodeJS or C# backends. In my free time, I love to play games like Factorio and Noita or occasionally try my hand at woodwork.&quot;));
 }
 ;
 MDXContent.isMDXComponent = true;</content:encoded></item></channel></rss>
