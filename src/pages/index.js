@@ -165,7 +165,7 @@ class About extends React.Component {
               </div>
               <div className={style.memberDesc}>
                 <p>
-                  Senior software engineer at financial startup Dispute and founder of Fraculation LLC.
+                  Most recently a lead software engineer at financial startup Dispute and founder of Fraculation LLC.
                   I have 9 years of professional experience and have been writing code since 2010. My most recent experience
                   is leading the development of a real-time financial dispute resolution platform built with C# and dotnet.
                   Before that, I taught myself real-time application development in C# and Rust, and even earlier I was
@@ -173,7 +173,7 @@ class About extends React.Component {
                 </p><p>
                   Expert in C#, Unity, Terraform, Dotnet, and Typscript. Currently learning Vim, Rust, and Game Development. 
                   Looking to solve complex and meaningful problems with a team that values autonomy and creativity.
-                  Ideally working with Rust or C# on a cloud-native platform or games-adjacent industry on the Individual Contributor track.
+                  Ideally working in performance-critical and/or high scale contexts on the Individual Contributor track.
                 </p>
                 <ResumeList edges={resumes.edges} />
               </div>
