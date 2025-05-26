@@ -1,0 +1,24 @@
+{
+  "title": "Boid Golf",
+  "date": "2025-01-30",
+  "post": null,
+  "developmentTime": "1 week",
+  "totalEntries": 5,
+  "engine": "unity",
+  "teamSize": 1,
+  "preview": {
+    "src": "./projects/boid_golf.png"
+  },
+  "links": [
+    {
+      "type": "Github",
+      "title": "Code on GitHub",
+      "url": "https://github.com/dsmiller95/BoidGame"
+    },
+    {
+      "type": "Game",
+      "title": "Play on itch.io",
+      "url": "https://dsmiller95.itch.io/boid-golf"
+    }
+  ]
+}

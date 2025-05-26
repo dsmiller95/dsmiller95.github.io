@@ -1,0 +1,23 @@
+{
+  "title": "Rock Paper Network 6000",
+  "date": "2024-11-09",
+  "post": null,
+  "developmentTime": "3 days",
+  "engine": "unity",
+  "teamSize": 2,
+  "preview": {
+    "src": "./projects/rock_paper_network.png"
+  },
+  "links": [
+    {
+      "type": "Github",
+      "title": "Code on GitHub",
+      "url": "https://github.com/dsmiller95/RockPaperNetwork6000"
+    },
+    {
+      "type": "Game",
+      "title": "Play on Fraculation.com",
+      "url": "https://www.fraculation.com/RockPaperNetwork6000/"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Gamblin Gladiators",
+  "date": "2025-04-19",
+  "post": null,
+  "developmentTime": "2 weeks",
+  "rank": 15,
+  "totalEntries": 28,
+  "engine": "unity",
+  "teamSize": 2,
+  "preview": {
+    "src": "./projects/gamblin_gladiators.png"
+  },
+  "links": [
+    {
+      "type": "Github",
+      "title": "Code on GitHub",
+      "hidden": true,
+      "comment": "repository is private, do not display",
+      "url": "https://github.com/dsmiller95/SICKJam2025"
+    },
+    {
+      "type": "Game",
+      "title": "Play on itch.io",
+      "url": "https://dsmiller95.itch.io/gamblin-gladiators"
+    }
+  ]
+}
